@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibrahim H. Alsalem, ChE — Basar Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2A4A;
+    --navy-light: #2a3f6f;
+    --steel: #8FA8C8;
+    --cream: #F7F4EF;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #d8d0c4;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(247, 244, 239, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: 'BA';
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: var(--serif);
+    font-size: 18rem;
+    font-weight: 600;
+    color: rgba(143, 168, 200, 0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: 3.8rem;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--steel);
+  }
+
+  .hero-cred {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 380px;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--steel);
+    color: var(--navy);
+    padding: 0.75rem 2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: var(--sans);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-primary:hover { background: #fff; }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    padding: 0.75rem 2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: var(--sans);
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+  }
+
+  .hero-right-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+  }
+
+  .competency-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .competency-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .competency-list li::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--navy);
+    margin-top: 0.75em;
+    flex-shrink: 0;
+  }
+
+  .hero-education {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .edu-item {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .edu-item strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about {
+    background: #fff;
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+
+  .about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-body p {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-body p:last-child { margin-bottom: 0; }
+
+  /* EXPERIENCE */
+  #experience { padding: 6rem 4rem; }
+
+  .exp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+
+  .exp-meta {
+    padding-top: 0.15rem;
+  }
+
+  .exp-dates {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-org {
+    font-size: 0.82rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--steel);
+    font-size: 0.8rem;
+  }
+
+  /* SKILLS STRIP */
+  .skills-strip {
+    background: var(--navy);
+    padding: 4rem;
+  }
+
+  .skills-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  .skill-group-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(143,168,200,0.25);
+    padding: 0.2rem 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: #fff;
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    font-size: 0.82rem;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-detail a {
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .contact-detail a:hover { color: var(--steel); }
+
+  /* FORM */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-family: var(--sans);
+    color: var(--text);
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--navy);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .btn-submit {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.85rem 2.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    align-self: flex-start;
+    transition: background 0.2s;
+  }
+
+  .btn-submit:hover { background: var(--navy-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--steel); }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 5rem 2rem 4rem; min-height: 70vh; }
+    .hero-right { padding: 3rem 2rem; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2rem; padding: 0 2rem; }
+    section { padding: 4rem 2rem; }
+    #experience { padding: 4rem 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skills-strip { padding: 3rem 2rem; }
+    .skills-strip-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">Basar Advisory</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Basar Advisory · Riyadh, KSA</p>
+    <h1 class="hero-name">Ibrahim H.<br><em>Alsalem</em></h1>
+    <p class="hero-cred">ChE · MSc Imperial College London · BSc University of Michigan</p>
+    <p class="hero-desc">Applied economist and behavioural strategist with 8+ years across Saudi public institutions and the private sector. I turn complex data into decisions.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="Ibrahim_Alsalem_Master_CV.pdf" class="btn-ghost" download>Download CV</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <p class="hero-right-label">Areas of focus</p>
+    <ul class="competency-list">
+      <li>Econometric &amp; macroeconomic modelling</li>
+      <li>Behavioural economics &amp; consumer strategy</li>
+      <li>Policy analysis &amp; regulatory advisory</li>
+      <li>Demand forecasting &amp; market feasibility</li>
+      <li>Commercial analytics &amp; executive reporting</li>
+      <li>Vision 2030 programme alignment</li>
+    </ul>
+    <div class="hero-education">
+      <p class="edu-item"><strong>MSc</strong> Economics &amp; Strategy for Business — Imperial College London</p>
+      <p class="edu-item"><strong>BSc</strong> Economics &amp; Psychology (Dual) — University of Michigan</p>
+      <p class="edu-item"><strong>ChE</strong> Chartered Economist — GAFM · ID 81690725</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="about-inner">
+    <div>
+      <p class="section-label">About</p>
+      <h2 class="section-title">Where economics meets behaviour</h2>
+    </div>
+    <div class="about-body fade-in">
+      <p>I'm an applied economist with a background that sits at an unusual intersection: rigorous quantitative training and a deep grounding in behavioural science. Numbers tell part of the story — understanding how people and institutions actually behave tells the rest.</p>
+      <p>Over 8+ years across Saudi Arabia's public and private sectors, I've built econometric models at national scale, led cross-government analytical workstreams, and translated complex data into decisions that reached ministerial and executive leadership — including the Ministry of Economy and Planning, Saudi Tourism Authority, Elm, and Takamol Holding.</p>
+      <p>My work spans policy analysis, demand and market modelling, commercial analytics, and behavioural strategy. Currently advising GCC private-sector and institutional clients through Basar Advisory, and open to senior roles where economic rigour and behavioural insight drive real decisions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Selected career</h2>
+
+  <div class="exp-grid">
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <p class="exp-dates">Nov 2025 – Present</p>
+        <p class="exp-org">Basar Advisory</p>
+      </div>
+      <div>
+        <p class="exp-role">Independent Economic Consultant</p>
+        <ul class="exp-bullets">
+          <li>Market research, consumer segmentation, and willingness-to-pay modelling for a market entry engagement (GCC/Jordan)</li>
+          <li>Advising KSA private-sector clients on market feasibility, demand modelling, and Vision 2030-aligned expansion strategy</li>
+          <li>Active econometric and sectoral modelling practice in R and Stata</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <p class="exp-dates">Nov 2023 – Nov 2025</p>
+        <p class="exp-org">Ministry of Economy and Planning</p>
+      </div>
+      <div>
+        <p class="exp-role">Economic Expert — Labour Market Policy</p>
+        <ul class="exp-bullets">
+          <li>Lead economist for the labour market team; primary point of contact across cross-government workstreams with 10+ government bodies</li>
+          <li>Built and maintained end-to-end quantitative models in R covering the entire Saudi labour force</li>
+          <li>Owned three flagship workstreams: unemployment modelling, remittance forecasting, and shadow-economy analysis</li>
+          <li>Produced policy briefs and research outputs reflected in national strategy documents, reaching the highest levels of government</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <p class="exp-dates">Jan 2023 – Aug 2023</p>
+        <p class="exp-org">Saudi Tourism Authority</p>
+      </div>
+      <div>
+        <p class="exp-role">Assistant Commercial &amp; Data Insight Manager</p>
+        <ul class="exp-bullets">
+          <li>Led data mining and executive dashboard development for the inbound tourism portfolio</li>
+          <li>Produced economic impact analyses and revenue forecasts supporting multi-million SAR investment decisions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <p class="exp-dates">Jun 2019 – Dec 2021</p>
+        <p class="exp-org">Elm Company</p>
+      </div>
+      <div>
+        <p class="exp-role">Senior Analyst, Programs &amp; Planning</p>
+        <ul class="exp-bullets">
+          <li>Led financial planning and project reconstruction across the department's contract portfolio</li>
+          <li>Designed KPI scorecards adopted across the department; consolidated enterprise-wide budget and performance data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <p class="exp-dates">Sep 2015 – Sep 2018</p>
+        <p class="exp-org">Takamol Holding</p>
+      </div>
+      <div>
+        <p class="exp-role">Business Intelligence Analyst</p>
+        <ul class="exp-bullets">
+          <li>Built BI infrastructure; served as analytical advisor to three VPs within the Saudi Employment Department</li>
+          <li>Developed econometric models in R and Stata supporting national labour-market and Saudization policy analysis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS STRIP -->
+<div class="skills-strip">
+  <div class="skills-strip-inner">
+    <div>
+      <p class="skill-group-title">Methods</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Econometrics</span>
+        <span class="skill-tag">Time series</span>
+        <span class="skill-tag">ARIMA</span>
+        <span class="skill-tag">Regression</span>
+        <span class="skill-tag">Impact evaluation</span>
+        <span class="skill-tag">CGE/DSGE</span>
+        <span class="skill-tag">Demand modelling</span>
+        <span class="skill-tag">Cost-benefit analysis</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Tools</p>
+      <div class="skill-tags">
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">Stata</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">R Shiny</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Domains</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Labour markets</span>
+        <span class="skill-tag">Macro policy</span>
+        <span class="skill-tag">Behavioural economics</span>
+        <span class="skill-tag">Commercial analytics</span>
+        <span class="skill-tag">Tourism economics</span>
+        <span class="skill-tag">Vision 2030</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Languages</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Arabic — native</span>
+        <span class="skill-tag">English — native</span>
+      </div>
+      <p class="skill-group-title" style="margin-top:1.5rem">Credentials</p>
+      <div class="skill-tags">
+        <span class="skill-tag">ChE — GAFM</span>
+        <span class="skill-tag">MSc — Imperial</span>
+        <span class="skill-tag">BSc — Michigan</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Start a conversation</h2>
+      <p>Available for advisory engagements, research collaborations, and senior roles across the GCC and internationally.</p>
+      <p class="contact-detail"><a href="mailto:ibrahimhalsalem@gmail.com">ibrahimhalsalem@gmail.com</a></p>
+      <p class="contact-detail">Riyadh, Saudi Arabia</p>
+      <p class="contact-detail"><a href="https://linkedin.com/in/ibrahimhalsalem" target="_blank">linkedin.com/in/ibrahimhalsalem</a></p>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="org">Organisation</label>
+          <input type="text" id="org" placeholder="Company or institution">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="">Select a topic</option>
+          <option>Advisory engagement</option>
+          <option>Research collaboration</option>
+          <option>Speaking or expert commentary</option>
+          <option>Employment opportunity</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell me about the opportunity or project..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send message</button>
+      <p id="form-msg" style="font-size:0.82rem;color:var(--navy);display:none;font-weight:500;">Message sent — I'll be in touch shortly.</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">Basar Advisory · Ibrahim H. Alsalem, ChE</span>
+  <ul class="footer-links">
+    <li><a href="https://linkedin.com/in/ibrahimhalsalem" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:ibrahimhalsalem@gmail.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-msg').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
