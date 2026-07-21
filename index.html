@@ -572,7 +572,9 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
+    .nav-links { gap: 1rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    .nav-clients { padding: 0.4rem 0.9rem; font-size: 0.72rem; }
     .hero { grid-template-columns: 1fr; }
     .hero-left { padding: 5rem 2rem 4rem; min-height: 70vh; }
     .hero-right { padding: 3rem 2rem; }
