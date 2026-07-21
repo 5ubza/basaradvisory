@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>For Clients — Basar Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1B2A4A;--steel:#8FA8C8;--cream:#F7F4EF;--muted:#6b6b6b;--border:#d8d0c4;
+--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',sans-serif}
+body{font-family:var(--sans);background:var(--cream);min-height:100vh;display:flex;flex-direction:column;
+align-items:center;justify-content:center;padding:2rem}
+.box{width:100%;max-width:420px;text-align:center}
+.brand{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);letter-spacing:.03em;margin-bottom:2.2rem}
+.brand a{color:inherit;text-decoration:none}
+h1{font-family:var(--serif);font-weight:300;font-size:2.4rem;color:var(--navy);line-height:1.2}
+h1 em{font-style:italic;color:var(--steel)}
+.ar{font-size:.95rem;color:var(--muted);margin:.4rem 0 2rem}
+form{display:flex;gap:.6rem}
+input{flex:1;padding:.85rem 1rem;border:1px solid var(--border);border-radius:4px;background:#fff;
+font-family:var(--sans);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;outline:none}
+input:focus{border-color:var(--navy)}
+button{padding:.85rem 1.5rem;background:var(--navy);color:#fff;border:0;border-radius:4px;
+font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+button:hover{background:#2a3f6f}
+button:disabled{opacity:.6;cursor:wait}
+.err{color:#a33a3a;font-size:.85rem;margin-top:1rem;min-height:1.4em;visibility:hidden}
+.err.on{visibility:visible}
+.hint{font-size:.78rem;color:var(--muted);margin-top:2.4rem;line-height:1.7}
+.hint a{color:var(--navy)}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="brand"><a href="/">BASAR ADVISORY</a></div>
+  <h1>For <em>Clients</em></h1>
+  <div class="ar">بوابة العملاء — أدخل رمز الوصول الخاص بكم</div>
+  <form id="f">
+    <input id="c" type="password" placeholder="ACCESS CODE" autocomplete="off" autofocus>
+    <button id="b" type="submit">Unlock</button>
+  </form>
+  <div class="err" id="e">Invalid access code · رمز غير صحيح</div>
+  <div class="hint">Access codes are issued per engagement and are personal.<br>
+  Need one? <a href="mailto:ibrahimhalsalem@gmail.com">ibrahimhalsalem@gmail.com</a></div>
+</div>
+<script>
+const P = [{"s":"JclhdAvjKMKBGx9KwZVq5g==","i":"H3NhhCV9v1nZVI26","d":"gJDylDh3eachY4CHmrEVdc/LLnT/nOwORSJHnPWTGhVazHOWqsiHiBmknt1KF3WMtTZsjDNrtvYwq45TAaBNc79r1/ttUFke4UVJp5uJrEzTVZOPaG04Uw/EBAFCfoxtJswrWjLBwYP9kRxGANbVXmRrG/xTnl4TwG/NKaJckTmyLRjMtWtLBE8l7UzJqAVMI7dSYj/ZUfWpYqXoQRttfGBwFbF/vnyyfby+K3B8fmckPr0JNPnvUS4P7ZQQXOaKVUrew+bm0g6353GIDn7fBU2tVG9BsHRbtwhAMtOZCJi0+UFHha2nV+Wo19De2ZNTymlx0IiDz85gN0zGaBHifRQ9a6U/4yyOGZTNVKBveDm+OlHLiwMQ0c8GzMk9OV5pWQBkY91OGIilMEUreioOYw+V//aaavLY52LEKdzFkFm2uyRUf0jyfBfuQoTGSLnkkAx6DoI66tBeZgBVh605HYvghdM2V679ZaIvOYTuRCfzDXZ1y35nOaxxQPXbfGgiQtEqELF47BjfEXiu3OT9S0PEIyCbfTQj4s8KB/LNqTPaN9cAhJ4S2DZPYlhjSbMikRkSX213jTYREuih831P1kJLmAAcP0oi6eA0Uo3aX5JWaYYqhhY8xI1/g3xvb0nsTQEqqAq4/4nWgAzoJNMS4guctzYr7vuuHT9Wls9Xp5an7d9K2KHTbY1ig2luSaBPUr1SfJXPRkTKwyLH7DH4WEXZTXwcvWDGpTr35ftMYZLfndTNFF56e0kB6xRXXok684R5eTsbCXxHXJZfqmCsXC5bhGcBx231GEN1y3cnvQtWbmd4sSeeLu8rG8t3i5257MlET0kK80L7JQauR7yie+9a5WGwTlH8T2tsJZWXqf9xcv3rMsBkeod5T8phm+lNvVKkAB1dqvLntRwV2KP6Xw9zu8LGmWCIx0v75irCqYEDXr4vKfLRhsKNKiz2Oc83V+ny0KgesAay/kqTGgZcr+8aIweUuznubCfAHak0/E+yu2GnwDgJAYA90N8dVWZCP8w7KM2gKFfD7XJvXi5kAIN2ZaJU3yZ5cf8Tzate9woB3rmXyId1rOdS9oI9y0WVb9oowcHGqpSzeBf9cqYcyBZ8qgEBg44xfhbvkB6yx64zktGRCO53JLUDH76QhppmvZCQEvzti0NyTu/xsu1/qtFXn3OaLjErfMRHqtLDta4pUwiTW4Zg8dHxtuXwtkGZxjXHo6+NgKUO5BRDC5eOn8AiKENlm8S/2Iqea3YaSICa2J9KbOSyx/FLazNBaugCqOyormINf8QEx2W0qmnjIMgK/XVqqqZ4D+nqfDIJL+WR1kqp2lVc3cZH7nCctXNmLv8/CjMtXfZnECEY+2LgtsMXfhVI3R+GlRnjec9IdG26y3DZSGyNbcdsvOZmeMGHecrPILm9E/r/MS+i7Mt9vyjO3jRoCUDI3SCScRX7RlcfnDALwO67lTZE+3wJk+xLCGHA2Qo9MFcnLhtZ/qVS1Sz8m9pJYUdiPJVD3lk1LK9xE9rhbzWKpHMCNU0YDpUotYGitPXOGRGJA+TMMLTyeQCrjOxsmbEjrXysM7zk0r/gbwdkg+CYHUpvu23rOongyaVxbuOLKCIuWApU29GvdE4mDuEmZcBnDXSXgcvzVZ7t/N3Ro2/v40iQZbQez6+s9dZ/nyLv5eq6t1vSSrEjU6OR9B/8LlbMJ/MVSFxSEnQNNQoOgXV2AmfGldWmx3xYjFQEsdSA3xXvWpI4Q0E69ciYWGTYaovnKZAxyIHAirZeG4aIjuRRFqeJIgJyjLXmtm64wJU+es74t+bk/8/qiRi2etmFYHMulubwyLRU9KxAObKSStrWR0gxcG8GmUhNv6dXwo+DivoY4s5/7d1YQ4lPrhR8exmZAMQxfpqxXvPqqk2rLjJgkaeKv6sn2Y7OIr/es4+AGZhNSLt6MLx6mxtLVxt3vDyIh4OZ0HbgV0cRTEps9HMRfZWwtRxfzb4DqM2WNtmCoUThUvcOeq+fEMCUoOLC2xmhQqWBFVSl07nZrqiyzxsP7US+l7AeUwwf4Qk/QpS5nwaed8gc+qEiO5oeYl/27hXIbB1P4m6E5G0aTFUXwV6JprXGVUdcxz4tRMnseyHp3B2/yzmp9y6pgglRQjzMyqbmHaTMXV0qpdCbnnNiXpag4NG9SiZn3ptGuPjpwF5mptdepwyxOhtk1a783Q4YLkuuAnR75e/dQS55h1YStubLGed49ffi0362KQRRLmBjLc0PsNVJJQRtGzi+rL36Gf3sWcxt8sDfxj6Wk+PryZIGymHyfi77B7DL0BmO+Rbe6CGx4FGEB1Y1GjQ0Hjz1QH1C4vDt6reGEfEutLP6G9jPhfrf1ML4iauC2mNM5jBPzde0oZpUcFFnrVPFqBzNTQq7eAp8DuwzVK5ghDVI9xW597Fty9ENFsxxxMk6TCUKp1UUS8hVO6uuRSpLBJ758JaNDItRMh7ZBTx1OakxwJR5jbWEpmhE9uJq7H0pYdT1DigZCYAY/qW1buDLMio+ydOfD6UWNvClmlNeTLTQTZjE1vp4EmQzte0haLMZxs1RNIPnzxuxxJHNye/uoP0IJdUR/RlxygeJjzEk9UHg4b3mh0NXzx9xUXPREFQcISs2VIvWS5hTe4kLN9CuiwKeetdwy9nbZn8bEv8XRpdLDqy9UofhLm1YhB7Sf9fbYSD+GfUGlNKAzolAcOGHoTydD/j6UQ+fiklBG7rM5o+Z8pHLHLFXVPt+YAFWPGwtJQEEv7Hw7psMqjqhBBscstA9/yX6bPLQA9gN28BppnsH/6ugWtmZogActOm27V1Ggf8U0xtQGvrxHeps9LaX3s2RZzVmVDgl1XE2AYo0cd8Wl2DoXDJu+RRjoQoTyYvJD/aPimdCXvhszsBVSuDZ7Kv6uTs91Oi2SqHdvwjpG8W//BQd/UlaxDLJTl5hDAo8Eu2a239sxMllmbipHkx39OIZPjdLgQKx2Oz2aTw6mQo+rGT1I23Nd3BvxUMflEXLpHwmH+AAiTIyshNmfBIhs0+lhZpsgQeBbQstSrUQH0kkdRD+Dq4oyaxy7zZkCyfBk79O9gBc7X/XC2TWnrnWSi0sqChlO+IxxEVakms7Ij2E4+nEKAgTv0LZO2PNkr+Ttc7LQN2XMgfhI9l1MShcM0ygu5dinDzxMDYIMhU+0ovNA69slInDezgIH1zF013EQEGtruWH5DIpoQcjlbk/90EkKyWwT9Sucq77f8so/PLs9MYbTOKPUsINVqrAE6oLI1Zq12qy2LLEHNvX5YVWwRU9eSi72enDJuZxzbWEgBc7FMBq8fcFfgcs04e+qxJTOhDAP740+QkDQdqYaDCbpwpRPQGGiGBNA9blQvmA25ByvRb8glbA4G9Yxdrkghj6fA3Rx9fgzp4lHfRnaiSotEGOqvTkUFYnfAYRgcoGPs7CaH5lfzUZW7KHg3f7yqQam6CTZN4mCl1ZX5D76+P0OlyXOiHBQ6qxbBXwR5yPBy1Ay3+nkuUou5GCmUY3bGxqfarITq6TVYM9H0KraLxy5qKi6rVNVe//2I3s4AdUni7EdViOY/7g56vh/TwZBFlQQAr0sGoGx+aRX4PUSd6wAXSc+jztpXnonN82EzX/0OUFXD2dz1sZINafExb96Bdbk0cN7S4kXUNDzloOSGaxv+RuJEXfQhkfjeoceevn8noddgAPEUXBNcGdkuUcwxXiWWYvAtG9Ure9ojoFARMW9O73ixVuu1GjlIiLoBJht4e1hzQbv55mWEN303uBnWf+qBercrHVgyT/OLoyvVMzJd6gGnUoPocwbbVk2W/Hu8BK79IGzRUk9vc+6aJH/ZbKkJ7eZO22ybqvDcrG6sbDuLZsffDH79Je33bebz9pC/6c/kI/+45Ds/359JWj89WYFIOvKnNKDHAdZqA9Vw9kpmfGJaJ2kUBRI5K39hFucEGQAirw37YZZHzj8JbXkaM6ybKOPLAhoqDRQunRJ7b5/+xvLVbxPvSDBhx8Ght7/Uh21PlM0Lf6SH2loUKS42swaEgLZTY2vO7l9BFV23odIRuP15y5aaIm7tfvyNzR11ZUiGLze4iiom5PjahY/PUJZb9W4bdNqTI/1M1T3QX30uDJ8gv+81igK2Eo1M2f+px/KmHbZ8JUXnJTnY+PwqlD21wlassj7NSNGOMzOmpBuOCUHAeLEHo8r3Ik5vsFwpkSNReHylfVjdtrgCih2RcxUKJ3LfsJNyliTma6xFhK6olE6qGjvrKL/lewgbRsjmpa0ojZX2TjF0tA82lSI9a6/KoaO/JgAut/O3XsoohY1ZqEQcnsmu8yfAw7uu6/NvtB6mBmDIR9BVzf/QDANxzUxluq1pbO5U/UlhDx5TJa+PyH6CZN94+IF/N+pNO5jv/AvAc+2VE8c9K/f9udUhNb2GzYWT0ehuEBrbLkpInYdbHZHpk0s0ggeXVJ66t3huxqE3vCDetvbLVD/dNrWf4g9Re7UfB9rTbnNUCl4GAfrWSJZ6ss+a7X+9IQbkIiNobnZK+pU/sDrycL/gX9mOxR/iuBcvJA2wkYT/ufN/YGWX3DLqC0ztw0jcErVFA5JmMlLGxoSm2MT2/eJn6lPE5Yp2dkiFapTYMK/G+ywmN5aWCd8t8PeOo4gzAfxPQ0bRyHgtnUy0RvXN8j8mdoUvf8EoGLe5FQWw/iRPxnM01WFnhh3MahsNCGUE1P7Jc2A+ZP/qvJH9gB68SR5AKZFAXfd9ZLxOyjZgA0RLjU1Y3pqjnAUIdAZelUW2LQPqzoaQaFoZ+UjPJtgZa2o0gSaN5mezwJE1JJ9BPZjcTGTfa8ecf0tGT3CbF/tTaSuGoBVHvVkqMppsXvpp0D5wsS4+hlZJJadjpLTePev5QnJpqzGqns3WnFX9O2QjeAy9I4FhwgpJVvZtq4hnfHjcrZZbLWrfICOA3J+uP8/nqdzU1Zi0x5c5zxjS8Xu3ZPfgoZuI032d0YgyIpymawn09KoNHcP3cl0KdP+MDKQK60dQ55VzdrounvL2XjT35D5nNcGRwjqsdMTznYNrYDoW4ZfnwntDO6ir8PR7vTEiWPiAqz3hMSrjIyJV9Omrq72uaPc0l88W68ol4O+SuxuZxIKztrLUnUeKM7p2tL+yNWm/uskn1bNd7FqVR2J40reUIvmGM3C+H4Me0Kfx11tvETaULqXjFpezp6q+BCUeKwBMNdkwZzmQzA+dzNO/wGacHdfKs8J/wVh2o="}];
+const ITER = 310000;
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function tryOpen(code) {
+  const enc = new TextEncoder().encode(code.trim().toUpperCase());
+  const base = await crypto.subtle.importKey("raw", enc, "PBKDF2", false, ["deriveKey"]);
+  for (const p of P) {
+    try {
+      const key = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: b64(p.s), iterations: ITER, hash: "SHA-256" },
+        base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+      const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(p.i) }, key, b64(p.d));
+      return new TextDecoder().decode(plain);
+    } catch (_) { /* wrong code for this payload — try next */ }
+  }
+  return null;
+}
+document.getElementById("f").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const btn = document.getElementById("b"), err = document.getElementById("e");
+  btn.disabled = true; err.classList.remove("on");
+  const html = await tryOpen(document.getElementById("c").value);
+  if (html === null) { err.classList.add("on"); btn.disabled = false; return; }
+  document.open(); document.write(html); document.close();
+});
+</script>
+</body>
+</html>
