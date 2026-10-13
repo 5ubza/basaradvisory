@@ -1,0 +1,58 @@
+# Recruitment agencies / executive search firms with a KSA and/or Qatar practice relevant to economics,
+# strategy, policy and finance roles. Every entry carries the URL it was taken from (checked Oct 2026).
+# The pipeline adds agencies it detects in job postings on top of this list.
+registry:
+  - name: Michael Page Middle East
+    country: "SA, QA (covered from Dubai; dedicated Saudi Arabia office page)"
+    kind: agency
+    url: https://www.michaelpage.ae/contact-us/saudi-arabia-office
+    submit_cv: https://www.michaelpage.ae/
+    note: "Contact page lists Saudi Arabia office and states coverage of UAE, KSA, Qatar, Kuwait, Bahrain, Oman."
+    source: https://www.michaelpage.ae/contact-us
+  - name: Robert Walters - Saudi Arabia desk
+    country: SA
+    kind: agency
+    url: https://www.robertwalters.ae/contact-us/middle-east/saudi-arabia.html
+    email: saudi@robertwalters.com
+    submit_cv: https://www.robertwalters.ae/candidates/submit-your-cv.html
+    note: "Saudi Arabia page (served from DIFC office); jobs list at robertwalters.ae/jobs/saudi-arabia.html"
+    source: https://www.robertwalters.ae/contact-us/middle-east/saudi-arabia.html
+  - name: Horton International (Saudi Arabia via Bahrain office)
+    country: SA
+    kind: executive-search
+    url: https://hortoninternational.com/saudi-arabia/
+    note: "C-level and senior search; Saudi engagements led by local managing partners."
+    source: https://hortoninternational.com/saudi-arabia/
+  - name: AP Executive - Qatar
+    country: QA
+    kind: executive-search
+    url: https://www.ap-executive.com/en-qa
+    note: "Doha coverage; finance, investment management, family office, advisory."
+    source: https://www.ap-executive.com/en-qa
+  - name: Keller Executive Search - Qatar
+    country: QA
+    kind: executive-search
+    url: https://www.kellerexecutivesearch.com/executive-recruitment-headhunters-qatar-doha/
+    source: https://www.kellerexecutivesearch.com/executive-recruitment-headhunters-qatar-doha/
+  - name: ACCUR Recruiting Services - Doha
+    country: QA
+    kind: executive-search
+    url: https://accurservices.com/offices/doha-qatar-executive-recruiters/
+    note: "Strategy / business development search in energy, financial services, technology."
+    source: https://accurservices.com/offices/doha-qatar-executive-recruiters/
+  - name: Ethra For Human Resources Consulting
+    country: SA
+    kind: agency
+    url: https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/
+    note: "Seen posting Saudi roles on Bayt (Oct 2026)."
+    source: https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/
+  - name: Dar Masarat
+    country: SA
+    kind: consulting-poster
+    url: https://www.naukrigulf.com/economist-jobs-in-saudi-arabia
+    note: "Posted 'Social, Economic & Financial Impact Consultant' (Riyadh) on Naukrigulf, Oct 2026."
+    source: https://www.naukrigulf.com/economist-jobs-in-saudi-arabia
+
+# Words that usually mean the poster is an intermediary rather than the hiring employer.
+agency_markers: [recruit, recruitment, staffing, manpower, talent, "hr consult", "human resources consult",
+                 headhunt, "executive search", "client of", "confidential", consultancy, outsourcing]

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+jobhunt/out/
+.env
+*.egg-info/

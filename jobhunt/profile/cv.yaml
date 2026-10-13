@@ -1,0 +1,171 @@
+# Master CV - single source of truth for tailoring.
+# Transcribed from Ibrahim_Alsalem_CV_Economist.pdf (repo root). Edit here, never in generated files.
+# Tailoring may REORDER, SELECT and REPHRASE these facts. It may never add employers, dates,
+# titles, degrees, certifications, tools or numbers that are not listed below.
+name: Ibrahim H. Alsalem, ChE
+headline: Chartered Economist | MSc Imperial College London | BSc Economics & Psychology, University of Michigan
+contact:
+  location: Riyadh, Saudi Arabia
+  phone: "+966 53 355 5954"
+  email: ibrahimhalsalem@gmail.com
+  linkedin: linkedin.com/in/ibrahimhalsalem
+  website: basaradvisory.com
+nationality: Saudi
+languages: Native bilingual Arabic and English
+mobility: Based in Riyadh; open to roles across Saudi Arabia and relocation to Doha, Qatar
+
+summary: >-
+  Applied economist and research specialist with 10+ years designing research methodologies and
+  conducting sector research, benchmarking, and predictive modeling across Saudi public institutions
+  and the private sector, spanning labor markets (Takamol), cross-sector consulting (Strategic Gears),
+  national digital-project portfolios (Elm), tourism (Saudi Tourism Authority), and national policy
+  (Ministry of Economy and Planning). Built national-scale econometric and forecasting models in R,
+  Stata, and Python, analyzing economic indicators statistically and over time; led labor-market policy
+  and regulatory impact analysis whose findings fed into published national strategy documents. Dual
+  training in Economics and Psychology (Michigan) and an MSc in Economics & Strategy for Business
+  (Imperial College London) underpin a rigorous, continuously evolving methodological approach,
+  quantitative and qualitative. Chartered Economist (GAFM); native bilingual Arabic-English with deep
+  regional knowledge across the GCC.
+
+competencies:
+  - group: Research & Methodology
+    items: [Research Methodology Design, Sector Research, Competitive Landscape Analysis, Benchmarking,
+            Policy & Regulatory Impact Analysis, Trend Forecasting]
+  - group: Quantitative Methods
+    items: [Econometric Modeling, Time-Series & ARIMA, Regression Analysis, Impact Evaluation,
+            Demand & Segmentation Modeling, Surveys & Data Collection Design]
+  - group: Tools & Visualization
+    items: [R, Stata, Python, SQL, Power BI, Tableau, Excel (Advanced), R Shiny]
+  - group: Domain
+    items: [GCC Markets, Public Sector Research, Tourism & Consumer Sectors, Digital & Technology,
+            Vision 2030, Cross-Border Analytics]
+
+experience:
+  - id: basar
+    title: Independent Economic Consultant
+    company: Basar Advisory
+    company_note: basaradvisory.com
+    location: Riyadh, KSA
+    dates: 2025 - Present
+    bullets:
+      - >-
+        Designed and delivered an end-to-end market research engagement (GCC/Jordan): consumer segmentation,
+        willingness-to-pay modeling, and competitive analysis translated into a quantitative pricing and
+        market-entry strategy.
+      - >-
+        Advising private-sector clients on sector research, demand modeling, and expansion strategy aligned
+        with Vision 2030.
+      - >-
+        Maintaining active research and modeling output in R and Stata; completing CFI Business Intelligence
+        & Data Analyst (BIDA) and Financial Modeling & Valuation Analyst (FMVA) certifications.
+  - id: mep
+    title: Economic Expert - Labor Market Policy
+    company: Ministry of Economy and Planning
+    location: Riyadh, KSA
+    dates: 2023 - 2025
+    bullets:
+      - >-
+        Lead researcher for the labor market team; designed and continuously refined research methodologies
+        at national scale using multi-year datasets, with end-to-end ownership from research design through
+        data collection, modeling, and reporting.
+      - >-
+        Owned three flagship research workstreams: (i) unemployment modeling and predictive forecasting,
+        (ii) foreign-worker remittance forecasting integrating multi-source administrative data in
+        coordination with 10+ government bodies, and (iii) shadow-economy estimation.
+      - >-
+        Analyzed the impact of labor-market policies and regulatory developments; produced research reports,
+        technical notes, and policy briefs whose findings fed into published national strategy documents and
+        reached the highest levels of government.
+      - >-
+        Communicated research findings through decision-ready reports and presentations for ministerial
+        leadership and inter-ministerial committees, supporting cross-government knowledge-sharing across
+        functional areas.
+  - id: sta
+    title: Assistant Commercial & Data Insight Manager
+    company: Saudi Tourism Authority
+    location: Riyadh, KSA
+    dates: "2023"
+    bullets:
+      - >-
+        Led sector research on the inbound tourism portfolio: demand pattern analysis, competitive
+        benchmarking of source markets, and segmentation modeling using consumer, economic, and behavioral
+        data.
+      - >-
+        Produced economic impact analyses, predictive revenue forecasts, and competitive intelligence
+        reports supporting multi-million SAR investment and commercial decisions.
+      - >-
+        Designed and maintained executive dashboards and analytical reports communicating research findings
+        to internal and external stakeholders.
+  - id: elm
+    title: Senior Analyst, Programs & Planning
+    company: Elm Company
+    company_note: Saudi Arabia's leading digital solutions and technology firm
+    location: Riyadh, KSA
+    dates: 2019 - 2020
+    bullets:
+      - >-
+        Led research and analytical workstreams across the Programs & Planning contract portfolio, spanning
+        national-scale digital projects and their data, applying scenario and sensitivity analysis within
+        multi-year planning frameworks.
+      - >-
+        Designed KPI scorecards and consolidated enterprise-wide budget forecasts, financial performance
+        data, and program delivery timelines into integrated research and reporting outputs for senior
+        leadership.
+  - id: sg
+    title: Associate Consultant
+    company: Strategic Gears
+    company_note: Management consulting
+    location: Riyadh, KSA
+    dates: 2018 - 2019
+    bullets:
+      - >-
+        Cross-sector research and competitive analysis for Saudi public and private-sector clients:
+        organizational performance reviews, market assessments, and competitive intelligence across
+        government, financial services, and consumer sectors.
+  - id: takamol
+    title: Business Intelligence Analyst
+    company: Takamol Holding
+    company_note: Digital platforms for Vision 2030 labor-market reform
+    location: Riyadh, KSA
+    dates: 2015 - 2018
+    bullets:
+      - >-
+        Developed mathematical and econometric models in R and Stata supporting national labor-market
+        research, including topical reports on telework and adjacent workforce dynamics.
+      - >-
+        Built the BI infrastructure for Takamol's e-learning platform; concurrently served as analytical
+        advisor to three VPs within the Saudi Employment Department.
+      - >-
+        Designed dashboards and simulations measuring program effectiveness and supporting Vision
+        2030-aligned business cases.
+  - id: hawaz
+    title: Behavioral Economics Consultant (Part-time, Daily Rate)
+    company: Hawaz
+    company_note: Concurrent engagement during Takamol tenure
+    location: Riyadh, KSA
+    dates: "2017"
+    bullets:
+      - >-
+        Brought in to develop and present a behavioral economics RFP submission to the Ministry of Health;
+        bid was successful and won.
+      - >-
+        Applied behavioral and econometric techniques to public-sector service design with downstream
+        application to consumer choice analysis in regulated markets.
+
+education:
+  - degree: MSc Economics & Strategy for Business - Merit
+    institution: Imperial College London
+    location: London, UK
+    dates: 2020 - 2022
+    note: Advanced training in econometrics, macroeconomic modeling, business strategy, and quantitative finance.
+  - degree: BSc Economics & BSc Psychology (Dual Degree), Minor in Mathematics
+    institution: University of Michigan-Ann Arbor
+    location: Ann Arbor, MI, USA
+    dates: 2010 - 2015
+    note: GPA 3.55 / 4.00; Dean's List; quantitative coursework in econometrics, statistics, behavioral science,
+      and applied mathematics.
+
+credentials:
+  - Chartered Economist (ChE) - GAFM, ID 81690725, valid through Apr 2028
+  - Advanced Data Storytelling - Boston University (2018)
+  - BIDA (in progress) and FMVA (planned), Corporate Finance Institute
