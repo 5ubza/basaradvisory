@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import json
 import logging
+import time
 from datetime import date
 from pathlib import Path
 
@@ -45,10 +46,13 @@ def run(config_path: str | None = None, offline_dir: str | None = None, use_llm:
     out_dir = Path(cfg["paths"]["out"]) / date.today().isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
     cv = yaml.safe_load(open(cfg["paths"]["cv"], encoding="utf-8"))
-    http = PoliteSession(offline_dir=Path(offline_dir) if offline_dir else None)
+    http = PoliteSession(offline_dir=Path(offline_dir) if offline_dir else None,
+                         deadline_seconds=int(pc.get("network_budget_seconds", 900)))
+    t0 = time.time()
     state = SeenState(cfg["paths"]["state"], keep_days=pc.get("keep_state_days", 120))
 
     raw, counts = run_sources(cfg, http, only=only_sources)
+    log.info("sources done in %.0fs", time.time() - t0)
     jobs = dedupe(raw)
     new_jobs = [j for j in jobs if state.is_new(j.id)]
     log.info("%d raw -> %d unique -> %d new", len(raw), len(jobs), len(new_jobs))
@@ -67,6 +71,7 @@ def run(config_path: str | None = None, offline_dir: str | None = None, use_llm:
                 j.red_flags.extend(f for f in rr[j.id].red_flags if f not in j.red_flags)
         shortlist.sort(key=lambda j: (j.llm_fit if j.llm_fit is not None else j.score, j.score), reverse=True)
 
+    log.info("scoring/enrich/rerank done in %.0fs", time.time() - t0)
     # ---- tailoring ------------------------------------------------------------------------------
     limit = pc["tailor_top_n"] if max_tailor is None else max_tailor
     candidates = [j for j in shortlist if j.score >= pc["min_score_to_tailor"]

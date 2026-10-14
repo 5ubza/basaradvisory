@@ -17,9 +17,14 @@ DEFAULT_UA = ("Mozilla/5.0 (compatible; BasarAdvisory-JobHunt/0.1; personal job-
 
 
 class PoliteSession:
-    def __init__(self, user_agent: str = DEFAULT_UA, min_delay: float = 2.0, timeout: int = 30,
-                 respect_robots: bool = True, offline_dir: Optional[Path] = None):
+    def __init__(self, user_agent: str = DEFAULT_UA, min_delay: float = 2.0, timeout: int = 20,
+                 respect_robots: bool = True, offline_dir: Optional[Path] = None,
+                 host_failure_budget: int = 3, deadline_seconds: int = 900):
         self.s = requests.Session()
+        self.host_failure_budget = host_failure_budget   # after N failures/timeouts a host is skipped for the run
+        self.deadline = time.time() + deadline_seconds    # hard stop for all network activity
+        self._failures: dict[str, int] = {}
+        self._dead_hosts: set[str] = set()
         self.s.headers.update({"User-Agent": user_agent, "Accept-Language": "en"})
         self.min_delay = min_delay
         self.timeout = timeout
@@ -35,7 +40,7 @@ class PoliteSession:
             return self._robots[host]
         rp = robotparser.RobotFileParser()
         try:
-            r = self.s.get(f"https://{host}/robots.txt", timeout=self.timeout)
+            r = self.s.get(f"https://{host}/robots.txt", timeout=15)
             if r.status_code == 200:
                 rp.parse(r.text.splitlines())
             else:
@@ -54,6 +59,23 @@ class PoliteSession:
         return rp.can_fetch(self.s.headers["User-Agent"], url) and rp.can_fetch("*", url)
 
     # ---- fetch --------------------------------------------------------------------------------------------
+    def _host_ok(self, url: str) -> bool:
+        host = urlparse(url).netloc
+        if time.time() > self.deadline:
+            log.warning("network deadline reached - skipping %s", url)
+            return False
+        if host in self._dead_hosts:
+            log.info("host %s marked unreachable this run - skipping %s", host, url)
+            return False
+        return True
+
+    def _fail(self, url: str) -> None:
+        host = urlparse(url).netloc
+        self._failures[host] = self._failures.get(host, 0) + 1
+        if self._failures[host] >= self.host_failure_budget:
+            self._dead_hosts.add(host)
+            log.warning("host %s failed %d times - giving up on it for this run", host, self._failures[host])
+
     def _throttle(self, url: str) -> None:
         host = urlparse(url).netloc
         wait = self.min_delay - (time.time() - self._last.get(host, 0))
@@ -61,7 +83,7 @@ class PoliteSession:
             time.sleep(wait)
         self._last[host] = time.time()
 
-    def get(self, url: str, fixture: str | None = None, retries: int = 2, **kw) -> Optional[requests.Response]:
+    def get(self, url: str, fixture: str | None = None, retries: int = 1, **kw) -> Optional[requests.Response]:
         """GET with throttle/retries. In offline mode, `fixture` names a file in offline_dir and is returned instead."""
         if self.offline_dir is not None:
             if fixture and (self.offline_dir / fixture).exists():
@@ -72,6 +94,8 @@ class PoliteSession:
                 resp.encoding = "utf-8"
                 return resp
             log.info("offline: no fixture %s for %s", fixture, url)
+            return None
+        if not self._host_ok(url):
             return None
         if not self.allowed(url):
             log.warning("robots.txt disallows %s - skipping", url)
@@ -85,15 +109,16 @@ class PoliteSession:
                     continue
                 if r.status_code >= 400:
                     log.warning("GET %s -> %s", url, r.status_code)
+                    self._fail(url)
                     return None
                 return r
             except requests.RequestException as e:
                 log.warning("GET %s failed (%s) attempt %d", url, e, attempt + 1)
-                time.sleep(2 * (attempt + 1))
+        self._fail(url)
         return None
 
     def post_json(self, url: str, payload, headers: dict | None = None) -> Optional[dict | list]:
-        if self.offline_dir is not None:
+        if self.offline_dir is not None or not self._host_ok(url):
             return None
         self._throttle(url)
         try:
@@ -104,10 +129,11 @@ class PoliteSession:
             return r.json()
         except (requests.RequestException, ValueError) as e:
             log.warning("POST %s failed: %s", url, e)
+            self._fail(url)
             return None
 
     def get_json(self, url: str, params: dict | None = None, headers: dict | None = None, auth=None):
-        if self.offline_dir is not None:
+        if self.offline_dir is not None or not self._host_ok(url):
             return None
         self._throttle(url)
         try:
@@ -118,4 +144,5 @@ class PoliteSession:
             return r.json()
         except (requests.RequestException, ValueError) as e:
             log.warning("GET %s failed: %s", url, e)
+            self._fail(url)
             return None

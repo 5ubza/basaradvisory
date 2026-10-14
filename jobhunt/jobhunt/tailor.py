@@ -134,7 +134,7 @@ POSTING. Rules, in priority order:
 
 def _claude_client():
     import anthropic  # imported lazily so the package works without the SDK installed
-    return anthropic.Anthropic()
+    return anthropic.Anthropic(timeout=180.0, max_retries=1)
 
 
 def tailor_with_claude(cv: dict, job: Job, model: str) -> Optional[TailoredCV]:

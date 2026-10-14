@@ -90,7 +90,7 @@ def fetch(cfg, http) -> list[Job]:
     since = (date.today() - timedelta(days=int(opts.get("days_back", 2)))).strftime("%d-%b-%Y")
     out: list[Job] = []
     try:
-        M = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+        M = imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=60)
         M.login(env("GMAIL_USER"), env("GMAIL_APP_PASSWORD"))
         M.select("INBOX", readonly=True)
         for kind, senders in opts.get("senders", {}).items():
@@ -111,6 +111,6 @@ def fetch(cfg, http) -> list[Job]:
                     if html:
                         out.extend(extract_jobs_from_html(html, kind, subject))
         M.logout()
-    except imaplib.IMAP4.error as e:
+    except (imaplib.IMAP4.error, OSError) as e:
         log.warning("IMAP failed: %s", e)
     return out

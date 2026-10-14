@@ -104,6 +104,7 @@ pipeline:
   tailor_top_n: 5              # tailored CV + notes for the top N new jobs with score >= min_score_to_tailor
   min_score_to_tailor: 55
   keep_state_days: 120
+  network_budget_seconds: 900   # hard cap on all scraping/API time per run; unreachable hosts are skipped after 3 failures
 
 llm:
   enabled: true                 # falls back to deterministic tailoring when ANTHROPIC_API_KEY is absent
