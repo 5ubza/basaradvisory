@@ -10,6 +10,8 @@ from urllib.parse import urlparse
 
 import requests
 
+from .config import env
+
 log = logging.getLogger(__name__)
 
 DEFAULT_UA = ("Mozilla/5.0 (compatible; BasarAdvisory-JobHunt/0.1; personal job-search agent; "
@@ -19,8 +21,18 @@ DEFAULT_UA = ("Mozilla/5.0 (compatible; BasarAdvisory-JobHunt/0.1; personal job-
 class PoliteSession:
     def __init__(self, user_agent: str = DEFAULT_UA, min_delay: float = 2.0, timeout: int = 20,
                  respect_robots: bool = True, offline_dir: Optional[Path] = None,
-                 host_failure_budget: int = 3, deadline_seconds: int = 900):
+                 host_failure_budget: int = 3, deadline_seconds: int = 900,
+                 proxied_hosts: Optional[list[str]] = None, backend: str = "auto"):
         self.s = requests.Session()
+        # Hosts that refuse or stall requests from cloud/datacenter IPs (observed from GitHub Actions, Oct 2026:
+        # bayt.com 403, gulftalent.com 403, naukrigulf.com and careers.aramco.com read-timeouts). For these we go
+        # through a fetch backend when one is configured: Firecrawl (FIRECRAWL_API_KEY) or Bright Data Web Unlocker
+        # (BRIGHTDATA_API_KEY + BRIGHTDATA_UNLOCKER_ZONE). Without a backend they are tried directly and given up
+        # quickly thanks to the failure budget.
+        self.proxied_hosts = [h.lower() for h in (proxied_hosts or [])]
+        self.backend = self._pick_backend(backend)
+        if self.backend:
+            log.info("fetch backend for blocked hosts: %s", self.backend)
         self.host_failure_budget = host_failure_budget   # after N failures/timeouts a host is skipped for the run
         self.deadline = time.time() + deadline_seconds    # hard stop for all network activity
         self._failures: dict[str, int] = {}
@@ -32,6 +44,59 @@ class PoliteSession:
         self.offline_dir = Path(offline_dir) if offline_dir else None
         self._last: dict[str, float] = {}
         self._robots: dict[str, Optional[robotparser.RobotFileParser]] = {}
+
+    # ---- backends ---------------------------------------------------------------------------------------
+    @staticmethod
+    def _pick_backend(pref: str) -> Optional[str]:
+        fc = bool(env("FIRECRAWL_API_KEY"))
+        bd = bool(env("BRIGHTDATA_API_KEY") and env("BRIGHTDATA_UNLOCKER_ZONE"))
+        if pref == "firecrawl" and fc:
+            return "firecrawl"
+        if pref == "brightdata" and bd:
+            return "brightdata"
+        if pref in ("auto", "firecrawl", "brightdata"):
+            return "firecrawl" if fc else ("brightdata" if bd else None)
+        return None
+
+    def _is_proxied(self, url: str) -> bool:
+        host = urlparse(url).netloc.lower()
+        return bool(self.backend) and any(host == h or host.endswith("." + h) for h in self.proxied_hosts)
+
+    def _via_backend(self, url: str) -> Optional[requests.Response]:
+        """Fetch through Firecrawl (POST /v2/scrape, formats=[rawHtml]) or Bright Data Web Unlocker
+        (POST /request, format=raw). Returns a Response-like object with .text/.status_code/.url."""
+        try:
+            if self.backend == "firecrawl":
+                r = self.s.post("https://api.firecrawl.dev/v2/scrape",
+                                headers={"Authorization": f"Bearer {env('FIRECRAWL_API_KEY')}"},
+                                json={"url": url, "formats": ["rawHtml"], "onlyMainContent": False,
+                                      "proxy": "auto", "timeout": 60000}, timeout=90)
+                if r.status_code != 200:
+                    log.warning("firecrawl %s -> %s %s", url, r.status_code, r.text[:160])
+                    return None
+                data = r.json().get("data", {})
+                html = data.get("rawHtml") or data.get("html") or ""
+                code = int((data.get("metadata") or {}).get("statusCode") or 200)
+            else:
+                r = self.s.post("https://api.brightdata.com/request",
+                                headers={"Authorization": f"Bearer {env('BRIGHTDATA_API_KEY')}"},
+                                json={"zone": env("BRIGHTDATA_UNLOCKER_ZONE"), "url": url, "format": "raw"}, timeout=90)
+                if r.status_code != 200:
+                    log.warning("brightdata unlocker %s -> %s %s", url, r.status_code, r.text[:160])
+                    return None
+                html, code = r.text, 200
+        except (requests.RequestException, ValueError) as e:
+            log.warning("backend fetch %s failed: %s", url, e)
+            return None
+        if not html or code >= 400:
+            log.warning("backend fetch %s returned status %s / %d bytes", url, code, len(html))
+            return None
+        resp = requests.Response()
+        resp.status_code = code
+        resp._content = html.encode("utf-8")
+        resp.encoding = "utf-8"
+        resp.url = url
+        return resp
 
     # ---- robots -----------------------------------------------------------------------------------------
     def _robot(self, url: str) -> Optional[robotparser.RobotFileParser]:
@@ -97,6 +162,12 @@ class PoliteSession:
             return None
         if not self._host_ok(url):
             return None
+        if self._is_proxied(url):
+            self._throttle(url)
+            r = self._via_backend(url)
+            if r is None:
+                self._fail(url)
+            return r
         if not self.allowed(url):
             log.warning("robots.txt disallows %s - skipping", url)
             return None

@@ -11,6 +11,7 @@ import email
 import imaplib
 import logging
 import re
+import time
 from datetime import date, timedelta
 from email.header import decode_header, make_header
 from urllib.parse import parse_qs, urlparse
@@ -89,9 +90,19 @@ def fetch(cfg, http) -> list[Job]:
     opts = cfg["sources"]["email_alerts"]
     since = (date.today() - timedelta(days=int(opts.get("days_back", 2)))).strftime("%d-%b-%Y")
     out: list[Job] = []
+    M = None
+    for attempt in range(3):  # Gmail caps simultaneous IMAP connections per account; back off and retry
+        try:
+            M = imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=60)
+            M.login(env("GMAIL_USER"), env("GMAIL_APP_PASSWORD"))
+            break
+        except (imaplib.IMAP4.error, OSError) as e:
+            log.warning("IMAP login attempt %d failed: %s", attempt + 1, e)
+            M = None
+            time.sleep(20 * (attempt + 1))
+    if M is None:
+        return out
     try:
-        M = imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=60)
-        M.login(env("GMAIL_USER"), env("GMAIL_APP_PASSWORD"))
         M.select("INBOX", readonly=True)
         for kind, senders in opts.get("senders", {}).items():
             for snd in senders:

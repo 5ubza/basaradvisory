@@ -112,10 +112,21 @@ llm:
   rerank: true                  # one batched call to re-score the shortlist and flag mismatches
   rerank_top_n: 25
 
+# How pages are fetched. The three Gulf boards and some career sites block or stall requests from cloud IPs
+# (seen from GitHub Actions on 2026-10-14: bayt.com 403, gulftalent.com 403, naukrigulf.com / careers.aramco.com
+# timeouts). Hosts listed here are fetched through a backend when a key is present:
+#   firecrawl  -> FIRECRAWL_API_KEY                       (1 credit per page)
+#   brightdata -> BRIGHTDATA_API_KEY + BRIGHTDATA_UNLOCKER_ZONE (Web Unlocker, per-request billing)
+# backend: auto picks Firecrawl, then Bright Data, else direct. Without a backend these boards usually return
+# nothing from GitHub Actions - rely on their email alerts (email_alerts source) instead.
+fetch:
+  backend: auto
+  proxied_hosts: [bayt.com, gulftalent.com, naukrigulf.com, careers.aramco.com]
+
 sources:
-  bayt: {enabled: true}
-  naukrigulf: {enabled: true}
-  gulftalent: {enabled: true}
+  bayt: {enabled: true, max_queries: 4}          # max_queries caps backend credits: 4 queries x 2 countries = 8 pages/day
+  naukrigulf: {enabled: true, max_queries: 4}
+  gulftalent: {enabled: true, max_queries: 4}
   careerjet: {enabled: true}            # needs CAREERJET_API_KEY (publisher account)
   jooble: {enabled: true}               # needs JOOBLE_API_KEY_SA / JOOBLE_API_KEY_QA (one key per country domain)
   jsearch: {enabled: true}              # needs JSEARCH_API_KEY (OpenWeb Ninja) - Google for Jobs aggregator

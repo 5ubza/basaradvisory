@@ -46,8 +46,10 @@ def run(config_path: str | None = None, offline_dir: str | None = None, use_llm:
     out_dir = Path(cfg["paths"]["out"]) / date.today().isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
     cv = yaml.safe_load(open(cfg["paths"]["cv"], encoding="utf-8"))
+    fetch_cfg = cfg.get("fetch", {})
     http = PoliteSession(offline_dir=Path(offline_dir) if offline_dir else None,
-                         deadline_seconds=int(pc.get("network_budget_seconds", 900)))
+                         deadline_seconds=int(pc.get("network_budget_seconds", 900)),
+                         proxied_hosts=fetch_cfg.get("proxied_hosts", []), backend=fetch_cfg.get("backend", "auto"))
     t0 = time.time()
     state = SeenState(cfg["paths"]["state"], keep_days=pc.get("keep_state_days", 120))
 
@@ -124,7 +126,8 @@ def tailor_one(url: str, title: str = "", company: str = "", config_path: str | 
     """Ad-hoc: tailor for a single posting URL (or pasted description)."""
     cfg = load_config(config_path)
     cv = yaml.safe_load(open(cfg["paths"]["cv"], encoding="utf-8"))
-    http = PoliteSession()
+    fetch_cfg = cfg.get("fetch", {})
+    http = PoliteSession(proxied_hosts=fetch_cfg.get("proxied_hosts", []), backend=fetch_cfg.get("backend", "auto"))
     job = Job(source="manual", title=title or "Target role", company=company, url=url,
               description=Path(description_file).read_text("utf-8") if description_file else "")
     if not job.description:
