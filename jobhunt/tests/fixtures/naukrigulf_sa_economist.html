@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.styles_overlay__CLSq- { background: rgba(0, 0, 0, 0.75); display: flex; align-items: flex-start; position: fixed; inset: 0px; overflow: hidden auto; z-index: 1000; padding: 1.2rem; }
+
+.styles_modal__gNwvD { max-width: 800px; position: relative; padding: 1.2rem; background: padding-box rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.25) 0px 12px 15px 0px; margin: 0px auto; }
+
+.styles_modalCenter__L9F2w { margin: auto; }
+
+.styles_closeButton__20ID4 { position: absolute; top: 14px; right: 14px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px; background-color: transparent; display: flex; }
+
+.styles_closeIcon__1QwbI { }
+
+.styles_transitionEnter__3j_-a { opacity: 0.01; }
+
+.styles_transitionEnterActive___eQs7 { opacity: 1; transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+.styles_transitionExit__1KmEf { opacity: 1; }
+
+.styles_transitionExitActive__1nQXw { opacity: 0.01; transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1); }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+a, address, article, aside, b, body, dd, div, dl, dt, em, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, label, li, mark, nav, ol, p, section, small, span, strong, sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul { border: 0px; font-size: 100%; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; box-sizing: border-box; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-size-adjust: none; }
+
+a img, img { border: 0px; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0px; }
+
+caption, td, th { text-align: left; vertical-align: top; }
+
+li, ol, ul { list-style: none; }
+
+sub, sup { font-size: 75%; line-height: 1; position: relative; }
+
+sup { top: -0.5em; vertical-align: text-top; }
+
+sub { bottom: -0.25em; vertical-align: text-bottom; }
+
+small { font-size: 81%; }
+
+button, input, select, textarea { box-sizing: border-box; font-family: inherit; font-size: 100%; line-height: normal; margin: 0px; vertical-align: baseline; }
+
+textarea { overflow: auto; resize: none; vertical-align: top; }
+
+button, input[type="button"], input[type="reset"], input[type="submit"] { appearance: button; cursor: pointer; overflow: visible; }
+
+button[disabled], input[disabled] { cursor: default; }
+
+input[type="checkbox"], input[type="radio"] { padding: 0px; }
+
+input[type="search"] { appearance: textfield; }
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { appearance: none; }
+
+input[type="checkbox"], input[type="radio"] { vertical-align: top; }
+
+article, aside, details, footer, header, hgroup, nav, section { display: block; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2") format("woff2"); unicode-range: U+370-3FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2") format("woff2"); unicode-range: U+590-5FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2") format("woff2"); unicode-range: U+100-2AF, U+304, U+308, U+329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2") format("woff2"); unicode-range: U+370-3FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2") format("woff2"); unicode-range: U+590-5FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2") format("woff2"); unicode-range: U+100-2AF, U+304, U+308, U+329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2") format("woff2"); unicode-range: U+370-3FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2") format("woff2"); unicode-range: U+590-5FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2") format("woff2"); unicode-range: U+100-2AF, U+304, U+308, U+329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 500; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2") format("woff2"); unicode-range: U+370-3FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2") format("woff2"); unicode-range: U+590-5FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2") format("woff2"); unicode-range: U+100-2AF, U+304, U+308, U+329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu1aB.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu1aB.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu1aB.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu1aB.woff2") format("woff2"); unicode-range: U+370-3FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu1aB.woff2") format("woff2"); unicode-range: U+590-5FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu1aB.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu1aB.woff2") format("woff2"); unicode-range: U+100-2AF, U+304, U+308, U+329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("https://fonts.gstatic.com/s/opensans/v36/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUQjIg1_i6t8kCHKm459WxRxC7mw9c.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUQjIg1_i6t8kCHKm459WxRzS7mw9c.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUQjIg1_i6t8kCHKm459WxRxi7mw9c.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUQjIg1_i6t8kCHKm459WxRxy7mw9c.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 100 900; font-display: swap; src: url("https://fonts.gstatic.com/s/montserrat/v30/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+.splScrn { display: block; padding-top: 100px; }
+
+#splScrn, .splScrn { width: 99%; height: 100%; background: rgb(255, 255, 255); position: absolute; top: 0px; }
+
+#splScrn { display: inherit; }
+
+.image { height: 80%; margin: 4% auto 0px; max-height: 600px; display: block; border-radius: 0px 0px 0px 30px; opacity: 1; }
+
+.ng-logo-text2 { font-size: 48px; width: 100%; position: absolute; top: 0px; opacity: 0.001; }
+
+.ng-logo-text, .ng-logo-text2 { font-family: Arial, Helvetica, sans-serif; font-weight: 800; letter-spacing: -2px; text-align: center; }
+
+.ng-logo-text { font-size: 3.2em; color: rgb(0, 143, 206); padding-bottom: 12px; padding-top: 100px; margin: 0px; }
+
+.ng-logo-gulf { color: rgb(18, 149, 18); }
+
+.ng-logo-com { color: rgb(10, 108, 182); }
+
+.ngSplashIcon::before { content: ""; border-radius: 50%; box-shadow: rgba(0, 106, 194, 0.2) 0px 1px 4px; width: 110px; height: 110px; padding: 16px; position: absolute; top: -30px; left: -30px; }
+
+.ngSplashIcon { height: 5rem; text-align: center; position: relative; width: 5rem; margin: 0px 0px 0px 47%; }
+
+.ng-logo-sub-text { color: rgb(59, 101, 133); font-family: Arial, Helvetica, sans-serif; font-weight: 400; font-size: 24px; line-height: 24px; letter-spacing: -0.2px; text-align: center; padding-top: 6px; margin: 0px; }
+
+.footer-text { margin-top: 60px; text-align: center; position: relative; justify-content: center; }
+
+.foot-txt-span { font-weight: 400; font-family: Arial, Helvetica, sans-serif; font-size: 20px; color: rgb(59, 101, 133); line-height: 20px; letter-spacing: -0.2px; padding-left: 15px; padding-right: 15px; display: inline-block; margin-bottom: 12px; border-right: 1px solid rgb(212, 219, 227); }
+
+.last-span { border-right: unset; }
+
+#circleG { text-align: center; overflow: hidden; padding-top: 100px; }
+
+.circleG { background-color: rgb(18, 149, 18); display: inline-block; height: 12px; margin: 4px; width: 12px; border-radius: 50%; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.naukri-wdgt-shimmer { height: 100%; margin: 15px 0px; width: 100%; }
+
+.naukri-wdgt-shimmer .header-shimmer { box-sizing: border-box; border-radius: 4px; background: white; padding: 24px; }
+
+.naukri-wdgt-shimmer .shimmer-cont { margin-top: 30px; }
+
+.naukri-wdgt-shimmer .animated-background { animation-duration: 1s; animation-fill-mode: forwards; animation-iteration-count: infinite; animation-name: placeHolderShimmer; animation-timing-function: linear; background: linear-gradient(to right, rgb(244, 245, 247) 8%, rgb(229, 229, 229) 18%, rgb(244, 245, 247) 33%) 0% 0% / 800px 104px; position: relative; height: 14px; border-radius: 7px; }
+
+.naukri-wdgt-shimmer .animated-background:first-of-type { width: 85%; }
+
+.naukri-wdgt-shimmer .animated-background:nth-of-type(2n) { width: 70%; margin-top: 10px; }
+
+.naukri-wdgt-shimmer .animated-background:nth-of-type(3n) { width: 70%; margin-top: 10px; }
+
+@-webkit-keyframes placeHolderShimmer { 
+  0% { background-position: -200px 0px; }
+  100% { background-position: 468px 0px; }
+}
+
+@keyframes placeHolderShimmer { 
+  0% { background-position: -200px 0px; }
+  100% { background-position: 468px 0px; }
+}</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.naukri-wdgt { min-width: 50px; min-height: 50px; width: 100%; overflow: auto hidden; }
+
+.naukri-wdgt .wdgt-track-view { line-height: 1px; height: 1px; }
+
+.naukri-html-wdgt { overflow: auto hidden; width: 100%; }
+
+.naukri-js-wdgt { background-color: rgb(255, 255, 255); border-radius: 4px; box-shadow: rgba(0, 106, 194, 0.2) 0px 1px 4px 0px; margin: 0px 0px 10px; padding: 0px 24px; box-sizing: border-box; }
+
+.naukri-js-wdgt * { box-sizing: border-box; padding: 0px; margin: 0px; word-break: break-word; }
+
+.naukri-js-wdgt ul { list-style: none; }
+
+.naukri-js-wdgt ul li { list-style-type: none; }
+
+.naukri-js-wdgt a, .naukri-js-wdgt a:hover, .naukri-js-wdgt a:visited, .naukri-js-wdgt a:focus { text-decoration: none; }
+
+#document-section-widgets .naukri-wdgt { min-width: auto !important; min-height: auto !important; width: 0px !important; height: 0px !important; }
+
+.wdgt-overlay-container { position: fixed; z-index: 999999; }
+
+.wdgt-overlay-container.wdgt-overlay-top-left { top: 100px; left: 36px; }
+
+.wdgt-overlay-container.wdgt-overlay-bottom-left { bottom: 100px; left: 36px; }
+
+.wdgt-overlay-container.wdgt-overlay-bottom-right { bottom: 100px; right: 36px; }
+
+.wdgt-overlay-container.wdgt-overlay-top-right { top: 100px; right: 36px; }
+
+.wdgt-overlay-container .wdgt-overlay-inventory { margin-bottom: 10px; }
+
+.wdgt-overlay-container .wdgt-overlay-inventory:last-child { margin-bottom: 0px; }
+
+@media only screen and (max-width: 668px) {
+  .wdgt-overlay-container.wdgt-overlay-bottom-left, .wdgt-overlay-container.wdgt-overlay-bottom-right { right: 36px; bottom: 100px; left: 36px; }
+  .wdgt-overlay-container.wdgt-overlay-top-right, .wdgt-overlay-container.wdgt-overlay-top-left { left: 36px; top: 100px; right: 36px; }
+}</style><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="Content-Language" content="en"><title>Economist Jobs in Saudi Arabia - 15 Vacancies Oct 2026</title><meta name="Description" content="Economist Jobs in Saudi Arabia - Explore Economist Vacancies in Saudi Arabia in top companies in UAE, Qatar, Oman &amp; Bahrain."><link rel="canonical" href="https://www.naukrigulf.com/economist-jobs-in-saudi-arabia"><link rel="alternate" href="https://arabic.naukrigulf.com/economist-jobs-in-saudi-arabia" hreflang="ar-SA"><link rel="alternate" href="https://www.naukrigulf.com/economist-jobs-in-saudi-arabia" hreflang="en"><link rel="alternate" href="android-app://com.naukrigulf.app/https/www.naukrigulf.com/economist-jobs-in-saudi-arabia"><meta name="robots" content="ALL"><meta name="resource-type" content="document"><meta name="distribution" content="GLOBAL"><meta name="rating" content="general"><meta name="pragma" content="no-cache"><meta property="og:image" content="https://static.naukimg.com/s/2/200/i/favicon/v1/favicon.ico"><meta property="og:site_name" content="naukrigulf.com"><meta name="author" content="www.Naukrigulf.com"><meta name="copyright" content="2021 Naukrigulf.com"><meta property="revisit-after" content="1 day"><meta property="og:title" content="Economist Jobs in Saudi Arabia - 15 Vacancies Oct 2026"><meta property="og:description" content="Economist Jobs in Saudi Arabia - Explore Economist Vacancies in Saudi Arabia in top companies in UAE, Qatar, Oman &amp; Bahrain."><meta property="og:url" content="https://www.naukrigulf.com/economist-jobs-in-saudi-arabia"><meta name="noFollowPageNumber" content="2"><meta name="classification" content="Middle East Job and Career: Search Jobs in Gulf, Search Resumes, Resume Development">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="preconnect" href="https://logs.naukrigulf.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="shortcut icon" href="https://static.naukimg.com/s/2/200/i/favicon/v1/favicon.ico">
+
+
+    
+
+<script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=D87DQA3C77UBGDFCLUFG&amp;lib=ttq"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-WJ8D2R"></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script async="" src="https://www.clarity.ms/tag/rf76vh59aq"></script><script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=D87DQA3C77UBGDFCLUFG&amp;lib=ttq"></script><script>bazadebezolkohpepadr="1913055105"</script><script type="text/javascript" src="https://www.naukrigulf.com/akam/13/7206e606" defer=""></script><script async="" src="https://static.naukimg.com/s/0/1/j/ub_v1.7.min.js"></script><script async="" src="https://static.naukimg.com/s/0/0/j/logWebvital_v1.6.min.js"></script><script async="" src="https://lg.naukri.com/uba?data={%22rt.start%22:%22navigation%22,%22t_resp%22:%22857%22,%22t_page%22:%22233%22,%22t_done%22:%221090%22,%22r%22:%22https%3A%2F%2Fwww.google.com%2F%22,%22t_resr%22:{%22t_domloaded%22:1047},%22u%22:%22nmit-https%3A%2F%2Fwww.naukrigulf.com%2Feconomist-jobs-in-saudi-arabia%22,%22nt_dns%22:%220%22,%22nt_plt%22:%22173%22,%22nt_render%22:%22220%22,%22nt_req%22:%22769%22,%22nt_res%22:%223%22,%22nt_tcp%22:%2285%22,%22appId%22:205,%22tag%22:%22DESKTOP_PWA-nmit%22,%22eventName%22:%22newMonkPerformance%22,%22tenantId%22:2,%22deviceType%22:%22SERVER%22,%22screen_res%22:%221920x1080%22,%22pageUID%22:%222055ce4f9399888599744683545a0fbc%22}&amp;rad=0.25371351232651285"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/vendors-routeConfig.ffccece94.js" crossorigin="anonymous"></script><link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/6/205/c/routeConfig.c1b39fd9e.css" crossorigin="anonymous"><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/routeConfig.105b7c6dc.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/notification.aeeb943f5.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/default-searchResult.jobDescription.acp.cjaAlertsJobs.Login.savedJobs.mnjHome.whtma.resetPwd.companyPage.companyPageV2.2697602e7.js" crossorigin="anonymous"></script><link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/6/205/c/default-searchResult.jobDescription.companyWithLocation.companyPage.companyPageV2.LocationSalary..efccbc792.css" crossorigin="anonymous"><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/default-searchResult.jobDescription.companyWithLocation.companyPage.companyPageV2.LocationSalary..f86299266.js" crossorigin="anonymous"></script><link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/6/205/c/sass-routes-srp-styles-scss.css.57f0e065f.css" crossorigin="anonymous"><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/sass-routes-srp-styles-scss.css.1b02224da.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/default-searchResult.companyPage.a21327f40.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/searchResult.0e48e1eb0.js" crossorigin="anonymous"></script><script type="text/javascript" async="" crossorigin="anonymous" src="https://static.naukimg.com/s/7/0/j/widget-client-ng.min.js"></script><link href="https://static.naukimg.com/s/7/0/j/naukri-widget_v12.36-modern.min.js" rel="preload" as="script" widgetsdk="true" crossorigin="anonymous"><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/SrpFilter.881532b3c.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/SrpToolbar.ba0e72f3b.js" crossorigin="anonymous"></script><link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/6/205/c/SrpAside.88e27721f.css" crossorigin="anonymous"><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/SrpAside.81cb40a3a.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/CtxFooter.b8431b2e3.js" crossorigin="anonymous"></script><script charset="utf-8" src="https://static.naukimg.com/s/6/205/j/BellyFiltersListing.b9cf70923.js" crossorigin="anonymous"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/jobs-in-saudi-arabia","name":"Jobs in Saudi Arabia"}},{"@type":"ListItem","position":3,"item":{"@id":"/economist-jobs","name":"Economist Jobs"}},{"@type":"ListItem","position":4,"name":"Economist Jobs in Saudi Arabia"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","numberOfItems":15,"url":"https://www.naukrigulf.com/economist-jobs-in-saudi-arabia","name":"Economist Jobs in Saudi Arabia","itemListElement":[{"@type":"ListItem","position":1,"url":"/female-business-economics-dp-ib-coordinator-jobs-in-al-madina-al-munawarah-saudi-arabia-in-client-of-edvectus-7-to-12-years-n-cd-10050754-jid-091026500321","name":"Female Business  Economics   DP IB Coordinator"},{"@type":"ListItem","position":2,"url":"/social-economic-financial-impact-consultant-jobs-in-riyadh-saudi-arabia-in-dar-masarat-6-to-11-years-n-cd-40005731-jid-240826500615","name":"Social  Economic   Financial Impact Consultant"},{"@type":"ListItem","position":3,"url":"/techno-economic-modeling-specialist-jobs-in-saudi-arabia-in-saudi-aramco-13-to-18-years-n-cd-10050428-jid-310826502081","name":"Techno-economic Modeling Specialist","image":"https://static.naukimg.com/ni/nipjp/10050428/10050428_srp.gif"},{"@type":"ListItem","position":4,"url":"/senior-hydraulic-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026501762","name":"Senior Hydraulic Technician"},{"@type":"ListItem","position":5,"url":"/senior-mechanical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026501761","name":"Senior Mechanical Technician"},{"@type":"ListItem","position":6,"url":"/junior-electrical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-3-to-8-years-n-cd-50000035-jid-051026501760","name":"Junior Electrical Technician"},{"@type":"ListItem","position":7,"url":"/senior-electrical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026500738","name":"Senior Electrical Technician"},{"@type":"ListItem","position":8,"url":"/senior-mechanical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026500736","name":"Senior Mechanical Technician  Engine Overhaul "},{"@type":"ListItem","position":9,"url":"/assistant-mechanic-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-2-to-7-years-n-cd-50000035-jid-051026500726","name":"Assistant Mechanic"},{"@type":"ListItem","position":10,"url":"/consultant-jobs-in-riyadh-saudi-arabia-in-client-of-chi-square-economics-1-to-5-years-n-cd-10051910-jid-140926501506","name":"Consultant  Energy  Water   Infrastructure "},{"@type":"ListItem","position":11,"url":"/enterprise-client-leader-jobs-in-riyadh-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501516","name":"Enterprise Client Leader"},{"@type":"ListItem","position":12,"url":"/senior-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-5-to-10-years-n-cd-10051910-jid-140926501514","name":"Senior Manager  Data Analytics "},{"@type":"ListItem","position":13,"url":"/financial-risk-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501511","name":"Financial Risk Manager"},{"@type":"ListItem","position":14,"url":"/manager-senior-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501509","name":"Manager Senior Manager  Technical Accounting Desk "},{"@type":"ListItem","position":15,"url":"/faculty-political-science-jobs-in-riyadh-saudi-arabia-in-king-abdullah-petroleum-studies-and-research-center-1-to-7-years-n-cd-10005229-jid-270426500532","name":"Faculty - Political Science","image":"https://static.naukimg.com/ni/nipjp/10005229/10005229_srp.gif"}]}</script></head>
+
+
+
+<body>
+<noscript>JavaScript is disabled!<br>Please enable JavaScript in your web browser!</noscript>
+
+<div id="root"><header class="container-fluid" id="ngHeadWrap" style="z-index: 5; min-height: 1492px;"><div id="ngHeader"><div class="container"><a id="homeHead" href="https://www.naukrigulf.com/"><img width="168px" height="40px" class="brand" src="https://static.naukimg.com/s/6/205/i/logo_en.adae826b.svg" alt=""></a><nav class="nav-bar" style="display: inherit;"><ul class="inner-bar"><li class="link-group arb no-hover"><a class="nav-link" id="arSwitchGnb" href="https://arabic.naukrigulf.com/economist-jobs-in-saudi-arabia" style="visibility: visible;">عربي</a></li><li id="jobTab" class="link-group"><a href="https://www.naukrigulf.com/browse-jobs-in-gulf" class="nav-link ">Jobs</a><ul id="srpHeader" class="nav-menu nav-menu-left"><li><a class="nav-menu-link" href="https://www.naukrigulf.com/search-jobs">Search Jobs</a></li><li class="nav-menu-ext" id="srpCtxFoot"></li><li class="nav-menu-ext" id="popularSearch"><p class="nav-menu-link">Popular Search<span class="rightArrow ico"></span></p><div class="nav-menu-drp more-menu-drp"><table class="nav-cluster"><tbody><tr><td><a class="nav-menu-link " title="Restaurant Jobs in Saudi Arabia" href="https://www.naukrigulf.com/restaurant-jobs-in-saudi-arabia">Restaurant Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Cat Jobs in Saudi Arabia" href="https://www.naukrigulf.com/cat-jobs-in-saudi-arabia">Cat Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Salesman Jobs in Saudi Arabia" href="https://www.naukrigulf.com/salesman-jobs-in-saudi-arabia">Salesman Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Lab Technician Jobs in Saudi Arabia" href="https://www.naukrigulf.com/lab-technician-jobs-in-saudi-arabia">Lab Technician Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Drilling Jobs in Saudi Arabia" href="https://www.naukrigulf.com/drilling-jobs-in-saudi-arabia">Drilling Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Medical Jobs in Saudi Arabia" href="https://www.naukrigulf.com/medical-jobs-in-saudi-arabia">Medical Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Civil Engineer Jobs in Saudi Arabia" href="https://www.naukrigulf.com/civil-engineer-jobs-in-saudi-arabia">Civil Engineer Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="IT Jobs in Saudi Arabia" href="https://www.naukrigulf.com/it-jobs-in-saudi-arabia">IT Jobs in Saudi Arabia</a></td></tr></tbody></table><table class="nav-cluster"><tbody><tr><td><a class="nav-menu-link " title="Electrical Jobs in Saudi Arabia" href="https://www.naukrigulf.com/electrical-jobs-in-saudi-arabia">Electrical Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Engineering Jobs in Saudi Arabia" href="https://www.naukrigulf.com/engineering-jobs-in-saudi-arabia">Engineering Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Electrical Technician Jobs in Saudi Arabia" href="https://www.naukrigulf.com/electrical-technician-jobs-in-saudi-arabia">Electrical Technician Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Faculty Member Jobs in Saudi Arabia" href="https://www.naukrigulf.com/faculty-member-jobs-in-saudi-arabia">Faculty Member Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Airlines Jobs in Saudi Arabia" href="https://www.naukrigulf.com/airlines-jobs-in-saudi-arabia">Airlines Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Nesma Partners Jobs in Saudi Arabia" href="https://www.naukrigulf.com/nesma-partners-jobs-in-saudi-arabia">Nesma Partners Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Trainer Jobs in Saudi Arabia" href="https://www.naukrigulf.com/trainer-jobs-in-saudi-arabia">Trainer Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Software Engineer Jobs in Saudi Arabia" href="https://www.naukrigulf.com/software-engineer-jobs-in-saudi-arabia">Software Engineer Jobs in Saudi Arabia</a></td></tr></tbody></table></div></li><li class="nav-menu-ext hide-menu" id="popularSearch2"><p class="nav-menu-link">Popular Searches<span class="rightArrow ico"></span></p><ul class="nav-menu-drp"><li><a class="nav-menu-link" title="Part Time Jobs In Dubai" href="https://www.naukrigulf.com/part-time-jobs-in-dubai">Part Time Jobs In Dubai</a></li><li><a class="nav-menu-link" title="Accountant Jobs In Dubai" href="https://www.naukrigulf.com/accountant-jobs-in-dubai">Accountant Jobs In Dubai</a></li><li><a class="nav-menu-link" title="Part Time Jobs In Abu Dhabi" href="https://www.naukrigulf.com/part-time-jobs-in-abu-dhabi">Part Time Jobs In Abu Dhabi</a></li><li><a class="nav-menu-link" title="Airport Jobs in Dubai" href="https://www.naukrigulf.com/airport-jobs-in-dubai">Airport Jobs in Dubai</a></li><li><a class="nav-menu-link" title="Fresher Jobs in Dubai" href="https://www.naukrigulf.com/fresher-jobs-in-dubai">Fresher Jobs in Dubai</a></li><li><a class="nav-menu-link" title="Teaching Jobs In Dubai" href="https://www.naukrigulf.com/teaching-jobs-in-dubai">Teaching Jobs In Dubai</a></li><li><a class="nav-menu-link" title="Part Time Jobs" href="https://www.naukrigulf.com/part-time-jobs">Part Time Jobs</a></li><li><a class="nav-menu-link" title="Work From Home Jobs" href="https://www.naukrigulf.com/work-from-home-jobs">Work From Home Jobs</a></li></ul></li><li><a class="nav-menu-link" href="https://www.naukrigulf.com/jobseeker/alerts">My Job Alerts</a></li><li class="nav-menu-ext" id="jobsByCategory"></li><li class="nav-menu-ext" id="jobsByCategory2"><a class="nav-menu-link" href="https://www.naukrigulf.com/jobs-by-category">Jobs by Category</a></li><li class="nav-menu-ext" id="jobsByCompany"></li><li class="nav-menu-ext" id="jobsByCompany2"><a class="nav-menu-link" href="https://www.naukrigulf.com/top-companies">Jobs by Company</a></li><li class="nav-menu-ext"><a class="nav-menu-link" href="https://www.naukrigulf.com/jobs-by-nationality">Jobs by Nationality</a></li><li class="nav-menu-ext" id="jobsByLocation"></li><li class="nav-menu-ext" id="jobsByLocation2"><p class="nav-menu-link">Jobs by Location <span class="rightArrow ico"></span></p><ul class="nav-menu-drp"><li><a class="nav-menu-link" title="Jobs in UAE" href="https://www.naukrigulf.com/jobs-in-uae">Jobs in UAE</a></li><li><a class="nav-menu-link" title="Jobs in Dubai" href="https://www.naukrigulf.com/jobs-in-dubai">Jobs in Dubai</a></li><li><a class="nav-menu-link" title="Jobs in Abu Dhabi" href="https://www.naukrigulf.com/jobs-in-abu-dhabi">Jobs in Abu Dhabi</a></li><li><a class="nav-menu-link" title="Jobs in Sharjah" href="https://www.naukrigulf.com/jobs-in-sharjah">Jobs in Sharjah</a></li><li><a class="nav-menu-link" title="Jobs in Saudi Arabia" href="https://www.naukrigulf.com/jobs-in-saudi-arabia">Jobs in Saudi Arabia</a></li><li><a class="nav-menu-link" title="Jobs in Qatar" href="https://www.naukrigulf.com/jobs-in-qatar">Jobs in Qatar</a></li><li><a class="nav-menu-link link-active" href="https://www.naukrigulf.com/jobs-by-location">View All</a></li></ul></li><li class="nav-menu-ext" id="jobsBySkill"><p class="nav-menu-link">Jobs By Skills<span class="rightArrow ico"></span></p><div class="nav-menu-drp more-menu-drp"><table class="nav-cluster"><tbody><tr><td><a class="nav-menu-link " title="Sales Jobs in Saudi Arabia" href="https://www.naukrigulf.com/sales-jobs-in-saudi-arabia">Sales Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="HR Jobs in Saudi Arabia" href="https://www.naukrigulf.com/hr-jobs-in-saudi-arabia">HR Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Engineering Jobs in Saudi Arabia" href="https://www.naukrigulf.com/engineer-jobs-in-saudi-arabia">Engineering Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Finance Jobs in Saudi Arabia" href="https://www.naukrigulf.com/finance-jobs-in-saudi-arabia">Finance Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Safety Jobs in Saudi Arabia" href="https://www.naukrigulf.com/safety-jobs-in-saudi-arabia">Safety Jobs in Saudi Arabia</a></td></tr></tbody></table></div></li><li class="nav-menu-ext hide-menu" id="jobsBySkill2"><p class="nav-menu-link">Jobs by Skills <span class="rightArrow ico"></span></p><ul class="nav-menu-drp"><li><a class="nav-menu-link" title="Sales Jobs" href="https://www.naukrigulf.com/sales-jobs">Sales Jobs</a></li><li><a class="nav-menu-link" title="HR Jobs" href="https://www.naukrigulf.com/hr-jobs">HR Jobs</a></li><li><a class="nav-menu-link" title="Engineering Jobs" href="https://www.naukrigulf.com/engineering-jobs">Engineering Jobs</a></li><li><a class="nav-menu-link" title="Finance Jobs" href="https://www.naukrigulf.com/finance-jobs">Finance Jobs</a></li><li><a class="nav-menu-link" title="Safety Jobs" href="https://www.naukrigulf.com/safety-jobs">Safety Jobs</a></li></ul></li><li class="nav-menu-ext" id="jobsByDesignation"><p class="nav-menu-link">Jobs By Designation<span class="rightArrow ico"></span></p><div class="nav-menu-drp more-menu-drp"><table class="nav-cluster"><tbody><tr><td><a class="nav-menu-link " title="Aramco Jobs in Saudi Arabia" href="https://www.naukrigulf.com/aramco-jobs-in-saudi-arabia">Aramco Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Teacher Jobs in Saudi Arabia" href="https://www.naukrigulf.com/teacher-jobs-in-saudi-arabia">Teacher Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Land Surveyor Jobs in Saudi Arabia" href="https://www.naukrigulf.com/land-surveyor-jobs-in-saudi-arabia">Land Surveyor Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Document controller Jobs in Saudi Arabia" href="https://www.naukrigulf.com/document-controller-jobs-in-saudi-arabia">Document controller Jobs in Saudi Arabia</a></td></tr><tr><td><a class="nav-menu-link " title="Civil Engineer Jobs in Saudi Arabia" href="https://www.naukrigulf.com/civil-engineer-jobs-in-saudi-arabia">Civil Engineer Jobs in Saudi Arabia</a></td></tr></tbody></table></div></li><li class="nav-menu-ext hide-menu" id="jobsByDesignation2"><p class="nav-menu-link">Jobs by Designation <span class="rightArrow ico"></span></p><ul class="nav-menu-drp"><li><a class="nav-menu-link" title="Accountant Jobs" href="https://www.naukrigulf.com/accountant-jobs">Accountant Jobs</a></li><li><a class="nav-menu-link" title="Merchandiser Jobs" href="https://www.naukrigulf.com/merchandiser-jobs">Merchandiser Jobs</a></li><li><a class="nav-menu-link" title="Sales Manager Jobs" href="https://www.naukrigulf.com/sales-manager-jobs">Sales Manager Jobs</a></li><li><a class="nav-menu-link" title="Architect Jobs" href="https://www.naukrigulf.com/architect-jobs">Architect Jobs</a></li><li><a class="nav-menu-link" title="Project Manager Jobs" href="https://www.naukrigulf.com/project-manager-jobs">Project Manager Jobs</a></li></ul></li><li id="ctxFooter"></li></ul></li><li class="link-group"><a target="_blank" rel="noopener noreferrer" href="https://www.naukrigulf.com/resume-services/cv-writing-services?fftid=N2G1000" class="nav-link  ">Services</a></li><li class="link-group"><a class="nav-link " href="https://www.naukrigulf.com/jobseeker/login">Login</a></li><li id="resmanLink" class="link-group"><a class="nav-link " href="https://www.naukrigulf.com/register/?source=dtop_global_nav_bar">Register</a></li><li class="link-group no-hover"><a class="ng-360-nav-item animating " href="https://www.naukrigulf.com/ng360"><img src="https://static.naukimg.com/s/6/205/i/ng-360-light-logo.c3de9610.svg" alt="Naukrigulf 360" class="ng360-icon visible" width="300" height="150"></a></li><li class="link-group no-hover"><button title="Search Jobs" class="nav-link qsb-search"><span class="display-false">Search Jobs</span><span class="ico"></span><span class="blobCount"></span></button><div class="nav-menu nav-menu-right notification-menu"></div></li><li class="link-group no-hover"><p class="nav-link ng-link notification"><span class="ico"></span><span class="blobCount"></span></p><div class="nav-menu nav-menu-right notification-menu"><span class="display-false">Notification</span><p class="nav-menu-link no-hover">No new notifications found</p></div></li><li class="link-group"><a class="nav-link " href="https://www.naukrigulf.com/employer-recruitment-solutions">Employers?</a></li></ul></nav></div></div><div id="headObserverCont"></div></header><div id="topBg" class="container-fluid blue" style="height: 216px; display: inherit;"></div><div id="routeRoot" style="min-height: 900px;"><main id="searchResult" class="container " style=""><div class="display-true srp-xtz-wrap"><section class="srp-head"><div class="headline"><span class="text-overflow-container">Showing 15 <h1 title="Economist Jobs in Saudi Arabia ">Economist Jobs in Saudi Arabia </h1></span><p class="modify">Modify Search</p></div></section><section class="srp-body"><div class="srp-filters"><form method="POST"><div class="ng-box-pure h-line"><p>Refine Search</p><button type="button" class="ng-link globe-reset display-false">Reset All</button></div><div class="ng-box-pure sorting display-true"><p class="h2 toggle-btn">Sort By</p><span class="ico arrow-icon"></span><ul class="sort-list"><li class="active-true" data-value="relevance">Relevance</li><li class="active-false" data-value="date">Date</li></ul></div><div class="filter-wrap display-true"><div class="ng-box-pure filter-section " id="filterindustryType"><p class="h2 toggle-btn">Industry</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span><ul class="check-aria"><li><label class="check-group p1-dark" for="industryType61"><input type="checkbox" id="industryType61" data-type="industryType" value="61"><span class="psuedo"></span><span class="label-text">Engineering<span class="lite">(3)</span></span></label></li><li><label class="check-group p1-dark" for="industryType15"><input type="checkbox" id="industryType15" data-type="industryType" value="15"><span class="psuedo"></span><span class="label-text">Education<span class="lite">(2)</span></span></label></li><li><label class="check-group p1-dark" for="industryType10"><input type="checkbox" id="industryType10" data-type="industryType" value="10"><span class="psuedo"></span><span class="label-text">Construction<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="industryType2"><input type="checkbox" id="industryType2" data-type="industryType" value="2"><span class="psuedo"></span><span class="label-text">Advertising<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="industryType25"><input type="checkbox" id="industryType25" data-type="industryType" value="25"><span class="psuedo"></span><span class="label-text">IT<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="industryType29"><input type="checkbox" id="industryType29" data-type="industryType" value="29"><span class="psuedo"></span><span class="label-text">Media<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="industryType36"><input type="checkbox" id="industryType36" data-type="industryType" value="36"><span class="psuedo"></span><span class="label-text">Oil and Gas<span class="lite">(1)</span></span></label></li><p class="ng-link view-more">View More</p></ul></div><div class="ng-box-pure filter-section " id="filtertitles"><p class="h2 toggle-btn">Job Titles</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span><ul class="check-aria"><li><label class="check-group p1-dark" for="titles1247"><input type="checkbox" id="titles1247" data-type="titles" value="1247"><span class="psuedo"></span><span class="label-text">Senior Mechanical Technician<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="titles1426"><input type="checkbox" id="titles1426" data-type="titles" value="1426"><span class="psuedo"></span><span class="label-text">Assistant Mechanic<span class="lite">(1)</span></span></label></li><li><label class="check-group p1-dark" for="titles2901"><input type="checkbox" id="titles2901" data-type="titles" value="2901"><span class="psuedo"></span><span class="label-text">Senior Electrical Technician<span class="lite">(1)</span></span></label></li></ul></div><div class="ng-box-pure filter-section close" id="filterfreshness"><p class="h2 toggle-btn">Freshness</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><div class="ng-box-pure filter-section close" id="filterexperience"><p class="h2 toggle-btn">Experience</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><div class="ng-box-pure filter-section close" id="filtergender"><p class="h2 toggle-btn">Gender</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><div class="ng-box-pure filter-section close" id="filterctc"><p class="h2 toggle-btn">Monthly Salary</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><div class="ng-box-pure filter-section close" id="filternationalityCluster"><p class="h2 toggle-btn">Nationality</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><div class="ng-box-pure filter-section close" id="filtercompanyType"><p class="h2 toggle-btn">Employers</p><button type="button" class="ng-link local-reset visible-false">Reset</button><span class="ico arrow-icon"></span></div><button class="ng-btn blue refine fxd">Refine Jobs</button></div><span id="filterBottom"></span></form></div><span id="srpObserver" class="srp-observer"></span><div class="srp-listing"> <div class="ng-box-pure toolbar"><button type="button" value="easyApply" class="pill fil-easy sel-false"><bdi>Easy Apply (7)</bdi></button><div class="bell-parent"><div id="bellIcon" class="bell"><p class="ring"></p><p class="ring ring2"></p><p class="bell-icon"><span class="ico"></span></p></div><p class="ng-link ssa-not">Send Me Jobs Like These</p></div><div class="ssa-prompt"><p class="ssaline">Your alert will be created!</p><p class="textline">Enter Email ID on which you would like to receive jobs</p><input type="email" id="ssaemailtop" class="ng-inp-md" placeholder="Enter Email ID" autocomplete="off" value=""><p class="ssa-err-msg">Please enter a valid email ID</p><button class="ng-link">Send me jobs</button><span class="ico ssa-xros">Y</span></div></div> <div class="tuple-wrap opaque-true"><div class="ng-box srp-tuple" draggable="false" style="order: 0;"><a target="_blank" href="https://www.naukrigulf.com/female-business-economics-dp-ib-coordinator-jobs-in-al-madina-al-munawarah-saudi-arabia-in-client-of-edvectus-7-to-12-years-n-cd-10050754-jid-091026500321" class="info-position logo-false web-job"><p class="designation-title">Female Business, Economics &amp; DP/IB Coordinator</p><span class="ico webjob"></span><p class="info-org " title="Client of Edvectus">Client of Edvectus</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>7 - 12 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Seeking a qualified Female Business, Economics and DP/IB Coordinator with experience in Cambridge and IB curriculum for a bilingual school.</p><span class="foot"><span class="time-star-cont"><span class="time">9 Oct</span><span class="ico star display-false "></span></span></span></div><div class="bellywidget"><a class="ng-btn red" target="_blank" rel="noopener noreferrer" href="https://www.naukrigulf.com/register?expName=expa&amp;source=dtop_srp_belly">Login/Register</a><p class="hero-line">Looking for the perfect job?</p><p class="hero-text">Get personalised jobs in email. Apply in one click.</p></div><div class="ng-box srp-tuple" draggable="false" style="order: 1;"><a target="_blank" href="https://www.naukrigulf.com/social-economic-financial-impact-consultant-jobs-in-riyadh-saudi-arabia-in-dar-masarat-6-to-11-years-n-cd-40005731-jid-240826500615" class="info-position logo-false web-job"><p class="designation-title">Social, Economic &amp; Financial Impact Consultant</p><span class="ico webjob"></span><p class="info-org " title="Dar Masarat">Dar Masarat</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>6 - 11 Years</span></li><li class="info-loc "><span class="ico"></span><span>Riyadh - Saudi Arabia</span></li></ul><p class="description">Develop frameworks and conduct impact analyses using economic modeling tools, requiring strong skills in data analysis and presentation for policy decision-making.</p><span class="foot"><span class="time-star-cont"><span class="time">30+ days ago</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 2;"><img loading="lazy" class="info-logo visible-false" src="https://static.naukimg.com/ni/nipjp/10050428/10050428_srp.gif" alt="Saudi Aramco (ASC)" height="48px" width="138px"><a target="_blank" href="https://www.naukrigulf.com/techno-economic-modeling-specialist-jobs-in-saudi-arabia-in-saudi-aramco-13-to-18-years-n-cd-10050428-jid-310826502081" class="info-position logo-true web-job"><p class="designation-title">Techno-economic Modeling Specialist</p><span class="ico webjob"></span><p class="info-org has-logo" title="Saudi Aramco (ASC)">Saudi Aramco (ASC)</p></a><ul class="reco-ul"><li class="info-exp has-logo"><span class="ico"></span><span>13 - 18 Years</span></li><li class="info-loc has-logo"><span class="ico"></span><span>Saudi Arabia - Saudi Arabia</span></li></ul><p class="description">Support strategic analysis, financial modeling, and techno-economic evaluations for technology projects, requiring strong quantitative skills and relevant engineering or busines...</p><span class="foot"><span class="time-star-cont"><span class="time">30+ days ago</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 3;"><a target="_blank" href="https://www.naukrigulf.com/senior-hydraulic-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026501762" class="info-position logo-false web-job"><p class="designation-title">Senior Hydraulic Technician</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>5 - 10 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Seeking a skilled technician to maintain hydraulic systems on heavy equipment, requiring knowledge of hydraulic principles and strong communication skills.</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 4;"><a target="_blank" href="https://www.naukrigulf.com/senior-mechanical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026501761" class="info-position logo-false web-job"><p class="designation-title">Senior Mechanical Technician</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>5 - 10 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Seeking a skilled Mechanical Overhaul Technician for gearbox repairs with strong diagnostic skills, technical knowledge, and basic English communication abilities.</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 5;"><a target="_blank" href="https://www.naukrigulf.com/junior-electrical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-3-to-8-years-n-cd-50000035-jid-051026501760" class="info-position logo-false web-job"><p class="designation-title">Junior Electrical Technician</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>3 - 8 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Seeking a skilled Electrical Technician to diagnose and maintain electrical systems on heavy equipment, requiring strong diagnostic skills and experience with CAN Bus systems.</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 6;"><a target="_blank" href="https://www.naukrigulf.com/senior-electrical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026500738" class="info-position logo-false web-job"><p class="designation-title">Senior Electrical Technician</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>5 - 10 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Diagnose, repair, and maintain electrical systems on heavy equipment and diesel trucks; requires diploma in automotive electrical, strong diagnostic skills, and experience with ...</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 7;"><a target="_blank" href="https://www.naukrigulf.com/senior-mechanical-technician-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-5-to-10-years-n-cd-50000035-jid-051026500736" class="info-position logo-false web-job"><p class="designation-title">Senior Mechanical Technician (Engine Overhaul)</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>5 - 10 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Perform complete diesel engine overhauls on heavy equipment, requiring strong diagnostic skills and knowledge of Inline 6 and V8 engines.</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 8;"><a target="_blank" href="https://www.naukrigulf.com/assistant-mechanic-jobs-in-al-madina-al-munawarah-saudi-arabia-in-economic-contracting-center-co-2-to-7-years-n-cd-50000035-jid-051026500726" class="info-position logo-false web-job"><p class="designation-title">Assistant Mechanic</p><span class="ico webjob"></span><p class="info-org " title="ECONOMIC CONTRACTING CENTER CO.">ECONOMIC CONTRACTING CENTER CO.</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>2 - 7 Years</span></li><li class="info-loc "><span class="ico"></span><span>Al Madina Al Munawarah - Saudi Arabia</span></li></ul><p class="description">Seeking a motivated Assistant Mechanical Overhaul Technician to support diesel engine and gearbox repairs, requiring technical certification and teamwork skills.</p><span class="foot"><span class="easy">Easy Apply</span><span class="mul-vac">Multiple Vacancies</span><span class="time-star-cont"><span class="time">5 Oct</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 9;"><a target="_blank" href="https://www.naukrigulf.com/consultant-jobs-in-riyadh-saudi-arabia-in-client-of-chi-square-economics-1-to-5-years-n-cd-10051910-jid-140926501506" class="info-position logo-false web-job"><p class="designation-title">Consultant (Energy, Water &amp; Infrastructure)</p><span class="ico webjob"></span><p class="info-org " title="Client of Chi Square Economics">Client of Chi Square Economics</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>1 - 5 Years</span></li><li class="info-loc "><span class="ico"></span><span>Riyadh - Saudi Arabia</span></li></ul><p class="description">Collaborate with stakeholders on operating models, support strategy development, and lead project workstreams in energy, water, and infrastructure sectors.</p><span class="foot"><span class="time-star-cont"><span class="time">14 Sep</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 10;"><a target="_blank" href="https://www.naukrigulf.com/enterprise-client-leader-jobs-in-riyadh-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501516" class="info-position logo-false web-job"><p class="designation-title">Enterprise Client Leader</p><span class="ico webjob"></span><p class="info-org " title="Client of Chi Square Economics">Client of Chi Square Economics</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>1 - 6 Years</span></li><li class="info-loc "><span class="ico"></span><span>Riyadh - Saudi Arabia</span></li></ul><p class="description">Manage and expand relationships with strategic global clients, driving outcomes and growth while ensuring exceptional service delivery and collaboration.</p><span class="foot"><span class="time-star-cont"><span class="time">14 Sep</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 11;"><a target="_blank" href="https://www.naukrigulf.com/senior-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-5-to-10-years-n-cd-10051910-jid-140926501514" class="info-position logo-false web-job"><p class="designation-title">Senior Manager (Data Analytics)</p><span class="ico webjob"></span><p class="info-org " title="Client of Chi Square Economics">Client of Chi Square Economics</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>5 - 10 Years</span></li><li class="info-loc "><span class="ico"></span><span>Saudi Arabia - Saudi Arabia</span></li></ul><p class="description">The role involves analyzing large data sets, coaching teams, and presenting strategies, requiring consulting experience and skills in data visualization and communication.</p><span class="foot"><span class="easy">Easy Apply</span><span class="time-star-cont"><span class="time">14 Sep</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 12;"><a target="_blank" href="https://www.naukrigulf.com/financial-risk-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501511" class="info-position logo-false web-job"><p class="designation-title">Financial Risk Manager</p><span class="ico webjob"></span><p class="info-org " title="Client of Chi Square Economics">Client of Chi Square Economics</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>1 - 6 Years</span></li><li class="info-loc "><span class="ico"></span><span>Saudi Arabia - Saudi Arabia</span></li></ul><p class="description">Responsible for delivering financial risk projects, managing teams, and advising public sectors with a consultancy background and strong stakeholder engagement.</p><span class="foot"><span class="time-star-cont"><span class="time">14 Sep</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 13;"><a target="_blank" href="https://www.naukrigulf.com/manager-senior-manager-jobs-in-saudi-arabia-in-client-of-chi-square-economics-1-to-6-years-n-cd-10051910-jid-140926501509" class="info-position logo-false web-job"><p class="designation-title">Manager/Senior Manager (Technical Accounting Desk)</p><span class="ico webjob"></span><p class="info-org " title="Client of Chi Square Economics">Client of Chi Square Economics</p></a><ul class="reco-ul"><li class="info-exp "><span class="ico"></span><span>1 - 6 Years</span></li><li class="info-loc "><span class="ico"></span><span>Saudi Arabia - Saudi Arabia</span></li></ul><p class="description">Provide expert guidance on complex accounting issues, ensure compliance with IFRS, and develop training programs for technical expertise enhancement.</p><span class="foot"><span class="time-star-cont"><span class="time">14 Sep</span><span class="ico star display-false "></span></span></span></div><div class="ng-box srp-tuple" draggable="false" style="order: 14;"><img loading="lazy" class="info-logo visible-false" src="https://static.naukimg.com/ni/nipjp/10005229/10005229_srp.gif" alt="King Abdullah Petroleum Studies and Research Center (KAPSARC)" height="48px" width="138px"><a target="_blank" href="https://www.naukrigulf.com/faculty-political-science-jobs-in-riyadh-saudi-arabia-in-king-abdullah-petroleum-studies-and-research-center-1-to-7-years-n-cd-10005229-jid-270426500532" class="info-position logo-true web-job"><p class="designation-title">Faculty - Political Science</p><span class="ico webjob"></span><p class="info-org has-logo" title="King Abdullah Petroleum Studies and Research Center (KAPSARC)">King Abdullah Petroleum Studies and Research Center (KAPSARC)</p></a><ul class="reco-ul"><li class="info-exp has-logo"><span class="ico"></span><span>1 - 7 Years</span></li><li class="info-loc has-logo"><span class="ico"></span><span>Riyadh - Saudi Arabia</span></li></ul><p class="description">The candidate must possess a Ph.D. in political science or related fields, with strong theoretical and methodological skills for teaching and research.</p><span class="foot"><span class="time-star-cont"><span class="time">30+ days ago</span><span class="ico star display-false "></span></span></span></div></div><div id="pagination" class="srp-pagination"></div></div><section class="srp-aside"><div class="brandingFe "><div id="brandingFe" class="display-false"></div></div><article class="ng-box-pure socio"><p class="share-headline">Share Jobs</p><ul><li><a rel="nofollow noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.naukrigulf.com/economist-jobs-in-saudi-arabia" target="_blank" title="Linkedin" class=" in">Linkedin</a></li><li><a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.naukrigulf.com%2Feconomist-jobs-in-saudi-arabia" rel="nofollow noopener noreferrer" class=" fb" target="_blank" title="Facebook">Facebook</a></li><li><a rel="nofollow noopener noreferrer" href="https://twitter.com/share?url=https://www.naukrigulf.com/economist-jobs-in-saudi-arabia" target="_blank" title="Twitter" class=" tw">Twitter</a></li></ul></article><div class="bmsWidget "><div id="bmsCards" class="naukri-wdgt-section" data-section-name="bmsCards"><div id="bmsCards.srp-greet" data-inventory-name="srp-greet" data-inventory-index="0"></div><div id="bmsCards.sidepanel-ff" data-inventory-name="sidepanel-ff" data-inventory-index="1"></div></div></div><article class="ng-box-pure register-pitch display-true"><p class="headline"> Get Personalised Jobs Recommendations</p><p class="pitch">Registering gives you the benefit to apply to a variety of jobs based on your preferences in just one click</p><a class="ng-btn red" target="_blank" rel="noopener noreferrer" href="https://www.naukrigulf.com/register/?expName=expa&amp;source=dtop_srp_hero_widget">Login/Register</a><div class="bg"></div></article><span id="asideEnd" class="right-trail-end"></span></section></section><div id="srpCtxFooter" class="ng-box-pure srp-ctx-footer-col-3"><div class="ctx-headline"><h2>People looking for Economist Jobs in Saudi Arabia also search for</h2></div><ul class="link-cont-ul double-tabs"><li><p class="par acc-link active" title="Similar Jobs in Saudi Arabia">Similar Jobs in Saudi Arabia</p></li><ul><li class="display-true"><a target="_blank" title="Research Jobs in Saudi Arabia" class="soft-link" href="https://www.naukrigulf.com/research-jobs-in-saudi-arabia">Research Jobs in Saudi Arabia</a></li><li class="display-true"><a target="_blank" title="Macro Economics Jobs in Saudi Arabia" class="soft-link" href="https://www.naukrigulf.com/macro-economics-jobs-in-saudi-arabia">Macro Economics Jobs in Saudi Arabia</a></li><li class="display-true"><a target="_blank" title="Economic Research Jobs in Saudi Arabia" class="soft-link" href="https://www.naukrigulf.com/economic-research-jobs-in-saudi-arabia">Economic Research Jobs in Saudi Arabia</a></li><li class="display-true"><a target="_blank" title="Fresher Jobs in Saudi Arabia" class="soft-link" href="https://www.naukrigulf.com/fresher-jobs-in-saudi-arabia">Fresher Jobs in Saudi Arabia</a></li><li class="display-true"><a target="_blank" title="Walk In Interview Jobs in Saudi Arabia" class="soft-link" href="https://www.naukrigulf.com/walk-in-interview-jobs-in-saudi-arabia">Walk In Interview Jobs in Saudi Arabia</a></li></ul></ul><ul class="link-cont-ul double-tabs"><li><p class="par acc-link active" title="Economist Jobs in Nearby Locations">Economist Jobs in Nearby Locations</p></li><ul><li class="display-true"><a target="_blank" title="Economist Jobs in Riyadh" class="soft-link" href="https://www.naukrigulf.com/economist-jobs-in-riyadh">Economist Jobs in Riyadh</a></li></ul></ul></div><div class="container"><div class="crumbs theme-dark"><ul class="breadcrumbs"><li><a class="first-one" href="https://www.naukrigulf.com/">Home</a> <span class="icon crumb-ico"></span></li><li><a class="middle-one" href="https://www.naukrigulf.com/jobs-in-saudi-arabia">Jobs in Saudi Arabia</a> <span class="icon crumb-ico"></span></li><li><a class="middle-one" href="https://www.naukrigulf.com/economist-jobs">Economist Jobs</a> <span class="icon crumb-ico"></span></li><li><span class="last-one">Economist Jobs in Saudi Arabia</span></li></ul></div></div></div></main></div><footer id="footerCont" class="container-fluid" style="display: inherit;"><section class="container"><div class="column"><a href="https://www.naukrigulf.com/" class="brand"></a><p class="social-icons">Social Links</p><ul><li><a target="_blank" rel="nofollow" href="https://www.facebook.com/NaukriGulf" class="foot-ico facebook"><em>Facebook</em></a></li><li><a target="_blank" rel="nofollow" href="https://www.linkedin.com/company/naukrigulf/" class="foot-ico linkedin"><em>LinkedIn</em></a></li><li><a target="_blank" rel="nofollow" href="https://www.instagram.com/naukrigulfdotcom/" class=" foot-ico instagram"><em>Instagram</em></a></li><li><a target="_blank" rel="nofollow" href="https://www.youtube.com/@Naukrigulfdotcom" class=" foot-ico youtube"><em>Youtube</em></a></li><li><a target="_blank" rel="nofollow" href="https://twitter.com/Naukrigulf" class=" foot-ico twitter"><em>Twitter</em></a></li></ul></div><div class="column site-links"><ul><li class="site-link-item"><a href="https://www.naukrigulf.com/">Home</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/ni/nilinks/nkr_links.php?open=fraud-alert&amp;tracksrc=646">Fraud</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/about-us">About Us</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/terms-and-conditions">Terms &amp; Conditions</a></li><li class="site-link-item"><span>Report Bug</span></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/employer-contact-us">Contact Us</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/privacy-policy">Privacy Policy</a></li><li class="site-link-item"><span>Feedback</span></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/ni/nilinks/nkr_links.php?open=security-ad&amp;tracksrc=645">Security Advice</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/ni/nilinks/nkr_links.php?open=grievances">Grievances</a></li><li class="site-link-item"><a target="_blank" href="https://www.naukrigulf.com/jobseeker/faq">FAQs</a></li></ul></div><div class="column app-link-box"><span class="app-link-title">Apply on-the go</span><span class="app-link-description">Get real-time job updates only on our App</span><ul><li class="app-box"><a target="_blank" href="https://apps.apple.com/us/app/naukrigulf-job-search-app/id724241430" class="banner ios-app-banner" title="IOS app on app store"></a></li><li class="app-box"><a target="_blank" href="https://play.google.com/store/apps/details?id=com.naukriGulf.app" class="banner android-app-banner" title="Android app on google play"></a></li></ul></div><div class="bottom-section"><div class="column trademark-column"><span class="info-edge-logo"></span><p class="trademark-statement">All trademarks are properties of their respective owners.<span class="trademark">All rights reserved ©2026  Info Edge (India) Ltd.</span></p></div><div class="partner-site"><span class="partner-site-title">Partner Sites</span><ul><li class="partner-site-item"><a target="_blank" href="https://www.naukri.com/?othersrcp=2633&amp;wExp=N&amp;r=in&amp;othersrcp=11457&amp;wExp=N" class="partner-link partner-naukri"><img loading="lazy" width="100px" height="28px" src="https://static.naukimg.com/s/6/205/i/Naukri_logo_Vector.5d2317c6.svg" alt="naukri-logo"></a></li><li class="partner-site-item"><a target="_blank" href="https://www.naukrigulf.com/resume-services/cv-writing" class="partner-link partner-naukri-ff"><img loading="lazy" width="80px" height="30px" src="https://static.naukimg.com/s/6/205/i/naukri_ff_logo.8d5a5bd7.svg" alt="naukri-ff-logo"></a></li><li class="partner-site-item"><a target="_blank" href="https://www.ambitionbox.com/" class="partner-link partner-ambition"><img loading="lazy" width="22px" height="25px" src="https://static.naukimg.com/s/6/205/i/ambitionBox.3e37116a.svg" alt="ambition-logo" class="partner-ambition-box"><span class="ambition-box-title">AmbitionBox</span></a></li><li class="partner-site-item"><a target="_blank" rel="nofollow" href="https://www.jobhai.com/" class="partner-link partner-job-hai"><img loading="lazy" width="56px" height="25px" src="https://static.naukimg.com/s/6/205/i/jobHai.66650fbd.svg" alt="job-hai-logo" class="partner-job-hai"></a></li></ul></div></div></section></footer> <button id="ngFeedback" class="free-company-button " style="display: inherit;"><span class="text">Share Feedback</span><span class="ico">'</span></button><div class="spinner-container "><div class="spinner"></div> </div></div>
+
+<script>
+    var domainPathEn = "https://www.naukrigulf.com";
+    var domainPathAr = "https://arabic.naukrigulf.com";
+    var countryCode = "US";
+    var locationId = "";
+    var nationality = "";
+    var puppeteer = false;
+    var formKey =  "F53be2383a1291";
+    var photoFormKey =  "F53be23fd7ddd2";
+    var geoIpCountryName =  "";
+    var geoIpCityName =  "";
+    var isLoggedIn = false;
+    var locale = window.location.hostname.indexOf("arabic.") !== -1 ? "ar" : "en";
+    var ubaEndpoint =  window.location.hostname.indexOf("naukrigulf.com") !== -1  ? "//logs.naukrigulf.com" : "//test.collector.infoedge.com";
+    var isLoggedInRedirection = false;
+
+    function setCookie(
+        name,
+        value,
+        expires = 0,
+        path = "",
+        domain = "",
+        secure = false,
+        sameSite = ""
+    ) {
+        const today = new Date();
+        today.setTime(today.getTime());
+        expires = expires * 1000 * 60 * 60 * 24;
+        const expiresDate = new Date(today.getTime() + expires);
+        document.cookie =
+            name +
+            "=" +
+            encodeURI(value) +
+            (expires ? ";expires=" + expiresDate.toUTCString() : "") +
+            (path ? ";path=" + path : "") +
+            (domain ? ";domain=" + domain : "") +
+            (secure ? ";secure" : "") +
+            (secure ? ";sameSite=" + sameSite : "");
+    }
+    function getCookie(cName) {
+        try {
+            var name = cName + "=";
+            var cDecoded = decodeURIComponent(document.cookie);
+            var cArr = cDecoded.split('; ');
+            var res;
+            cArr.forEach(function (val) {
+                if (val.indexOf(name) === 0) res = val.substring(name.length);
+            })
+            return res || "";
+        } catch (err) {
+            console.warn(err.message);
+            return "";
+        }
+    }
+
+    function bootstrapApp() {
+        try{
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/nglogin/user/isJsLoggedIn", true);
+            xhttp.setRequestHeader("Device-Type", "desktop");
+            xhttp.setRequestHeader("nationality", "");
+            xhttp.setRequestHeader("Accept-Language", "ENGLISH");
+            xhttp.setRequestHeader("Accept-Format", "strict");
+            xhttp.setRequestHeader("clientId", "desktop");
+            xhttp.setRequestHeader("client-type", "desktop");
+            xhttp.setRequestHeader("systemId", "1112");
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.setRequestHeader("Accept", "application/json");
+            xhttp.setRequestHeader("cache-control", "no-cache");
+            xhttp.setRequestHeader("appId", "205");
+            xhttp.setRequestHeader("locationId", "");
+            xhttp.addEventListener("load", function () {
+                try {
+                    if (xhttp.status === 200) {
+                        window.isLoggedIn = getCookie("isJsLoggedIn") === 'true';
+                        if(window.isLoggedIn && window.location.pathname=="/") {
+                            isLoggedInRedirection = true;
+                            var queryParams = window.location.search;
+                            const params = new URLSearchParams(window.location.search);
+                            let blockQUP = false;
+                            const utmMedium = params.get("utmMedium") || params.get("utm_medium") || "";
+                            const blockedReferrers = [".google.", ".perplexity.", ".bing.", "chatgpt.", ".microsoft."];
+                            const blockedMediums = ["cpc", "email", "mail"]; 
+                            const referrerUrl = document.referrer;
+
+                            // Create a URL object to easily extract the base URL (excluding query parameters)
+                            if(referrerUrl) {
+                                const url = new URL(referrerUrl);
+                                blockQUP = blockedReferrers.some(referrer => url.hostname.indexOf(referrer) > -1 || url.pathname.indexOf(referrer) > -1);    
+                            }
+                            if(blockedMediums.includes(utmMedium)) {
+                                blockQUP = true;
+                            }
+                            if(queryParams && blockQUP) {
+                                queryParams = queryParams + "&blockQUP=true"
+                            }
+                            window.location.replace("/mnj/userProfile/myHome" + (queryParams || (blockQUP ? "?blockQUP=true" : "")));
+                        }
+                    } else {
+                        window.isLoggedIn = false;
+                    }
+                } catch (err) {
+                    console.warn(err.message);
+                } finally {
+                    refreshTokenApi();
+                }
+            });
+            xhttp.send();
+        }
+        catch(err){
+            console.warn(err);
+        }
+    }
+
+    function refreshTokenApi() {
+            try{
+                var refreshReq = !getCookie("AT_EXPIRY") && window.isLoggedIn
+                if(refreshReq) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", "/ngoauth/oauth/sessions/refresh", true);
+                    xhttp.setRequestHeader("Device-Type", "desktop");
+                    xhttp.setRequestHeader("nationality", "");
+                    xhttp.setRequestHeader("Accept-Language", "ENGLISH");
+                    xhttp.setRequestHeader("Accept-Format", "strict");
+                    xhttp.setRequestHeader("clientId", "desktop");
+                    xhttp.setRequestHeader("client-type", "desktop");
+                    xhttp.setRequestHeader("systemId", "ngjobseeker");
+                    xhttp.setRequestHeader("Content-Type", "application/json");
+                    xhttp.setRequestHeader("Accept", "application/json");
+                    xhttp.setRequestHeader("cache-control", "no-cache");
+                    xhttp.setRequestHeader("appId", "2050");
+                    xhttp.setRequestHeader("locationId", "");
+                    xhttp.addEventListener("load", function () {
+                        try {
+                            if (xhttp.status === 200) {
+                                window.refreshApiHit = true;
+                            }
+                        } catch (err) {
+                            console.warn(err.message);
+                        } finally {
+                            hydrateCookieVars();
+                        }
+                    });
+                    xhttp.send();
+                } else {
+                    hydrateCookieVars();
+                }
+            }
+            catch(err){
+                console.warn(err);
+            }
+        }
+
+    function setUaePassSearch() {
+        window.uaePassSearch = window.location.search;
+    }
+
+    function hydrateCookieVars() {
+        try{
+            window.locationId = getCookie("locationId");
+            window.countryCode = getCookie("countryc");
+            window.webView = getCookie("_webView");
+            window.nationality = getCookie("nationality");
+            window.geoIpCountryName = getCookie("countryn");
+            window.geoIpCityName = getCookie("city");
+            if (!isLoggedInRedirection) { 
+                window.jsApiResolved = true;
+                event = new CustomEvent("jsApiResolved", {
+                    jsApiResolved: true
+                });
+                window.dispatchEvent(event);
+            }
+            setUaePassSearch();
+        }
+        catch(err){
+            console.warn(err);
+        }
+    }
+    if(!puppeteer){
+        bootstrapApp();
+    }
+</script>
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q866Y8JT5J"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q866Y8JT5J');
+</script>
+<script>
+!function (w, d, t) {
+    if(!puppeteer) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    }
+  ttq.load('D87DQA3C77UBGDFCLUFG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<script>
+    (function () {
+        var queuedSuperProps = []; var queuedEvents = []; window.ub = { track: function (eventName, eventProps) { queuedEvents.push([eventName, eventProps]) }, register: function (properties) { queuedSuperProps.push(properties); } };
+        var script = document.createElement("script"); script.async = true; script.src = "//static.naukimg.com/s/0/1/j/ub_v1.7.min.js"; script.onload = function () {
+            ub.init({
+                beaconUrl: ubaEndpoint + "/collectorapi/v1/uba", queuedEvents: queuedEvents, queuedSuperProps: queuedSuperProps, tenantId: '2', autoTrack: false, blackList:
+                    []
+            });
+        }; document.head.appendChild(script);
+    }()); 
+    ub.register({ appId: 205, pageName: "DESKTOP_PWA", tenantId: '2', }); 
+    if(!puppeteer) {
+        ub.track("domLoadStart", { actionType: "init" } );
+    }
+</script>
+
+
+<script crossorigin="anonymous" type="text/javascript" src="https://static.naukimg.com/s/0/0/j/loggerSPA_v6.0.min.js"></script> 
+        <script type="text/javascript">
+            window.nLogger &&
+                window.nLogger.init({
+                    "boomerangReport": true,
+                    "tag": 'DESKTOP_PWA',
+                    "nLogger": {
+                        "beaconUrl": 'https:\/\/lg.naukri.com\/uba',
+                        "eventName": 'newMonkError',
+                        "deviceType": 'SERVER'
+                    },
+                     "boomerang": {
+                        "logBW": false,
+                        "beaconUrl": "https:\/\/lg.naukri.com\/uba",
+                        "imageURL": "\/\/static.naukimg.com\/s\/0\/0\/i\/",
+                        "eventName": "newMonkPerformance",
+                        "deviceType": "SERVER"
+                    },
+                    "webvitals": {
+                        "beaconUrl": 'https://lg.naukri.com/uba',
+                        "pluginBaseUrl": '//static.naukimg.com/s/0/0/j/logWebvital_v1.6.min.js',
+                        "eventName": "newMonkWebVitals",
+                        "deviceType": "SERVER"
+                    },
+                    "tenantId": 2,
+                    "appId": 205,
+                    "userIP": ''
+                });
+        </script>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://static.naukimg.com/s/6/205/j/main.9050e868a.js" crossorigin="anonymous" defer=""></script>
+<script type="text/javascript" src="https://static.naukimg.com/s/6/205/j/vendors-main.ef0c5942b.js" crossorigin="anonymous" defer=""></script>
+<script type="text/javascript" src="https://static.naukimg.com/s/6/205/j/runtime-main.2361638fe.js" crossorigin="anonymous" defer=""></script>
+<link rel="stylesheet" href="https://static.naukimg.com/s/6/205/c/main.fff78f180.css">
+
+<noscript><img src="https://www.naukrigulf.com/akam/13/pixel_7206e606?a=dD1mZjQyMDdlNDI0NzgwYjM2NDg3YTBkNTgxOWJmMTIwOWZjYTljMDIzJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript>
+
+<div id="react-toast" class="Toaster"><span class="Toaster__manager-top" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"></span><span class="Toaster__manager-top-left" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"></span><span class="Toaster__manager-top-right" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"></span><span class="Toaster__manager-bottom-left" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"></span><span class="Toaster__manager-bottom" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"></span><span class="Toaster__manager-bottom-right" style="max-width: 560px; position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"></span></div><script src="https://static.naukimg.com/s/7/0/j/naukri-widget_v12.36-modern.min.js" id="//static.naukimg.com/s/7/0/j/naukri-widget_v12.36-modern.min.js" async="" widgetsdk="true" crossorigin="anonymous"></script></body></html>

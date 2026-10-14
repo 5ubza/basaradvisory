@@ -1,0 +1,163 @@
+# ---------------------------------------------------------------------------------------------
+# jobhunt configuration. Secrets never go here - they come from environment variables / GitHub
+# Actions secrets (see README "Secrets").
+# ---------------------------------------------------------------------------------------------
+candidate:
+  name: Ibrahim H. Alsalem
+  email: ibrahimhalsalem@gmail.com
+  linkedin: https://linkedin.com/in/ibrahimhalsalem
+  website: https://basaradvisory.com
+  base_location: Riyadh, Saudi Arabia
+  nationality: Saudi
+
+targets:
+  countries:
+    - code: SA
+      name: Saudi Arabia
+      cities: [Riyadh, Jeddah, Khobar, Dammam, Dhahran, NEOM]
+      bayt_slug: saudi-arabia
+      naukrigulf_slug: saudi-arabia
+      gulftalent_slug: saudi-arabia
+      careerjet_locale: en_SA
+      jooble_host: sa.jooble.org
+      google_gl: sa
+    - code: QA
+      name: Qatar
+      cities: [Doha, Lusail]
+      bayt_slug: qatar
+      naukrigulf_slug: qatar
+      gulftalent_slug: qatar
+      careerjet_locale: en_QA
+      jooble_host: qa.jooble.org
+      google_gl: qa
+  # Each query is run per country on every HTML board / API (keep the list short: ~2 requests per
+  # query per country per source per day).
+  queries:
+    - economist
+    - economic analyst
+    - economic research
+    - policy analyst
+    - research manager
+    - strategy analyst
+    - labour market
+    - market research manager
+    - data insights
+
+scoring:
+  exclude_title_words: [teacher, tutor, lecturer, professor, nurse, driver, technician, chef, waiter,
+                        sales executive, telesales, receptionist, intern, internship, coordinator, "ib coordinator"]
+  title_keywords:
+    economist: 45
+    economics: 35
+    economic: 30
+    econometric: 35
+    "labour market": 30
+    "labor market": 30
+    policy: 25
+    research: 20
+    strategy: 20
+    strategic: 15
+    insight: 15
+    insights: 15
+    forecasting: 20
+    analyst: 12
+    consultant: 12
+    advisor: 15
+    adviser: 15
+    "business intelligence": 15
+    "market research": 20
+    planning: 10
+    senior: 6
+    lead: 6
+    manager: 6
+    director: 6
+    head: 6
+    "vice president": 8
+    expert: 8
+    specialist: 6
+  target_country_bonus: 15
+  preferred_city_bonus: 5
+  unknown_country_bonus: 5
+  other_country_penalty: 40
+  skill_keywords: [econometric, forecasting, regression, "time series", arima, stata, python, sql, "power bi",
+                   tableau, "vision 2030", "labor market", "labour market", "policy", tourism, segmentation,
+                   benchmarking, "impact assessment", "impact analysis", "research methodology", survey,
+                   macroeconomic, gdp, inflation, "public sector", ministry, "bilingual", arabic]
+  skill_points_each: 3
+  skill_cap: 20
+  junior_words: [junior, graduate, trainee, assistant, associate]
+  junior_penalty: 15
+  recency_bonus: 5
+  source_bonus:
+    career_page: 5
+    email: 3
+  red_flag_patterns:
+    "qatari\\s+nationals?\\s+only|only\\s+qatari": "Posting restricted to Qatari nationals"
+    "saudi\\s+nationals?\\s+only|saudis\\s+only": "Posting restricted to Saudi nationals (you qualify)"
+    "\\b(ph\\.?d|doctorate)\\s+(is\\s+)?required": "PhD required"
+    "\\b(15|20)\\+?\\s+years": "Very senior experience requirement"
+
+pipeline:
+  min_score_to_report: 35      # anything below is dropped from the digest
+  max_jobs_in_digest: 40
+  enrich_top_n: 8              # fetch full description for the top N new jobs (1 request each)
+  tailor_top_n: 5              # tailored CV + notes for the top N new jobs with score >= min_score_to_tailor
+  min_score_to_tailor: 55
+  keep_state_days: 120
+
+llm:
+  enabled: true                 # falls back to deterministic tailoring when ANTHROPIC_API_KEY is absent
+  model: claude-opus-5-5
+  rerank: true                  # one batched call to re-score the shortlist and flag mismatches
+  rerank_top_n: 25
+
+sources:
+  bayt: {enabled: true}
+  naukrigulf: {enabled: true}
+  gulftalent: {enabled: true}
+  careerjet: {enabled: true}            # needs CAREERJET_API_KEY (publisher account)
+  jooble: {enabled: true}               # needs JOOBLE_API_KEY_SA / JOOBLE_API_KEY_QA (one key per country domain)
+  jsearch: {enabled: true}              # needs JSEARCH_API_KEY (OpenWeb Ninja) - Google for Jobs aggregator
+  serpapi: {enabled: true}              # needs SERPAPI_API_KEY - Google Jobs engine, gl=sa / gl=qa
+  brightdata_linkedin:
+    enabled: false                      # OFF by default: read the LinkedIn note in README before enabling
+    time_range: "Past week"
+  email_alerts:
+    enabled: true                       # needs GMAIL_USER + GMAIL_APP_PASSWORD; reads your own job-alert emails
+    days_back: 2
+    senders:                            # anything from these senders is parsed for job links
+      linkedin: ["jobalerts-noreply@linkedin.com", "jobs-noreply@linkedin.com", "linkedin.com"]
+      bayt: ["bayt.com"]
+      gulftalent: ["gulftalent.com"]
+      naukrigulf: ["naukrigulf.com"]
+      indeed: ["indeed.com"]
+      glassdoor: ["glassdoor.com"]
+  career_pages:
+    enabled: true
+    keywords: [economist, economic, economics, policy, research, strategy, insight, analyst, planning,
+               forecasting, "labour market", "labor market"]
+
+# Employer career pages to watch. Only URLs that were verified to exist are listed; add more after
+# checking the URL yourself. type: html (keyword-match links), workday (JSON search API), successfactors.
+employers:
+  - name: KAPSARC
+    country: SA
+    type: html
+    url: https://www.kapsarc.org/work-with-us/job-opportunities/
+  - name: Public Investment Fund (PIF)
+    country: SA
+    type: html
+    url: https://www.pif.gov.sa/en/careers/
+  - name: Aramco
+    country: SA
+    type: html
+    url: https://careers.aramco.com/search/?q=economist
+  - name: QNB (via Bayt company page)
+    country: QA
+    type: html
+    url: https://www.bayt.com/en/company/qnb-247623/
+
+notify:
+  email_to: ibrahimhalsalem@gmail.com
+  subject_prefix: "[JobHunt]"
+  create_outreach_drafts: true          # IMAP-append drafts to Gmail for recruiter outreach (never auto-sends)

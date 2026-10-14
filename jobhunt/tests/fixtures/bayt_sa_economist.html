@@ -1,0 +1,1722 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+#jobSearchFeedbackAlert { transition: 0.3s; max-height: 140px; opacity: 1; overflow: hidden; }
+
+#jobSearchFeedbackAlert.squeeze { max-height: 0px; opacity: 0; padding-top: 0px !important; padding-bottom: 0px !important; margin: 0px !important; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+@media only screen and (min-width: 1025px) {
+  #jsMainClusterContainer .u-scrolly { max-height: 75vh; overflow-y: auto; position: relative; }
+  #jsMiniJobView .u-scrolly { max-height: 67vh; overflow-y: auto; position: relative; }
+}</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+@media screen {
+  .print-only { display: none !important; }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-bar:not(.is-active).is-compact > .input-pack, .search-bar:not(.is-active) > .b-close, .search-bar:not(.is-compact) > .b-search { display: none; }
+}
+
+.has-icon { position: relative; }
+
+.has-icon > .icon { position: absolute; top: 50%; right: 12px; margin: auto; transform: translateY(-50%); }
+
+.has-icon.to-left > .icon { right: auto; left: 10px; }
+
+.popover { display: none; }
+
+.icon { min-width: 18px; }
+
+.slider { position: relative; }
+
+.slider-arrow { color: transparent; }
+
+.slider-arrows { position: absolute; }
+
+.t-danger { color: rgb(255, 59, 48); }
+
+.list.is-basic, .list.is-basic > li { padding-left: 0px; }
+
+.btn.is-clear, .btn.is-inverse.is-outline, .btn.is-outline, .btn.is-secondary.is-outline { background-color: rgba(0, 0, 0, 0); }
+
+.popover, nav > .nav { text-align: left; }
+
+.dropdown, .list.is-basic, .nav { list-style: none; }
+
+.btn, .input, .msg-actions, .nav > li > a > .icon, .pagination > li, input.switch + label { vertical-align: middle; }
+
+.accordion-title, .dropdown > li > a, .pagination > li > a, a { text-decoration: none; }
+
+.btn, .dropdown > li > a, .msg-actions, .nav > li > a, .tip::before { white-space: nowrap; }
+
+@font-face { font-family: icons; src: url("https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/css/Simple-Line-Icons-Pro.woff2") format("woff2"), url("https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/css/Simple-Line-Icons-Pro.ttf") format("truetype"), url("https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/css/Simple-Line-Icons-Pro.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: italic; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/roboto/v32/KFOkCnqEu92Fr1Mu51xGIzIFKw.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Roboto; font-style: italic; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/roboto/v32/KFOkCnqEu92Fr1Mu51xIIzI.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Roboto; font-style: italic; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/roboto/v32/KFOjCnqEu92Fr1Mu51TzBic0CsTKlA.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Roboto; font-style: italic; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/roboto/v32/KFOjCnqEu92Fr1Mu51TzBic6CsQ.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 300; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2") format("woff2"); unicode-range: U+100-24F, U+259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 300; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 400; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7GxKOzY.woff2") format("woff2"); unicode-range: U+100-24F, U+259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 400; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 700; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2") format("woff2"); unicode-range: U+100-24F, U+259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; font-display: swap; }
+
+@font-face { font-family: Roboto; font-style: normal; font-weight: 700; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215; font-display: swap; }
+
+@font-face { font-family: Vazirmatn; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/vazirmatn/v13/Dxx78j6PP2D_kU2muijPEe1n2vVbfJRklWgzCRWT7lDF.woff2") format("woff2"); unicode-range: U+600-6FF, U+750-77F, U+870-88E, U+890-891, U+897-8E1, U+8E3-8FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1; }
+
+@font-face { font-family: Vazirmatn; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/vazirmatn/v13/Dxx78j6PP2D_kU2muijPEe1n2vVbfJRklY80CRWT7lDF.woff2") format("woff2"); unicode-range: U+600-6FF, U+750-77F, U+870-88E, U+890-891, U+897-8E1, U+8E3-8FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1; }
+
+*, ::after, ::before { box-sizing: inherit; }
+
+html { box-sizing: border-box; font-family: Roboto, Vazirmatn, Tahoma, Arial, sans-serif; font-size: 16px; line-height: 1.67; scroll-behavior: smooth; }
+
+body, html { padding: 0px; margin: 0px; background: rgb(244, 244, 244); color: rgb(26, 26, 26); }
+
+.h1, .h3, .h4, .h6, h1, h2, h4 { line-height: 1.2; margin: 0px 0px 0.5em; }
+
+a { color: rgb(0, 92, 230); }
+
+button, input, select { font-family: inherit; }
+
+.h1, h1 { font-size: 2.875rem; }
+
+h2 { font-size: 2.25rem; }
+
+.h3 { font-size: 1.75rem; }
+
+.h4, h4 { font-size: 1.5rem; }
+
+.h6 { font-size: 1rem; }
+
+.dlist, .list { font-size: 16px; }
+
+.dlist, .list > li { line-height: 1.625; }
+
+.list { padding-left: 1em; }
+
+.box, .col { padding: 10px; }
+
+.list > li { padding-left: 1.375em; font-size: 1em; }
+
+.list.is-basic.is-spaced > li { padding: 6px 0px; }
+
+.list.is-basic.is-spaced.is-compact > li { padding: 0px 0px 8px; }
+
+.box { max-width: 1000px; margin: 0px auto; }
+
+.box.is-wide { max-width: 1440px; }
+
+.row { display: flex; flex-flow: wrap; flex: 1 0 auto; }
+
+.row.is-compact > .col { flex-grow: 0; padding: 3px; }
+
+.row.h-align-center { justify-content: center; }
+
+.row.h-align-between { justify-content: space-between; }
+
+.row.v-align-center { align-items: center; }
+
+.col { display: block; flex: 1 1 auto; }
+
+.popover, .toggler-active > :last-child, .toggler-inactive > :first-child { display: none; }
+
+.col.is-2 { flex: 0 0 auto; width: 16.6667%; }
+
+.col.is-6 { flex: 0 0 auto; width: 50%; }
+
+.col.is-12 { flex: 0 0 auto; width: 100%; }
+
+.dropdown > li, .has-icon, .sticky-sense, .tip { position: relative; }
+
+.sticky-sidebar { will-change: min-height; }
+
+.popover { position: absolute; min-width: 270px; background-color: rgb(255, 255, 255); border: 1px solid rgb(231, 233, 237); border-radius: 5px; z-index: 10010; overflow: visible; outline: 0px; }
+
+.popover-owner { position: relative; overflow: visible; }
+
+.toggle-head { padding: 15px 20px; z-index: 0; }
+
+.accordion-toggle + .accordion-title::after, .b-close, .icon, .msg-close, .pagination > .pagination-prev > a::before { display: inline-block; text-align: center; font-family: icons; font-style: normal; font-weight: 400; line-height: 0.75; vertical-align: middle; }
+
+.accordion-toggle:checked + .accordion-title, .btn, .btn.is-large, .btn.is-small, .btn.is-xsmall, .t-bold { font-weight: 700; }
+
+.icon { margin: 0px 10px 0px 0px; }
+
+.icon.is-18 { font-size: 18px; padding: 4px; }
+
+.icon.is-20 { font-size: 20px; padding: 6px; }
+
+.icon.is-32 { font-size: 32px; padding: 7px; }
+
+.icon.is-48 { font-size: 48px; padding: 8px; }
+
+.icon.is-bayt-ai::before { content: ""; }
+
+.icon.is-arrow-down::before { content: ""; }
+
+.icon.is-arrow-right::before { content: ""; }
+
+.icon.is-smartphone::before { content: ""; }
+
+.icon.is-briefcase::before { content: ""; }
+
+.icon.is-bank::before { content: ""; }
+
+.icon.is-salaries::before { content: ""; }
+
+.icon.is-handshake::before { content: ""; }
+
+.icon.is-flash2::before { content: ""; }
+
+.icon.is-apps::before { content: ""; }
+
+.icon.is-bars::before { content: ""; }
+
+.icon.is-home::before { content: ""; }
+
+.icon.is-search::before { content: ""; }
+
+.icon.is-filter::before { content: ""; }
+
+.icon.is-location::before { content: ""; }
+
+.icon.is-heart::before { content: ""; }
+
+.icon.is-heart-solid::before { content: ""; }
+
+.b-close::after { content: ""; color: rgb(166, 175, 185); }
+
+.b-close.is-large { font-size: 18px; }
+
+.b-close.is-tiny, .nav > li > a > .icon.is-arrow-down { font-size: 10px; }
+
+.has-icon > .icon { position: absolute; top: 50%; right: 12px; margin: auto; color: rgb(166, 175, 185); transform: translateY(-50%); }
+
+.has-icon.to-left > .icon { right: auto; left: 10px; }
+
+.accordion { font-size: 14px; border-bottom: 1px solid rgb(231, 233, 237); }
+
+.accordion-toggle, input.switch { position: absolute; width: 0.01px; height: 0.01px; opacity: 0; overflow: hidden; z-index: -1; }
+
+.nav, nav { z-index: 10010; }
+
+.accordion-toggle:checked + .accordion-title + .accordion-animate { max-height: 1000px; opacity: 1; }
+
+.accordion-toggle:checked + .accordion-title::after { transform: translateY(-50%) rotate(180deg); }
+
+.accordion-toggle + .accordion-title::after { content: ""; position: absolute; top: 50%; right: 20px; color: rgb(185, 191, 203); transform-origin: 50% center; transform: translateY(-50%); }
+
+.select::after, [dir="ltr"] .select::after { transform: translate(-50%, -50%) rotate(45deg); }
+
+.accordion-title { font-size: 14px; position: relative; display: block; padding: 5px 20px; margin: 0px; border-top: 1px solid rgb(231, 233, 237); color: rgb(26, 26, 26); }
+
+.btn, .dropdown, .input, .list-menu { font-size: 0.875rem; }
+
+.accordion-content, .dropdown > li > a { padding: 10px 20px; position: relative; }
+
+.accordion-animate { max-height: 0px; opacity: 0.5; overflow: hidden; }
+
+.accordion-animate > .accordion-content { display: block; }
+
+.accordion-content { display: none; border-top: 1px solid rgb(231, 233, 237); }
+
+.btn, div.btn { display: inline-block; }
+
+.img-40 { width: 40px; height: 40px; }
+
+.btn { line-height: 1; background-color: rgb(0, 112, 235); overflow: hidden; color: rgb(255, 255, 255); border-radius: 4px; text-align: center; padding: 11px 16px; border: 1px solid rgb(0, 112, 235); }
+
+.dropdown > li > a, .t-medium { font-weight: 400; }
+
+.dropdown, .searchable, .select, div.btn { overflow: visible; }
+
+.btn.is-outline { color: rgb(0, 112, 235); }
+
+.btn.is-clear { color: rgb(26, 26, 26); border-color: transparent; }
+
+.btn.is-xsmall { font-size: 0.625rem; line-height: 1; padding: 7px 12px; }
+
+.btn.is-small { font-size: 0.75rem; line-height: 1; padding: 9px 14px; }
+
+.btn.is-large { font-size: 1rem; line-height: 1; padding: 13px 20px; }
+
+.btn.is-secondary { background-color: rgb(130, 138, 147); border-color: rgb(130, 138, 147); }
+
+.btn.is-inverse, .card, .searchable, .select, .select > .input { background-color: rgb(255, 255, 255); }
+
+.btn.is-secondary.is-outline { color: rgb(130, 138, 147); }
+
+.btn.is-inverse { border-color: rgb(255, 255, 255); color: rgb(0, 112, 235); }
+
+.btn.is-inverse.is-outline { color: rgb(255, 255, 255); border-color: rgba(255, 255, 255, 0.6); }
+
+.btn + .btn { margin-left: 10px; }
+
+.card { padding: 20px; border-radius: 4px; }
+
+.card:only-child { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+.card-head { padding-bottom: 10px; }
+
+.card-foot { padding: 20px 0px 0px; }
+
+.dropdown { padding: 10px 0px; margin: 0px; line-height: 1; color: rgb(26, 26, 26); }
+
+.dropdown > li > a { display: block; color: inherit; }
+
+.nav > li > a, .pagination > .pagination-prev, .pagination > li > a, .searchable, .select, .select > .input, input.switch + label { display: inline-block; }
+
+.dropdown > li.has-divider { margin-top: 10px; padding-top: 10px; }
+
+.dropdown > li.has-divider::before { content: ""; display: block; position: absolute; top: 0px; left: 0px; right: 0px; height: 1px; background-color: rgb(231, 233, 237); }
+
+select.input { padding: 0px 12px; line-height: 2; }
+
+.select { position: relative; width: 100%; }
+
+.select::before { content: ""; background: rgb(255, 255, 255); position: absolute; width: 35px; top: 3px; bottom: 3px; right: 3px; border-radius: 0px 4px 4px 0px; }
+
+.select::after { content: ""; position: absolute; right: 10.5px; top: calc(50% - 2px); width: 10px; height: 10px; border-style: solid; border-color: rgb(185, 191, 203); border-image: none; border-width: 0px 1px 1px 0px; z-index: 3; }
+
+.list-menu-group, .list-menu-title, .msg, .searchable, .searchable > .input, nav > .nav { position: relative; }
+
+.select > .input { width: 100%; line-height: 1.5; appearance: none; }
+
+.select:not(.is-dial) > .input { padding-right: 36px; }
+
+[dir="ltr"] .select::before { left: auto; right: 3px; border-radius: 0px 4px 4px 0px; }
+
+[dir="ltr"] .select::after { left: auto; right: 10.5px; border-width: 0px 1px 1px 0px; }
+
+input.switch + label { position: relative; width: 49px; height: 26px; border-radius: 100px; background-color: rgb(185, 191, 203); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; }
+
+input.switch + label::before { content: ""; display: block; height: 20px; width: 20px; margin: 3px; background-color: rgb(255, 255, 255); border-radius: 100px; }
+
+input.switch.is-small + label { width: 37px; height: 20px; }
+
+input.switch.is-small + label::before { height: 14px; width: 14px; }
+
+.searchable { width: 100%; padding: 0px; margin: 0px; border-radius: 4px; }
+
+.searchable > .input { width: 100%; background-color: rgba(0, 0, 0, 0); background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+
+.input { width: auto; line-height: 1; height: 38px; padding: 12px; border: 1px solid rgb(166, 175, 184); border-radius: 4px; outline: 0px; }
+
+.input.is-large:not(textarea), .input:not(textarea) { padding-top: 0px; padding-bottom: 0px; }
+
+.input.is-large { font-size: 1rem; line-height: 1; height: 44px; padding: 14px; }
+
+.has-icon > .input { padding-right: 39px; }
+
+.has-icon.to-left > .input { padding-right: 0px; padding-left: 39px; }
+
+.list-menu { line-height: 1.64285; width: 360px; color: rgb(166, 175, 185); }
+
+.list-menu-title { color: rgb(26, 26, 26); padding: 16px; }
+
+.bb, .list-menu-title:first-child { border-bottom: 1px solid rgb(231, 233, 237); }
+
+.list-menu-group { overflow: auto; list-style: none; max-height: 480px; padding: 0px; margin: 0px; border-top: 1px solid rgb(231, 233, 237); }
+
+.list-menu-title + .list-menu-group { border-top: 0px; }
+
+.msg { font-size: 1rem; line-height: 1.67; display: table; width: 100%; padding: 15px 48px 15px 15px; color: rgb(255, 255, 255); background-color: rgb(26, 26, 26); }
+
+.nav, .t-small { font-size: 0.875rem; }
+
+.msg-close, .tip::after, .tip::before { position: absolute; }
+
+.u-expanded, .u-stretch { width: 100% !important; }
+
+.msg.is-success { background-color: rgb(39, 170, 64); }
+
+.msg.is-success > .msg-close, .msg.is-warning > .msg-close { color: rgb(0, 0, 0); }
+
+.msg.is-warning { color: rgb(0, 0, 0); background-color: rgb(255, 237, 168); }
+
+.msg-actions { display: table-cell; text-align: right; padding: 0px 18px; }
+
+.msg-close { top: 0px; right: 15px; bottom: 0px; margin: 0px; color: inherit; background: rgba(0, 0, 0, 0); border: 0px; opacity: 0.25; outline: 0px; }
+
+.msg-close::after { content: ""; }
+
+body.fixed-nav { padding-top: 74px; }
+
+body.fixed-nav > nav { position: fixed; top: 0px; width: 100%; }
+
+.nav { line-height: 1.07357; padding: 0px; margin: 0px; display: flex; background-color: rgb(0, 112, 235); }
+
+.m0t, .m0y { margin-top: 0px !important; }
+
+.nav > li { flex: 0 0 auto; order: 50; align-self: center; }
+
+.nav > li > a { padding: 29px 16px; color: rgb(255, 255, 255); line-height: 1.14286; }
+
+.nav > li > a > .icon { margin: 0px; font-size: inherit; color: rgb(255, 255, 255); }
+
+.nav > li.is-group { margin: 0px 16px; }
+
+.nav.is-aux { font-size: 1.125rem; line-height: 1.02056; justify-content: center; }
+
+.nav.is-aux > li { padding-bottom: 0px; }
+
+.nav.is-aux > li > a { padding: 14px 16px 18px; }
+
+.pagination > li { display: none; }
+
+.pagination > li > a { padding: 12px 24px; margin: 0px 1px; color: inherit; border-radius: 4px; }
+
+.pagination > .pagination-prev > a::before { margin: 0px; content: ""; }
+
+.tip::after, .tip::before { display: none; font-size: 12px; line-height: 1.5; z-index: 1147483647; }
+
+.tip::before { content: attr(aria-label); border: 0px; color: rgb(255, 255, 255); background-color: rgb(54, 54, 54); padding: 6px; border-radius: 4px; }
+
+.tip::after { content: ""; width: 14px; height: 14px; border: 8px solid transparent; }
+
+.tip.on-bottom::before { bottom: -14px; left: 50%; transform: translate(-50%, 100%); }
+
+.tip.on-bottom::after { bottom: -15px; left: 50%; border-bottom-color: rgb(54, 54, 54); transform: translateX(-50%); }
+
+.m0 { margin: 0px !important; }
+
+.m0y { margin-bottom: 0px !important; }
+
+.m10t, .m10y { margin-top: 10px !important; }
+
+.p0 { padding: 0px !important; }
+
+.p0x { padding-left: 0px !important; padding-right: 0px !important; }
+
+.p0t { padding-top: 0px !important; }
+
+.m5l { margin-left: 5px !important; }
+
+.m5r { margin-right: 5px !important; }
+
+.m5b { margin-bottom: 5px !important; }
+
+.m10b, .m10y { margin-bottom: 10px !important; }
+
+.p5 { padding: 5px !important; }
+
+.p10b, .p10y { padding-bottom: 10px !important; }
+
+.p5t { padding-top: 5px !important; }
+
+.p10t, .p10y { padding-top: 10px !important; }
+
+.m10l { margin-left: 10px !important; }
+
+.m10r { margin-right: 10px !important; }
+
+.m20t, .m20y { margin-top: 20px !important; }
+
+.m20b, .m20y { margin-bottom: 20px !important; }
+
+.p10 { padding: 10px !important; }
+
+.p10l { padding-left: 10px !important; }
+
+.m20r { margin-right: 20px !important; }
+
+.p20 { padding: 20px !important; }
+
+.p20x { padding-left: 20px !important; padding-right: 20px !important; }
+
+.p20t { padding-top: 20px !important; }
+
+.p20b { padding-bottom: 20px !important; }
+
+.u-abs { position: absolute !important; }
+
+.u-sticky { position: sticky !important; }
+
+.to-top { top: 0px !important; }
+
+.to-left { left: 0px !important; }
+
+.u-block { display: block !important; }
+
+.u-iblock { display: inline-block !important; }
+
+.u-expanded { display: block !important; }
+
+.u-scrolly { overflow-y: scroll !important; }
+
+.u-flex { display: flex; align-items: baseline; }
+
+.u-right { float: right !important; }
+
+.u-none { display: none !important; }
+
+.t-right { text-align: right !important; }
+
+.t-center { text-align: center !important; }
+
+.t-break { word-break: break-word; overflow-wrap: break-word; }
+
+.t-wrap { white-space: normal; }
+
+.t-small { line-height: 1.67; }
+
+.t-large { font-size: 1.125rem; line-height: 1.67; }
+
+.t-primary { color: rgb(0, 112, 235); }
+
+.t-success { color: rgb(39, 170, 64); }
+
+.t-danger { color: rgb(255, 59, 48); }
+
+.t-mute { color: rgb(130, 138, 147); }
+
+.t-inverse { color: rgb(255, 255, 255); }
+
+.t-default { color: rgb(26, 26, 26); }
+
+.t-ai { color: transparent; background-clip: text; background-image: linear-gradient(135deg, rgb(39, 252, 150) 0px, rgb(10, 87, 186) 65.52%); line-height: normal; }
+
+.bg-inverse { background-color: rgb(255, 255, 255); --ai-inner-bg: #fff; }
+
+.bg-lite { background-color: rgb(230, 242, 255); --ai-inner-bg: #e6f2ff; }
+
+.bg-ai { background: linear-gradient(135deg, rgb(232, 255, 244) 0px, rgb(230, 240, 252) 65.52%); }
+
+.b { border: 1px solid rgb(231, 233, 237) !important; }
+
+.z-hi { z-index: 10000 !important; }
+
+.u-h-rounded { border-radius: 4px !important; }
+
+.u-rounded { border-radius: 10px !important; }
+
+a:not(.btn):not(.b-close):not(.label).is-inverse { color: rgb(255, 255, 255); text-decoration: underline; }
+
+@media screen and (max-width: 1023px) {
+  .h1, .h3, .h4, .h6, h1, h2, h4 { line-height: 1.2; }
+  .dropdown.in-nav, .nav > li > a { color: rgb(26, 26, 26); }
+  .h1, h1 { font-size: 2.75rem; }
+  h2 { font-size: 2.125rem; }
+  .h3 { font-size: 1.625rem; }
+  .h4, h4 { font-size: 1.375rem; }
+  .h6, .msg { font-size: 0.875rem; }
+  .row.is-collapsed-m { padding: 0px; }
+  .row.is-collapsed-m > .col { padding: 0px 0px 20px; }
+  .row { flex-flow: column; }
+  .row.is-m { flex-flow: wrap; }
+  .row.no-wrap { flex-wrap: nowrap; }
+  .row.h-align-between-m { justify-content: space-between; }
+  .col.is-3-m { flex: 0 0 auto; width: 25%; }
+  .col.is-9-m { flex: 0 0 auto; width: 75%; }
+  .col.is-12-m { flex: 0 0 auto; width: 100%; }
+  .popover-owner.has-pointer::before { content: ""; position: absolute; top: 14px; right: 20px; width: 10px; height: 10px; border-style: solid; border-color: rgb(59, 59, 59); border-image: none; border-width: 0px 1px 1px 0px; transform: rotate(45deg); }
+  .popover { overflow: auto; position: fixed; top: auto; bottom: 0px; left: 0px; width: 100%; max-height: 75vh; border-radius: 0px; transform: translate3d(0px, 100%, 0px); }
+  .popover.is-inline { display: none; position: relative; max-height: none; padding-left: 10px; transform: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; overflow: visible; }
+  .popover.is-full { top: 0px; max-height: none; transform: translate3d(100%, 0px, 0px); }
+  .can-toggle.is-m, .nav.can-toggle { position: fixed; inset: 0px; padding: 0px; background-color: rgb(255, 255, 255); transform: translate3d(-100%, 0px, 0px); }
+  .can-toggle.is-m { display: flex; flex-direction: column; z-index: 10010; }
+  .can-toggle.is-m > .toggle-head { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .can-toggle.is-m > .toggle-content { overflow: auto; flex: 1 1 100%; }
+  .can-toggle.is-m > .toggle-content > .accordion { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; }
+  .card { padding: 16px; border-radius: 0px; }
+  .dropdown > li > a { padding: 14px 20px; }
+  .dropdown.in-nav > li > a { padding: 7px 20px; }
+  .list-menu { display: flex; width: auto; height: 100%; flex-direction: column; overflow: hidden; }
+  .list-menu-title { flex: 0 0 auto; }
+  .list-menu-group { overflow: auto; flex: 1 1 auto; justify-content: flex-start; max-height: none; min-height: auto; }
+  .msg { line-height: 1.6428; display: block; font-weight: 400; padding: 16px 48px 16px 26px; }
+  .msg-actions { display: block; padding: 15px 0px 0px; transform: translateX(30px); }
+  .msg-close { top: 15px; bottom: auto; margin-bottom: 15px; }
+  body.fixed-nav { padding-top: 54px; }
+  nav { z-index: 5010; }
+  .nav > li.is-wide-m { flex: 1 1 0%; }
+  .nav > li { align-self: auto; }
+  .nav > li > a { font-size: 1.125rem; line-height: 1.125; padding: 8px 16px; }
+  .nav > li > a.is-logo { display: block; margin: 0px; padding: 9px 0px; text-align: center; }
+  .nav > li > a.is-logo > img { width: 80px; height: 36px; }
+  .nav > li > a.is-toggle { padding: 14px 20px 18px; }
+  .nav > li.is-group { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgb(231, 233, 237); }
+  .nav > li.is-first { order: 0; align-self: flex-end; width: 100%; }
+  .nav.is-aux { background-color: rgb(255, 255, 255); }
+  .nav.is-aux > li > a { padding: 16px; }
+  .nav.can-toggle { flex-direction: column; }
+  .nav.can-toggle > li > a { display: block; color: rgb(0, 0, 0); }
+  .tip::before { width: max-content; max-width: 70vw; white-space: unset; }
+  .m10b-m { margin-bottom: 10px !important; }
+  .m20b-m { margin-bottom: 20px !important; }
+  .p20l-m { padding-left: 20px !important; }
+  .u-expanded-m { display: block !important; width: 100% !important; }
+  .d { display: none !important; }
+  .t-center-m { text-align: center !important; }
+  .bb-m { border-bottom: 1px solid rgb(231, 233, 237); }
+}
+
+@media screen and (min-width: 1024px) {
+  .card.is-primary-d::before, .popover.is-pointing::after, .popover::before { content: ""; position: absolute; display: block; }
+  .list.is-inline > li, .pagination > li { display: inline-block; }
+  .list.is-inline { margin: 0px; }
+  .list.is-inline > li { padding-left: 0px; }
+  .list.is-inline > li:not(:last-child) { padding-right: 10px; }
+  .row.no-wrap { flex-wrap: nowrap; }
+  .row.is-reversed-d { flex-direction: row-reverse; }
+  .row.h-align-right-d { justify-content: flex-end; }
+  .row.v-align-center-d { align-items: center; }
+  .col.is-3-d { flex: 0 0 auto; width: 25%; }
+  .col.is-5-d { flex: 0 0 auto; width: 41.6667%; }
+  .col.is-8-d { flex: 0 0 auto; width: 66.6667%; }
+  .col.is-9-d { flex: 0 0 auto; width: 75%; }
+  .col.is-9-d.is-half { width: 37.5%; }
+  .sticky-content { transform: translate3d(0px, 0px, 0px); will-change: position, transform; }
+  .popover::before { inset: -6px; z-index: -1; }
+  .popover[data-placement="bl"], .popover[data-placement="br"] { bottom: -4px; transform: translateX(0px) translateY(100%) translateZ(2px); }
+  .popover.is-pointing::before { inset: -19px; }
+  .popover.is-pointing::after { border: 0px transparent; background: rgb(255, 255, 255); width: 14px; height: 14px; backface-visibility: hidden; z-index: -1; }
+  .popover[data-placement="bl"] { left: 0px; }
+  .popover[data-placement="bl"]::after { top: 0px; left: 0px; transform: translate(100%, -50%) rotate(-135deg); }
+  .popover[data-placement="br"] { right: 0px; }
+  .popover[data-placement="br"].is-pointing { bottom: -14px; }
+  .popover[data-placement="br"]::after { top: 0px; right: 0px; transform: translate(-100%, -50%) rotate(-135deg); }
+  .card.is-primary-d { position: relative; }
+  .card.is-primary-d::before { top: 0px; right: 0px; left: 0px; height: 5px; background-color: rgb(0, 112, 235); border-radius: 4px 4px 0px 0px; }
+  .modal.is-split > .modal-wrap > .modal-dialog > .modal-head { grid-area: head; padding: 20px 20px 0px; margin: 0px; text-align: left; }
+  .modal.is-split > .modal-wrap > .modal-dialog > .modal-body { grid-area: body; padding: 20px; }
+  .modal.is-split > .modal-wrap > .modal-dialog > .modal-foot { grid-area: foot; padding: 0px 20px 20px; text-align: left; }
+  .nav > li.is-wide-d { flex: 1 1 0%; }
+  .nav > li > a.is-logo { margin: 0px 64px 0px 16px; padding: 0px; }
+  .search-bar { z-index: 10001; }
+  .p10x-d { padding-left: 10px !important; padding-right: 10px !important; }
+  .p10b-d { padding-bottom: 10px !important; }
+  .m20b-d { margin-bottom: 20px !important; }
+  .p20-d { padding: 20px !important; }
+  .m { display: none !important; }
+  .t-large-d { font-size: 1.125rem; line-height: 1.67; }
+  .bg-inverse-d { background-color: rgb(255, 255, 255); --ai-inner-bg: #fff; }
+}
+
+@media screen {
+  .print-only { display: none !important; }
+}
+
+@media only screen and (min-width: 1025px) {
+  #jsMainClusterContainer .u-scrolly { max-height: 75vh; overflow-y: auto; position: relative; }
+}</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.qJTHM { user-select: none; color: rgb(32, 33, 36); direction: ltr; font-family: Roboto-Regular, arial, sans-serif; -webkit-font-smoothing: antialiased; font-weight: 400; margin: 0px; overflow: hidden; text-size-adjust: 100%; }
+
+.ynRLnc { left: -9999px; position: absolute; top: -9999px; }
+
+.L6cTce { display: none; }
+
+.bltWBb { overflow-wrap: break-word; word-break: break-word; }
+
+.hSRGPd { color: rgb(26, 115, 232); cursor: pointer; font-weight: 500; text-decoration: none; }
+
+.Bz112c-W3lGp { height: 16px; width: 16px; }
+
+.Bz112c-E3DyYd { height: 20px; width: 20px; }
+
+.Bz112c-r9oPif { height: 24px; width: 24px; }
+
+.Bz112c-u2z5K { height: 36px; width: 36px; }
+
+.Bz112c-uaxL4e { border-radius: 10px; }
+
+.LgbsSe-Bz112c { display: block; }
+
+.S9gUrf-YoZ4jf { border-width: medium; border-style: none; border-color: currentcolor; border-image: none; margin: 0px; padding: 0px; }
+
+.S9gUrf-YoZ4jf * { border-width: medium; border-style: none; border-color: currentcolor; border-image: none; margin: 0px; padding: 0px; }
+
+.fFW7wc-ibnC6b > .aZ2wEe > div { border-color: rgb(66, 133, 244); }
+
+.P1ekSe-ZMv3u { transition: height 0.2s linear; }
+
+.P1ekSe-ZMv3u > div:first-child { transition: width 0.3s linear; background-color: rgb(26, 115, 232) !important; }
+
+.P1ekSe-ZMv3u > div:nth-child(2) { background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(90deg, rgb(26, 115, 232), rgb(26, 115, 232)) !important; }
+
+.P1ekSe-ZMv3u > div:nth-child(3) { background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), linear-gradient(90deg, rgb(26, 115, 232), rgb(26, 115, 232)) !important; }
+
+.haAclf { display: inline-block; }
+
+.nsm7Bb-HzV7m-LgbsSe { border-radius: 4px; box-sizing: border-box; transition: background-color 0.218s, border-color 0.218s; user-select: none; appearance: none; background-color: rgb(255, 255, 255); background-image: none; border: 1px solid rgb(218, 220, 224); color: rgb(60, 64, 67); cursor: pointer; font-family: "Google Sans", arial, sans-serif; font-size: 0.875rem; height: 40px; letter-spacing: 0.25px; outline: none; overflow: hidden; padding: 0px 12px; position: relative; text-align: center; vertical-align: middle; white-space: nowrap; width: auto; }
+
+.nsm7Bb-HzV7m-LgbsSe.TzA9Ye-LgbsSe { font-size: 14px; }
+
+@media screen and (-ms-high-contrast:active) {
+  .nsm7Bb-HzV7m-LgbsSe { border: 2px solid windowtext; color: windowtext; }
+}
+
+@media screen and (preferes-contrast:more) {
+  .nsm7Bb-HzV7m-LgbsSe { color: rgb(0, 0, 0); }
+}
+
+.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe { font-size: 0.875rem; height: 32px; letter-spacing: 0.25px; padding: 0px 10px; }
+
+.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.TzA9Ye-LgbsSe { font-size: 14px; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe { font-size: 0.6875rem; height: 20px; letter-spacing: 0.3px; padding: 0px 8px; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.TzA9Ye-LgbsSe { font-size: 11px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe { padding: 0px; width: 40px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe { width: 32px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe { width: 20px; }
+
+.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK { border-radius: 20px; }
+
+.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.pSzOP-SxQuSe { border-radius: 16px; }
+
+.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.purZT-SxQuSe { border-radius: 10px; }
+
+.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc { border: 1px solid rgb(142, 145, 143); background-color: rgb(19, 19, 20); color: rgb(227, 227, 227); }
+
+.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc { border-width: medium; border-style: none; border-color: currentcolor; border-image: none; color: rgb(255, 255, 255); }
+
+.nsm7Bb-HzV7m-LgbsSe.MFS4be-v3pZbf-Ia7Qfc { background-color: rgb(26, 115, 232); }
+
+.nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc { background-color: rgb(32, 33, 36); color: rgb(232, 234, 237); }
+
+@media screen and (prefers-contrast: more) {
+  .nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc { color: rgb(255, 255, 255); }
+}
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { height: 18px; margin-right: 8px; min-width: 18px; width: 18px; }
+
+.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { height: 14px; min-width: 14px; width: 14px; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { height: 10px; min-width: 10px; width: 10px; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c { margin-left: 8px; margin-right: -4px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { margin: 0px; padding: 10px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { padding: 8px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c { padding: 4px; }
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-top-left-radius: 3px; border-bottom-left-radius: 3px; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; background-color: rgb(255, 255, 255); height: 36px; margin-left: -10px; margin-right: 12px; min-width: 36px; width: 36px; }
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c, .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c { margin: 0px; padding: 0px; }
+
+.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { height: 28px; margin-left: -8px; margin-right: 10px; min-width: 28px; width: 28px; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { height: 16px; margin-left: -6px; margin-right: 8px; min-width: 16px; width: 16px; }
+
+.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 3px; margin-left: 2px; margin-right: 0px; padding: 0px; }
+
+.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 18px; }
+
+.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 14px; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 8px; }
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb { display: flex; -webkit-box-align: center; align-items: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; flex-flow: row; -webkit-box-pack: justify; justify-content: space-between; height: 100%; position: relative; width: 100%; }
+
+.nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX { -webkit-box-pack: center; justify-content: center; }
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId { -webkit-box-flex: 1; flex-grow: 1; font-family: "Google Sans", arial, sans-serif; font-weight: 500; overflow: hidden; text-overflow: ellipsis; vertical-align: top; }
+
+.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-BPrWId { font-weight: 300; }
+
+.nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX .nsm7Bb-HzV7m-LgbsSe-BPrWId { -webkit-box-flex: 0; flex-grow: 0; }
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-MJoBVe { transition: background-color 0.218s; inset: 0px; position: absolute; }
+
+.nsm7Bb-HzV7m-LgbsSe:focus, .nsm7Bb-HzV7m-LgbsSe:hover { box-shadow: none; border-color: rgb(210, 227, 252); outline: none; }
+
+.nsm7Bb-HzV7m-LgbsSe:focus-within { outline: rgb(0, 99, 155) solid 2px; border-color: transparent; }
+
+.nsm7Bb-HzV7m-LgbsSe:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(66, 133, 244, 0.08); }
+
+.nsm7Bb-HzV7m-LgbsSe:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe, .nsm7Bb-HzV7m-LgbsSe:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(66, 133, 244, 0.1); }
+
+.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(255, 255, 255, 0.08); }
+
+.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe, .nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(255, 255, 255, 0.12); }
+
+.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(255, 255, 255, 0.24); }
+
+.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe, .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe { background: rgba(255, 255, 255, 0.32); }
+
+.nsm7Bb-HzV7m-LgbsSe .n1UuX-DkfjY { border-radius: 50%; display: flex; height: 20px; margin-left: -4px; margin-right: 8px; min-width: 20px; width: 20px; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId { font-family: Roboto; font-size: 12px; text-align: left; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .fmcmS, .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .ssJRIf { overflow: hidden; text-overflow: ellipsis; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff { display: flex; -webkit-box-align: center; align-items: center; color: rgb(95, 99, 104); fill: rgb(95, 99, 104); font-size: 11px; font-weight: 400; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe.i5vt6e-to915-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff { color: rgb(196, 199, 197); fill: rgb(196, 199, 197); }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff { color: rgb(232, 234, 237); fill: rgb(232, 234, 237); }
+
+@media screen and (prefers-contrast: more) {
+  .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff, .nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff { color: rgb(0, 0, 0); fill: rgb(0, 0, 0); }
+}
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .Bz112c { height: 18px; margin: -3px -3px -3px 2px; min-width: 18px; width: 18px; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 0px 3px 3px 0px; margin-left: 12px; margin-right: -10px; }
+
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf { border-radius: 18px; }
+
+.L5Fo6c-sM5MNb { border: 0px; display: block; left: 0px; position: relative; top: 0px; }
+
+.L5Fo6c-bF1uUb { border-radius: 4px; inset: 0px; cursor: pointer; position: absolute; }
+
+.L5Fo6c-bF1uUb:focus { border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none; }
+
+sentinel { }</style>
+<link rel="preconnect" href="https://secure.b8cdn.com/" crossorigin="">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link rel="preload" href="https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/css/Simple-Line-Icons-Pro.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://fonts.gstatic.com/s/vazirmatn/v13/Dxx78j6PP2D_kU2muijPEe1n2vVbfJRklWgzCRWT7lDF.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://fonts.gstatic.com/s/vazirmatn/v13/Dxx78j6PP2D_kU2muijPEe1n2vVbfJRklY80CRWT7lDF.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="dns-prefetch" href="https://secure.b8cdn.com/">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+<link rel="dns-prefetch" href="https://cdn-cookieyes.com/">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com/">
+<link rel="dns-prefetch" href="https://log.cookieyes.com/">
+<link rel="dns-prefetch" href="https://directory.cookieyes.com/">
+<meta name="keywords" content="economist jobs in saudi arabia, economist vacancies saudi arabia, economist career opportunities in saudi arabia">
+<meta name="robots" content="noindex">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="copyright" content="Bayt.com FZ-LLC">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta data-js-id="meta-description" name="description" content="Apply now to over 4 Economist jobs in Saudi Arabia and make your job hunting simpler. Find the latest Economist job vacancies and employment opportunities in Saudi Arabia.">
+<link rel="manifest" href="https://www.bayt.com/push-notifications/app/manifest.json">
+<link rel="icon" href="https://secure.b8cdn.com/bayt/assets/b8static/favicon/js/favicon.ico" sizes="any">
+<link rel="icon" href="https://secure.b8cdn.com/bayt/assets/b8static/favicon/js/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://secure.b8cdn.com/bayt/assets/b8static/favicon/js/apple-touch-icon.png">
+
+
+
+<script id="GOneTap" src="https://accounts.google.com/gsi/client"></script><script>!function(n){var a=[],e=setInterval(function(){if(B8.v){for(var n;n=a.pop();)B8.ready(n);clearInterval(e)}},100);n.B8=n.B8||{ready:function(n){a.push(n)}}}(window);window.dataLayer=window.dataLayer||[];window.dataLayer.push({"pageLang":"en","pageName":null,"pageSection":"Job Seeker","pageProtected":false});window.dataLayer.push({"gtm.start":new Date().getTime(),"event":"gtm.js"});if(!document.cookie.match(/^(.*;)?\s*aff_data\s*=\s*[^;]+(.*)?$/)){document.cookie="aff_data="+encodeURIComponent("qs="+encodeURIComponent(window.location.search)+"&ref="+encodeURIComponent(document.referrer))+";path=/;domain=.bayt.com";}B8v={"domainType":"jobs","cookiesDomain":".bayt.com","devProjects":{"generic":0,"yiiBetaAndDev":0,"baytUIProfile":1,"jsMicroCvBuilder":1},"pageCached":true,"saveNav":false,"amplitudeApiKey":"6e362603a9c35b5505d9ce2047990487","jsCdnRoot":"\/\/secure.b8cdn.com","B8trkUrl":"https:\/\/trk.bayt.com","ssdcookie":"SSD0","userDataCookie":"UADCN","isShagheelUrl":false,"adsenseCSA":{"pageOptions":{"channel":6339614250,"query":"Economist Jobs in Saudi Arabia","hl":"en","adPage":1,"adtest":"off","styleId":"3741995929"}},"firebase":{"files":[{"id":485836676,"file":"https:\/\/www.gstatic.com\/firebasejs\/7.8.1\/firebase-app.js"},{"id":3440100177,"file":"https:\/\/www.gstatic.com\/firebasejs\/7.8.1\/firebase-messaging.js"}],"config":{"firebaseConfig":{"apiKey":"AIza_REDACTED_THIRD_PARTY_CLIENT_KEY","authDomain":"bayt-com-api-project-690072141335.firebaseapp.com","databaseURL":"https:\/\/bayt-com-api-project-690072141335.firebaseio.com","projectId":"bayt.com:api-project-690072141335","storageBucket":"undefined","messagingSenderId":"690072141335","appId":"1:690072141335:web:b54325063687927189e652","measurementId":"G-C2STKV07BY"},"publicVapidKey":"BHNvLdnKk5ozRNy9C-FpKjWIlHrInxRsh9IaAwYEKvYyFRQblbduZCZg5ffn56wibWFgGwQm2zcosg-c1ZR09hI"},"notifScript":{"id":2797871723,"file":"\/bayt\/assets\/baytui-6whtjkql\/js\/webPushNotifications.js"}},"globalSearchVars":{"page":0,"jobAlertScript":"https:\/\/secure.b8cdn.com\/bayt\/assets\/userregistration-4o0ysgvb\/js\/registerJobAlert.js","showJA":true,"clickedFacet":""},"deleteAllMessage":"<h5>Confirm unsaving your Saved Jobs<\/h5><p>This action will remove all jobs in your Saved Jobs list. Are you sure you want to continue?<\/p>","deleteAllMessageOk":"OK","deleteAllMessageCancel":"Cancel","showPopupAfterJobAlert":false,"csrf":{"token":"dbAOQM4NJBzOoIRt7JAXRi0nUkH7ApQL"},"cdn":{"CdnDomain":"\/\/secure.b8cdn.com","HttpsCdnDomain":"https:\/\/secure.b8cdn.com","cssCdnRoot":"\/\/secure.b8cdn.com","imagesCdnRoot":"\/\/secure.b8cdn.com\/images","jsCdnRoot":"\/\/secure.b8cdn.com","HttpsEmailCdn":"https:\/\/secure.b8cdn.com"},"comon":{"sessionToken":"Browser:4673739961000991380874,0,0,0,H3Q1PO,0,0,31173eb0b99dd35b5bb8ddf9e66a407a&69,dbAOQM4NJBzOoIRt7JAXRi0nUkH7ApQL,,&467373996851069392409"},"jsLoad":{"gsiClient":true},"view":{"userConfirmationScript":"https:\/\/secure.b8cdn.com\/bayt\/assets\/userconfirmation-5vdygm8c\/js\/userConfirmationBaytUI.js","registerJobAlertScript":"https:\/\/secure.b8cdn.com\/bayt\/assets\/userregistration-4o0ysgvb\/js\/registerJobAlert.js","fromJobSearch":"\/en\/saudi-arabia\/jobs\/economist-jobs\/","confirmDeleteMsg":"This application will be deleted. Are you sure you want to continue?","mobileVerificationSuccess":"Your mobile number has been verified successfully","mobileVerificationFailure":"We couldn't verify your mobile number. Please try again.","bttnCloseText":"Close","emptyEmailAddress":"No email address provided","invalidEmailAddress":"Email address is invalid","resendConfirmEmailMssg":"Confirm your email address to start applying to jobs","resendConfirmationButton":"Resend Confirmation Email","usedEmailAddress":"Email address is already used","goBackBtn":"Go Back","okText":"OK","cancelText":"Cancel","savedLink":"<i class='icon is-star'><\/i>Saved","shareWithYourFriends":"Share job","jobAlertRegisterParamsOfUrl":"{&quot;p&quot;:[&quot;sa&quot;],&quot;v&quot;:&quot;economist&quot;}","dynamicUrl":"https:\/\/bayt.page.link\/open-in-app","jobAlertActive":"Job alert active for this search","createJobAlert":"Create a job alert for similar positions","translatingJobPostText":"Translating job post into {language}","waitText":"This may take just a few seconds, please wait.","translationUnexpectedError":"We've encountered an error","translationErrorMessage":"Please try again in a few moments. If the issue persists, contact our support team for assistance."},"searchHistory":[],"searchSlugs":[{"countryInUrl":"algeria"},{"countryInUrl":"bahrain"},{"countryInUrl":"bahrain","cityInUrl":"manama"},{"countryInUrl":"egypt"},{"countryInUrl":"egypt","cityInUrl":"alexandria"},{"countryInUrl":"egypt","cityInUrl":"cairo"},{"countryInUrl":"india"},{"countryInUrl":"iraq"},{"countryInUrl":"iraq","cityInUrl":"baghdad"},{"countryInUrl":"jordan"},{"countryInUrl":"jordan","cityInUrl":"amman"},{"countryInUrl":"kuwait"},{"countryInUrl":"kuwait","cityInUrl":"al-kuwait"},{"countryInUrl":"lebanon"},{"countryInUrl":"lebanon","cityInUrl":"beirut"},{"countryInUrl":"libya"},{"countryInUrl":"morocco"},{"countryInUrl":"morocco","cityInUrl":"casablanca"},{"countryInUrl":"oman"},{"countryInUrl":"oman","cityInUrl":"muscat"},{"countryInUrl":"pakistan"},{"countryInUrl":"qatar"},{"countryInUrl":"qatar","cityInUrl":"doha"},{"countryInUrl":"saudi-arabia"},{"countryInUrl":"saudi-arabia","cityInUrl":"dammam"},{"countryInUrl":"saudi-arabia","cityInUrl":"eastern-province"},{"countryInUrl":"saudi-arabia","cityInUrl":"jeddah"},{"countryInUrl":"saudi-arabia","cityInUrl":"jubail"},{"countryInUrl":"saudi-arabia","cityInUrl":"khobar"},{"countryInUrl":"saudi-arabia","cityInUrl":"mecca"},{"countryInUrl":"saudi-arabia","cityInUrl":"medina"},{"countryInUrl":"saudi-arabia","cityInUrl":"riyadh"},{"countryInUrl":"syria"},{"countryInUrl":"tunisia"},{"countryInUrl":"tunisia","cityInUrl":"tunis"},{"countryInUrl":"uae"},{"countryInUrl":"uae","cityInUrl":"abu-dhabi"},{"countryInUrl":"uae","cityInUrl":"ajman"},{"countryInUrl":"uae","cityInUrl":"al-ain"},{"countryInUrl":"uae","cityInUrl":"dubai"},{"countryInUrl":"uae","cityInUrl":"fujairah"},{"countryInUrl":"uae","cityInUrl":"ras-al-khaimah"},{"countryInUrl":"uae","cityInUrl":"sharjah"},{"countryInUrl":"yemen"}],"mainSearch":{"webNotifications":{"msg":"I want to be notified when similar jobs are posted.","title":"Send Me New Job Notifications","but":{"yes":"Yes","no":"No"},"swPath":"\/sw.js","notificationUrl":"\/en\/saudi-arabia\/jobs\/economist-jobs\/"}},"jobPosts":{"75249121":{"jb_id":"75249121","jb_title":"Senior Development Manager","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-khobar\/spanKhobar\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"},"74877642":{"jb_id":"74877642","jb_title":"Talent Development Senior Specialist- Saudi Nationals","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-riyadh\/spanRiyadh\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"},"74168875":{"jb_id":"74168875","jb_title":"Lecturer in Accounting\/Finance\/Economics. (Saudi nationals only)","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-dhahran\/spanDhahran\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":"1549","job_career_level":"Unspecified"},"70244067":{"jb_id":"70244067","jb_title":"Development Manager","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-eastern-province\/spanEastern Province\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"}},"currentPageJobPosts":{"75249121":{"jb_id":"75249121","jb_title":"Senior Development Manager","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-khobar\/spanKhobar\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"},"74877642":{"jb_id":"74877642","jb_title":"Talent Development Senior Specialist- Saudi Nationals","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-riyadh\/spanRiyadh\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"},"74168875":{"jb_id":"74168875","jb_title":"Lecturer in Accounting\/Finance\/Economics. (Saudi nationals only)","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-dhahran\/spanDhahran\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":"1549","job_career_level":"Unspecified"},"70244067":{"jb_id":"70244067","jb_title":"Development Manager","location":"a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs-in-eastern-province\/spanEastern Province\/span\/a a class=t-default href=\/en\/saudi-arabia\/jobs\/economist-jobs\/spanSaudi Arabia\/span\/a","jobType":"Linkout","gst_id":-1,"job_career_level":"Unspecified"}},"currentJournifyPageName":"Job Application","filtersOfMainContentDisplay":{"keyword":"economist","jb_location_country_iso":"[&quot;sa&quot;]"},"jobAlertRegisterParamsOfUrl":"{&quot;p&quot;:[&quot;sa&quot;],&quot;v&quot;:&quot;economist&quot;}","urlGetJob":"\/en\/job\/job\/show\/","isSavedSearch":false,"isSavedJobsPage":false,"criId":"-3501632095747775313","showSuccessMsg":0,"showWarningMsgAlert":false,"firstTimeApplying":"N\/A","gptMatchReport":{"errorTitle":"We've encountered an error","errorMessage":"Please try again in a few moments. If the issue persists, contact our support team for assistance","okay":"Okay"},"showJobsavedMsg":false,"pageSource":"search_page","unknownErrorMessage":"<strong>Error:<\/strong> Sorry, an error occurred.","wfhData":{"wfhBannerStatus":true,"isJsNav":true,"notModeEnclosed":true,"isAllowPage":true,"allowBtnUrl":"\/en\/international\/jobs\/work-from-home\/","userId":0,"pageRole":"js"},"baytUiNavigation":{"mode":"jsLogout","list":"jobsLoggedOut","links":{"upg":"https:\/\/www.bayt.com\/en\/premium\/?native_source=Top-bar","prm":"https:\/\/www.bayt.com\/en\/jobseeker\/management\/purchased\/"},"confirmationMsgs":{"undeliverable":"<h5>Employers Can't Contact You!<\/h5> We tried to send you an email but it seems that your email address is incorrect. Change your email address by <a href=\"https:\/\/www.bayt.com\/en\/mycvs\/#contact\">clicking here<\/a>.","risky":"<h5>Employers Can't Contact You!<\/h5> You need to confirm your email address before you can appear in the employer search. <a href=\"javascript:;\" onclick=\"B8.ajax('\/ajax\/userRegistration\/EmailConfirmation\/ResendConfirmationEmail\/',{data: {withMessage:1},success:function(data){ (data.msg !== undefined && data.msg != '')?B8.push(data.msg):B8.push('Email sent, please check your inbox.');}});\">Click here<\/a> to send the confirmation email.","unknown":"<h5>You're almost there, !<\/h5> Check your inbox for our confirmation email and verify your account to get started. Didn't receive it? <a href=\"javascript:;\" onclick=\"B8.ajax('\/ajax\/userRegistration\/EmailConfirmation\/ResendConfirmationEmail\/',{data: {withMessage:1},success:function(data){ (data.msg !== undefined && data.msg != '')?B8.push(data.msg):B8.push('Email sent, please check your inbox.');}});\"> Resend email <\/a>","emailSent":"Email sent, please check your inbox."}}};</script>
+<title data-js-id="meta-title">Economist Jobs in Saudi Arabia (Oct 2026) - Bayt.com</title>
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script>if(navigator.userAgent.indexOf('iPhone')>-1){document.querySelector("[name=viewport]").setAttribute("content","width=device-width, initial-scale=1, maximum-scale=1");}</script>
+<script src="https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/js/B8com.es6.js" type="" defer="true" id="2663836941"></script><link id="googleidentityservice" type="text/css" media="all" href="https://accounts.google.com/gsi/style" rel="stylesheet"></head>
+<body class="fixed-nav"><script src="https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/js/eventsDataCollector.js" defer="defer" id="4203563243"></script>
+<div id="g_id_onload" class="no-print" data-client_id="690072141335.apps.googleusercontent.com" data-cancel_on_tap_outside="false" data-login_uri="https://www.bayt.com/ajax/user-login/user-login/one-tap-login/" data-use_fedcm_for_prompt="true" data-referrer_url="en/saudi-arabia/jobs/economist-jobs" data-current_query_string="" data-context="use" data-close_on_tap_outside="false" data-auto_select="false" data-itp_support="true" data-auto_prompt="true">
+</div>
+<nav data-scrolllock="{&quot;unblock&quot;:&quot;ul.nav.is-active,.no-capture-right,.list-menu-group&quot;}" data-bayt-scrolllock="9" id="baytNav">
+<ul class="nav" id="navList" data-nav="{&quot;autoHide&quot;:false}" style="align-items:center" data-bayt-nav="8">
+<li data-bars="" class="m">
+<a class="is-toggle" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#" aria-label="Menu"><i class="icon is-bars m0"></i></a>
+</li>
+<li class="is-wide-m u-flex">
+<a id="baytLogo" class="is-logo" href="https://www.bayt.com/">
+<script data-pagespeed-no-defer="">(function(){for(var g="function"==typeof Object.defineProperties?Object.defineProperty:function(b,c,a){if(a.get||a.set)throw new TypeError("ES3 does not support getters and setters.");b!=Array.prototype&&b!=Object.prototype&&(b[c]=a.value)},h="undefined"!=typeof window&&window===this?this:"undefined"!=typeof global&&null!=global?global:this,k=["String","prototype","repeat"],l=0;l<k.length-1;l++){var m=k[l];m in h||(h[m]={});h=h[m]}var n=k[k.length-1],p=h[n],q=p?p:function(b){var c;if(null==this)throw new TypeError("The 'this' value for String.prototype.repeat must not be null or undefined");c=this+"";if(0>b||1342177279<b)throw new RangeError("Invalid count value");b|=0;for(var a="";b;)if(b&1&&(a+=c),b>>>=1)c+=c;return a};q!=p&&null!=q&&g(h,n,{configurable:!0,writable:!0,value:q});var t=this;function u(b,c){var a=b.split("."),d=t;a[0]in d||!d.execScript||d.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===c?d[e]?d=d[e]:d=d[e]={}:d[e]=c};function v(b){var c=b.length;if(0<c){for(var a=Array(c),d=0;d<c;d++)a[d]=b[d];return a}return[]};function w(b){var c=window;if(c.addEventListener)c.addEventListener("load",b,!1);else if(c.attachEvent)c.attachEvent("onload",b);else{var a=c.onload;c.onload=function(){b.call(this);a&&a.call(this)}}};var x;function y(b,c,a,d,e){this.h=b;this.j=c;this.l=a;this.f=e;this.g={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.i=d;this.b={};this.a=[];this.c={}}function z(b,c){var a,d,e=c.getAttribute("data-pagespeed-url-hash");if(a=e&&!(e in b.c))if(0>=c.offsetWidth&&0>=c.offsetHeight)a=!1;else{d=c.getBoundingClientRect();var f=document.body;a=d.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);d=d.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+d;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.g.height&&d<=b.g.width)}a&&(b.a.push(e),b.c[e]=!0)}y.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&z(this,b)};u("pagespeed.CriticalImages.checkImageForCriticality",function(b){x.checkImageForCriticality(b)});u("pagespeed.CriticalImages.checkCriticalImages",function(){A(x)});function A(b){b.b={};for(var c=["IMG","INPUT"],a=[],d=0;d<c.length;++d)a=a.concat(v(document.getElementsByTagName(c[d])));if(a.length&&a[0].getBoundingClientRect){for(d=0;c=a[d];++d)z(b,c);a="oh="+b.l;b.f&&(a+="&n="+b.f);if(c=!!b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),d=1;d<b.a.length;++d){var e=","+encodeURIComponent(b.a[d]);131072>=a.length+e.length&&(a+=e)}b.i&&(e="&rd="+encodeURIComponent(JSON.stringify(B())),131072>=a.length+e.length&&(a+=e),c=!0);C=a;if(c){d=b.h;b=b.j;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(r){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(D){}}f&&(f.open("POST",d+(-1==d.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}}function B(){var b={},c;c=document.getElementsByTagName("IMG");if(!c.length)return{};var a=c[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var d=0;a=c[d];++d){var e=a.getAttribute("data-pagespeed-url-hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].o&&a.height>=b[e].m)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b}var C="";u("pagespeed.CriticalImages.getBeaconData",function(){return C});u("pagespeed.CriticalImages.Run",function(b,c,a,d,e,f){var r=new y(b,c,a,e,f);x=r;d&&w(function(){window.setTimeout(function(){A(r)},0)})});})();pagespeed.CriticalImages.Run('/ngx_pagespeed_beacon','https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/','D4opN_fhTd',true,true,'mvP8CNU5ShE');</script><img class="u-flex" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='162'%3E%3Cpath fill='%23FFF' d='M164.5 100.3c-3.4 0-6.2-3.2-6.2-7.1 0-4.2 2.8-7 6.2-7h39.4v5.6a8.2 8.2 0 0 1-8 8.5zm31.5-49h-48V62h48a7.8 7.8 0 0 1 8 8.5v5h-39.5c-9 0-16.4 7.8-16.5 17.5.1 9.6 7.4 17.6 16.5 17.6H196c10.1 0 18.1-8.6 18.2-19V70.4c0-10.6-8-19.3-18.2-19.1zm81 0h10.2v40a18.9 18.9 0 0 1-18.5 19.3h-46.8v-10.3h46.8c4.5 0 8.2-4.1 8.2-9v-4.7h-36.7c-10.1 0-18.3-8.8-18.3-19.5V51.4h10.4v15.5c-.2 4.8 3.4 8.8 7.8 8.8h37zm-184.5 49c-4.4 0-8-3.8-8.1-8.6v-5.4h39.8c3.3 0 6 2.7 6 6.9 0 4-2.7 7.1-6 7.1zm-8.1-24.6V51.4H74.2v40.3c0 10.4 8.3 19 18.3 19h31.7c9 0 16.2-8 16.1-17.5 0-9.7-7.1-17.6-16-17.5zm275.5 0v10.7h-54.8v5c-.2 5 3.7 9 8.2 9h46.5v10.4h-46.5c-10.1 0-18.3-8.7-18.4-19.3V51.2h10.2v24.4z'/%3E%3Cpath fill='%23ffd42a' d='M0 59.2 32.8 42l32.8 17v-7.5L33 34.4 0 51.6z'/%3E%3C/svg%3E" alt="Bayt.com" width="120" height="54" data-pagespeed-url-hash="2579723757">
+</a>
+</li>
+<li class="m">
+<a href="https://bayt.page.link/nav" id="navUseAppBtn" class="btn is-inverse is-xsmall" rel="nofollow">USE APP</a>
+</li>
+<li class="is-wide-d">
+<ul data-toggle-bars="" class="nav is-main can-toggle " data-capture="" id="yw0">
+<li><a href="https://www.bayt.com/en/saudi-arabia/">Home</a></li>
+<li class="popover-owner has-pointer has-inline" data-popover="{&quot;trigger&quot;:&quot;hover&quot;}" data-bayt-popover="3"><a>Find Jobs <i class="icon is-arrow-down m5l d" style="font-size:10px"></i></a>
+<ul data-placement="bl" class="popover is-inline dropdown in-nav">
+<li><a href="https://www.bayt.com/en/saudi-arabia/jobs/search/">Job Search</a></li>
+<li class="has-divider"><a href="https://www.bayt.com/en/jobs/locations/">Jobs by Location</a></li>
+<li><a href="https://www.bayt.com/en/saudi-arabia/companies/">Jobs by Companies</a></li>
+<li><a href="https://www.bayt.com/en/saudi-arabia/jobs/executive-level-jobs/">Executive Jobs</a></li>
+<li><a href="https://www.bayt.com/en/saudi-arabia/jobs/work-from-home/">Remote Jobs</a></li>
+<li class="has-divider"><a href="https://www.bayt.com/en/saudi-arabia/salaries/">Salaries</a></li>
+</ul>
+</li>
+<li><a rel="nofollow" href="https://www.bayt.com/en/register-j/">Create Your Profile</a></li>
+<li class="popover-owner has-pointer has-inline" data-popover="{&quot;trigger&quot;:&quot;hover&quot;}" data-bayt-popover="4"><a>Resources <i class="icon is-arrow-down m5l d" style="font-size:10px"></i></a>
+<ul data-placement="bl" class="popover is-inline dropdown in-nav">
+<li><a href="https://www.bayt.com/en/blog/">Blog</a></li>
+<li><a href="https://www.bayt.com/en/podcasts/">Podcasts</a></li>
+</ul>
+</li>
+<li><a href="https://www.bayt.com/en/premium/">Premium</a></li>
+<li data-more-exclude=""><a href="https://www.bayt.com/en/baytgpt/"><i class="icon is-bayt-ai m5r d"></i>BaytGPT</a></li>
+<li class="m"><a href="https://www.bayt.com/en/employers/">For Employers</a></li>
+<li class="m"><a id="en-language" data-js-tolang="ar" href="https://www.bayt.com/ar/saudi-arabia/jobs/economist-jobs/">العربية</a></li>
+<li class="popover-owner has-pointer has-inline" data-popover="{&quot;trigger&quot;:&quot;hover&quot;}" data-more="" style="display:none;" data-bayt-popover="5"><a href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">More <i class="icon is-arrow-down m5l d" style="font-size:10px"></i></a>
+<ul class="popover is-inline dropdown" data-placement="bl"></ul></li>
+<li class="is-wide-d"><span></span></li>
+<li class="is-group">
+<ul class="list is-inline is-basic">
+<li class="m m10b"><a class="btn is-outline u-expanded" href="https://www.bayt.com/en/login/">Log In</a></li>
+<li class="m"><a class="btn u-expanded" href="https://www.bayt.com/en/register-j/">Register</a></li>
+<li class="d"><a class="btn is-inverse is-outline" href="https://www.bayt.com/en/login/">Log In</a></li>
+<li class="d"><a class="btn is-inverse" href="https://www.bayt.com/en/register-j/">Register</a></li>
+</ul>
+</li>
+<li class="is-first m10b-m bb-m u-sticky to-top z-hi"><span></span>
+<ul class="nav is-aux">
+<li class="is-wide-m m"><a class="b-close" data-nav-close="" aria-label="Close" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#"></a></li>
+<li class="popover-owner" data-popover="{&quot;relocate&quot;:true, &quot;trigger&quot;:&quot;click&quot;}" data-bayt-popover="6"><a class="has-pointer" aria-label="Apps"><span class="tip on-bottom" aria-label="More on Bayt.com"><i class="icon is-apps m0"></i></span></a><div class="popover is-pointing is-full" data-placement="br">
+<i class="popover-capture"></i><div class="list-menu">
+<div class="list-menu-title">
+<a data-popover-close="bound" class="b-close is-large u-abs m"></a>
+<div class="h6 t-bold t-center-m m0">More on Bayt.com</div>
+</div>
+<div class="list-menu-group t-center p10" data-empty="Nothing up to now!">
+<div class="row is-m">
+<a href="https://www.bayt.com/" class="col is-6 btn is-inverse u-rounded m0 t-default t-wrap " target="_blank">
+<i class="icon is-briefcase is-32 m0"></i>
+<div class="m10t t-default t-medium">Jobs</div>
+</a>
+<a href="https://www.bayt.com/en/company/" class="col is-6 btn is-inverse u-rounded m0 t-default t-wrap " target="_blank">
+<i class="icon is-bank is-32 m0"></i>
+<div class="m10t t-default t-medium">Companies</div>
+</a>
+<a href="https://www.bayt.com/en/saudi-arabia/salaries/" class="col is-6 btn is-inverse u-rounded m0 t-default t-wrap " target="_blank">
+<i class="icon is-salaries is-32 m0"></i>
+<div class="m10t t-default t-medium">Salaries</div>
+</a>
+<a href="https://people.bayt.com/" class="col is-6 btn is-inverse u-rounded m0 t-default t-wrap " target="_blank">
+<i class="icon is-handshake is-32 m0"></i>
+<div class="m10t t-default t-medium">People</div>
+</a>
+</div>
+</div>
+</div>
+</div></li>
+</ul>
+</li>
+<li class="d">
+<ul class="nav">
+<li><a id="en-language" data-js-tolang="ar" href="https://www.bayt.com/ar/saudi-arabia/jobs/economist-jobs/">العربية</a></li>
+<li><a href="https://www.bayt.com/en/employers/">For Employers<i class="icon is-arrow-right m0 m10l"></i></a></li>
+</ul>
+</li>
+<li class="is-group m20b m"><section class="jsMobilePromotions t-center card bg-lite u-rounded">
+<div class="card-head p10t">
+<i class="t-primary icon is-smartphone is-48 m0"></i>
+<h4 class="m10y">Use Our Mobile App </h4>
+</div>
+<div class="card-content">
+<p class="m0">Get contacted by recruiters directly with our newest chat feature!</p>
+</div>
+<div class="card-foot">
+<a class="btn u-expanded-m" href="https://bayt.page.link/m-menu">Download Now</a>
+</div>
+</section>
+</li>
+</ul>	</li>
+<li class="m p10">
+</li>
+</ul>
+</nav>
+<div class="t-center print-only p10t"><img src="https://secure.b8cdn.com/bayt/assets/b8static/svg/bayt-logo.svg" alt="Bayt.com" loading="lazy" data-pagespeed-url-hash="428076838"></div>
+<div class="u-none">
+<div class="t-center" id="experiment-message-container">
+<div class="m0 h4 t-bold" id="experiment-first-name"></div>
+<p class="m0 p5t">Submitting more applications increases your chances of landing a job.</p>
+<p class="m0">Here’s how busy the average job seeker was last month:</p>
+<div class="row is-m m20y">
+<div class="col">
+<div class="m0 t-primary h1 t-bold" id="experiment-opportunities-viewed"></div>
+<p class="m0 t-mute">Opportunities viewed</p>
+</div>
+<div class="col">
+<div class="m0 t-primary h1 t-bold" id="experiment-applications-submitted"></div>
+<p class="m0 t-mute">Applications submitted</p>
+</div>
+</div>
+<p class="m0">Keep exploring and applying to maximize your chances!</p>
+<div class="u-none" id="experiment-cta-btn-container">
+<p class="m0 t-bold">Looking for employers with a proven track record of hiring women?</p>
+<a target="_blank" href="https://www.bayt.com/en/jobs/?options[is_uchicago_recommended_jobs][]=1" class="btn t-wrap m20t"> Click here to explore opportunities now!</a>
+</div>
+</div>
+<div class="submitSurvey" id="experiment-feedback-container">
+<div class="t-center h4 t-bold">We Value Your Feedback</div>
+<p class="t-mute">You are invited to participate in a survey designed to help researchers understand how best to match workers to the types of jobs they are searching for</p>
+<p class="t-large">Would You Be Likely to Participate?</p>
+<p class="t-mute">If selected, we will contact you via email with further instructions and details about your participation.</p>
+<p class="t-bold">You will receive a $7 payout for answering the survey.</p>
+<div class="t-center">
+<button class="btn m0 m10y">
+<span>Yes, I'm Interested</span>
+</button>
+<br>
+<button class="btn m0 is-clear">
+<span class="t-mute">No, Thank You</span>
+</button>
+</div>
+</div>	</div>
+<div class="bg-inverse-d">
+<div class="box p20-d">
+<form id="form" class="search-bar" data-action="~/" action="https://www.bayt.com/en/jobs/" method="get">
+<div class="row is-compact is-m">
+<div class="col is-5-d is-12-m">
+<div class="searchable has-icon to-left popover-owner" data-popover="{&quot;trigger&quot;:&quot;none&quot;,&quot;transition&quot;:false,&quot;relocate&quot;:true}" data-bayt-popover="15">
+<input aria-label="keyword" value="economist" name="keyword" id="text_search" type="text" class="input is-large p20l-m" placeholder="Search jobs, skills, companies" autocomplete="off" data-searchable="
+					{
+						&quot;view&quot;: {
+							&quot;render&quot;: &quot;searchControl.renderItem&quot;,
+							&quot;highlight&quot;: true,
+							&quot;placement&quot;: &quot;bl&quot;,
+							&quot;placeholder&quot;:&quot;Start your search by typing into the search box above&quot;,
+							&quot;autoActivate&quot;:false
+						},
+						&quot;on&quot;:{
+							&quot;close&quot;: &quot;searchControl.selectItem&quot;
+						},
+						&quot;data&quot;: {
+							&quot;format&quot;:&quot;searchControl.getValue&quot;,
+							&quot;static&quot;: false,
+							&quot;fetch&quot;: &quot;searchControl.autoComplete&quot;,
+							&quot;delay&quot;: 400,
+							&quot;text&quot; : &quot;title&quot;,
+							&quot;value&quot;: &quot;id&quot;,
+							&quot;group&quot;: &quot;group&quot;,
+							&quot;search&quot;: &quot;*&quot;,
+							&quot;history&quot;:true
+						}
+					}
+					" data-bayt-searchable="14">
+<i class="icon is-search d"></i>	
+<div class="popover is-full is-wide" data-placement="bl" tabindex="0" data-scrolllock="{&quot;unblock&quot;:&quot;.list-menu-group&quot;}" data-bayt-scrolllock="16">
+  <div class="list-menu is-autosize">
+    <div class="list-menu-title m">
+      <a data-popover-close="bound" data-focus="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#" class="b-close is-large t-mute u-abs m"></a>
+      <h6 class="t-center-m m0">Search jobs, skills, companies</h6>
+    </div>
+    
+<div class="list-menu-title m">
+  <div class="has-icon">
+    <input type="text" class="input is-small u-expanded" placeholder="Search ..." data-search="">
+    <span class="icon is-search"></span>
+  </div>
+</div>
+    <div class="list-menu-group no-minsize" style="max-height: 496px;">
+    <ul class="options is-autosize  " data-empty="Start your search by typing into the search box above"></ul>
+    </div>
+    
+  </div>
+</div><i class="mini-loader d" style="opacity: 0;"></i></div>
+</div>
+<div class="col is-5-d is-9-m">
+<div class="select has-icon to-left searchable popover-owner" data-popover="{&quot;trigger&quot;:&quot;none&quot;,&quot;transition&quot;:false,&quot;relocate&quot;:true}" data-bayt-popover="18">
+<input type="text" autocomplete="off" id="search_country__r" name="country" class="input is-large spec-con-input" placeholder="" data-input=""><select name="country" id="search_country" class="input is-large spec-con-input" aria-label="select country" data-searchable="{&quot;data&quot;:{&quot;group&quot;:&quot;group&quot; , &quot;selected&quot;:&quot;saudi-arabia&quot;,&quot;filter&quot;:&quot;countryAliasFilter&quot;, &quot;static&quot;:true, &quot;search&quot;:&quot;input&quot;},&quot;view&quot;:{&quot;name&quot;:&quot;$1&quot;}, &quot;optional&quot;:false}" data-bayt-searchable="17" placeholder="" autocomplete="nope" style="display:none !important" data-value="saudi-arabia"><option value="" selected="" data-disabled=""></option><option value="international">All locations</option><option value="algeria">Algeria</option><option value="bahrain">Bahrain</option><option value="manama">Bahrain · Manama</option><option value="egypt">Egypt</option><option value="alexandria">Egypt · Alexandria</option><option value="cairo">Egypt · Cairo</option><option value="india">India</option><option value="iraq">Iraq</option><option value="baghdad">Iraq · Baghdad</option><option value="jordan">Jordan</option><option value="amman">Jordan · Amman</option><option value="kuwait">Kuwait</option><option value="al-kuwait">Kuwait · Al Kuwait</option><option value="lebanon">Lebanon</option><option value="beirut">Lebanon · Beirut</option><option value="libya">Libya</option><option value="morocco">Morocco</option><option value="casablanca">Morocco · Casablanca</option><option value="oman">Oman</option><option value="muscat">Oman · Muscat</option><option value="pakistan">Pakistan</option><option value="qatar">Qatar</option><option value="doha">Qatar · Doha</option><option value="saudi-arabia">Saudi Arabia</option><option value="dammam">Saudi Arabia · Dammam</option><option value="eastern-province">Saudi Arabia · Eastern Province</option><option value="jeddah">Saudi Arabia · Jeddah</option><option value="jubail">Saudi Arabia · Jubail</option><option value="khobar">Saudi Arabia · Khobar</option><option value="mecca">Saudi Arabia · Mecca</option><option value="medina">Saudi Arabia · Medina</option><option value="riyadh">Saudi Arabia · Riyadh</option><option value="syria">Syria</option><option value="tunisia">Tunisia</option><option value="tunis">Tunisia · Tunis</option><option value="uae">United Arab Emirates</option><option value="abu-dhabi">United Arab Emirates · Abu Dhabi</option><option value="ajman">United Arab Emirates · Ajman</option><option value="al-ain">United Arab Emirates · Al Ain</option><option value="dubai">United Arab Emirates · Dubai</option><option value="fujairah">United Arab Emirates · Fujairah</option><option value="ras-al-khaimah">United Arab Emirates · Ras Al Khaimah</option><option value="sharjah">United Arab Emirates · Sharjah</option><option value="yemen">Yemen</option></select>
+<i class="icon is-location"></i>
+<div class="popover is-full is-wide" data-placement="bl" tabindex="0" data-scrolllock="{&quot;unblock&quot;:&quot;.list-menu-group&quot;}" data-bayt-scrolllock="19">
+  <div class="list-menu is-autosize">
+    <div class="list-menu-title m">
+      <a data-popover-close="bound" data-focus="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#" class="b-close is-large t-mute u-abs m"></a>
+      <h6 class="t-center-m m0"></h6>
+    </div>
+    
+    <div class="list-menu-group no-minsize" style="max-height: 496px;">
+    <ul class="options is-autosize  " data-empty="No match found." style=""><li data-text="All locations" data-value="international" class="is-active"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">All locations</a></li><li data-text="Algeria" data-value="algeria"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Algeria</a></li><li data-text="Bahrain" data-value="bahrain"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Bahrain</a></li><li data-text="Bahrain · Manama" data-value="manama"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Bahrain · Manama</a></li><li data-text="Egypt" data-value="egypt"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Egypt</a></li><li data-text="Egypt · Alexandria" data-value="alexandria"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Egypt · Alexandria</a></li><li data-text="Egypt · Cairo" data-value="cairo"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Egypt · Cairo</a></li><li data-text="India" data-value="india"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">India</a></li><li data-text="Iraq" data-value="iraq"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Iraq</a></li><li data-text="Iraq · Baghdad" data-value="baghdad"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Iraq · Baghdad</a></li><li data-text="Jordan" data-value="jordan"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Jordan</a></li><li data-text="Jordan · Amman" data-value="amman"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Jordan · Amman</a></li><li data-text="Kuwait" data-value="kuwait"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Kuwait</a></li><li data-text="Kuwait · Al Kuwait" data-value="al-kuwait"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Kuwait · Al Kuwait</a></li><li data-text="Lebanon" data-value="lebanon"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Lebanon</a></li><li data-text="Lebanon · Beirut" data-value="beirut"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Lebanon · Beirut</a></li><li data-text="Libya" data-value="libya"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Libya</a></li><li data-text="Morocco" data-value="morocco"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Morocco</a></li><li data-text="Morocco · Casablanca" data-value="casablanca"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Morocco · Casablanca</a></li><li data-text="Oman" data-value="oman"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Oman</a></li><li data-text="Oman · Muscat" data-value="muscat"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Oman · Muscat</a></li><li data-text="Pakistan" data-value="pakistan"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Pakistan</a></li><li data-text="Qatar" data-value="qatar"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Qatar</a></li><li data-text="Qatar · Doha" data-value="doha"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Qatar · Doha</a></li><li data-text="Saudi Arabia" data-value="saudi-arabia"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia</a></li><li data-text="Saudi Arabia · Dammam" data-value="dammam"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Dammam</a></li><li data-text="Saudi Arabia · Eastern Province" data-value="eastern-province"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Eastern Province</a></li><li data-text="Saudi Arabia · Jeddah" data-value="jeddah"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Jeddah</a></li><li data-text="Saudi Arabia · Jubail" data-value="jubail"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Jubail</a></li><li data-text="Saudi Arabia · Khobar" data-value="khobar"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Khobar</a></li><li data-text="Saudi Arabia · Mecca" data-value="mecca"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Mecca</a></li><li data-text="Saudi Arabia · Medina" data-value="medina"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Medina</a></li><li data-text="Saudi Arabia · Riyadh" data-value="riyadh"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Saudi Arabia · Riyadh</a></li><li data-text="Syria" data-value="syria"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Syria</a></li><li data-text="Tunisia" data-value="tunisia"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Tunisia</a></li><li data-text="Tunisia · Tunis" data-value="tunis"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Tunisia · Tunis</a></li><li data-text="United Arab Emirates" data-value="uae"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates</a></li><li data-text="United Arab Emirates · Abu Dhabi" data-value="abu-dhabi"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Abu Dhabi</a></li><li data-text="United Arab Emirates · Ajman" data-value="ajman"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Ajman</a></li><li data-text="United Arab Emirates · Al Ain" data-value="al-ain"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Al Ain</a></li><li data-text="United Arab Emirates · Dubai" data-value="dubai"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Dubai</a></li><li data-text="United Arab Emirates · Fujairah" data-value="fujairah"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Fujairah</a></li><li data-text="United Arab Emirates · Ras Al Khaimah" data-value="ras-al-khaimah"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Ras Al Khaimah</a></li><li data-text="United Arab Emirates · Sharjah" data-value="sharjah"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">United Arab Emirates · Sharjah</a></li><li data-text="Yemen" data-value="yemen"><a tabindex="-1" data-highlight="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">Yemen</a></li></ul>
+    </div>
+    
+  </div>
+</div></div>
+</div>
+<div class="col is-2 is-3-m">
+<button id="submitButtonQuickSearchWidget" type="submit" class="btn is-large u-expanded" data-js-aid="search">
+<i class="icon is-search m0 m"></i><span class="d">Find jobs</span>	</button>
+</div>
+</div>
+</form>	</div>
+</div>
+<div id="popTemp"></div>
+<section class="box is-wide row is-reversed-d is-collapsed-m no-wrap">
+<div id="jsMiniJobView" class="col is-9-d is-half sticky-sense u-none">
+<div id="formToggleSheet" class="sticky-sidebar" data-sticky-sidebar="" data-bayt-sticky-sidebar="10">
+<div id="view_inner" class="sticky-content" style="transition: opacity 0.5s ease-in-out;">
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="about:blank"></object></div></div>
+<div class="u-none" id="toggleFooter"></div>
+</div>
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="about:blank"></object></div><div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="about:blank"></object></div></div>
+<div id="jsMainListingContainer" class="col is-9-d sticky-sense">
+<div class="sticky-sidebar" data-sticky-sidebar="" data-bayt-sticky-sidebar="11">
+<div id="results_inner" class="sticky-content" style="position: relative;">
+<!-- Job Results-->
+<div class="card u-shadow u-rounded p0 p20b">
+<div class="card-head p0 p20x p20t">
+<h1 class="h3 m5b" data-automation-id="heading1">Economist Jobs in Saudi Arabia</h1>
+<div class="row v-align-center-d h-align-between">
+<div data-automation-id="XJobsFound" class="t-small m20b-m">
+4 jobs found	</div>
+<div class="row is-m h-align-between-m h-align-right-d v-align-center">
+<a id="filter" class="btn is-small is-outline is-secondary m" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#">
+<i class="icon is-filter m5r"></i>
+Filters	</a>
+<div class="popover-owner u-iblock" data-popover="{&quot;trigger&quot;:&quot;click&quot;}" data-bayt-popover="7">
+<div class="btn is-clear p0x">
+<span data-automation-id="id_sort_jobs" class="t-medium">
+Sort by: <b>Relevance</b><i class="icon is-arrow-down m0 m5l"></i>
+</span>
+</div>
+<div class="popover" data-placement="br">
+<ul class="dropdown">
+<li>
+<a data-automation-id="id_sort_jobs_relevance" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?options%5Bsort%5D%5B%5D=r" rel="nofollow">
+Relevance	</a>
+</li>
+<li class="has-divider">
+<a data-automation-id="id_sort_jobs_date" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?options%5Bsort%5D%5B%5D=d" rel="nofollow">
+Date	</a>
+</li>
+<li class="has-divider">
+<a data-automation-id="id_sort_jobs_language" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?options%5Bsort%5D%5B%5D=l" rel="nofollow">
+Language	</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="results_inner_card" class="card-content">
+<ul class="row is-m p0 m0" data-empty="Nothing available">
+<li id="mobile-job-alert" class="col is-12 p0">
+<div class="row is-m no-wrap v-align-center p5 p10x-d bg-lite">
+<div class="col u-expanded">
+<b id="alert-text">
+Create a job alert for similar positions
+</b>
+</div>
+<div class="col t-right">
+<input id="jobAlertSwitch" class="switch is-small" type="checkbox"><label for="jobAlertSwitch"></label>
+</div>
+</div>
+</li>
+<li data-js-job="" class="col is-12 p0 bb p20x p10y has-pointer-d" data-job-id="75249121">
+<div class="row is-m no-wrap v-align-center">
+<img fetchpriority="high" src="https://secure.b8cdn.com/70x70/images/logo/00/aggregated_logo_3481678197_n.png" class="jb-logo b bg-inverse u-block u-h-rounded" alt="Ethra For Human Resources Consulting logo" title="Ethra For Human Resources Consulting" width="72" height="72" data-pagespeed-url-hash="926579180">
+<div class="u-flex t-small u-stretch p10l">
+<div class="u-stretch">
+<h2 class="t-large-d t-small m0t m5b t-break">
+<a data-automation-is_aggregated="1" data-automation-is_external="0" data-js-aid="jobID" data-js-link="" href="https://www.bayt.com/en/saudi-arabia/jobs/senior-development-manager-75249121/" target="_blank" title="Senior Development Manager">Senior Development Manager</a>
+</h2>
+<div class="job-company-location-wrapper">
+<div><a class="t-default" target="_blank" rel="nofollow">Ethra For Human Resources Consulting</a></div>
+</div>
+</div>
+<div class="p10l t-right">
+</div>
+</div>
+</div>
+<div class="jb-descr m10t t-small t-break">
+<span class="t-ai t-bold">
+<i class="icon is-18 is-bayt-ai m0 p0"></i>
+Summary: </span>
+The Senior Development Manager plays a pivotal role in overseeing residential projects from inception to completion. This position requires effective coordination with major developers, particularly NHC, ensuring alignment with business plans and project objectives. Responsibilities include managing project timelines, budgets, and stakeholder communication to ensure successful delivery and compliance with development standards.	</div>
+<div class="jb-tags m10t">
+<dl class="dlist is-spaced t-small m0y row">
+<dt class="p0 m20r jb-label-location job-company-location-wrapper"><i class="icon is-location m5r"></i> <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-khobar/"><span>Khobar</span></a>, <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/"><span>Saudi Arabia</span></a></dt>
+</dl>
+</div>
+<div class="jb-footer row is-m v-align-center m10t">
+<div class="jb-date col p0x p0t t-mute">
+<span id="jb-date-75249121" class="p0x t-small m10r t-bold t-mute" data-automation-ty="2" data-automation-id="job-active-date" data-automation-jobactivedate="1790640000">
+14 days ago </span>
+</div>
+</div>	</li>
+<li data-js-job="" class="col is-12 p0 bb p20x p10y has-pointer-d" data-job-id="74877642">
+<div class="row is-m no-wrap v-align-center">
+<img src="https://secure.b8cdn.com/bayt/assets/jobs-boryey7t/images/no-logo.svg" class="jb-logo b bg-inverse u-block u-h-rounded" alt="Roland Berger logo" title="Roland Berger" width="72" height="72" data-pagespeed-url-hash="948411053">
+<div class="u-flex t-small u-stretch p10l">
+<div class="u-stretch">
+<h2 class="t-large-d t-small m0t m5b t-break">
+<a data-automation-is_aggregated="1" data-automation-is_external="0" data-js-aid="jobID" data-js-link="" href="https://www.bayt.com/en/saudi-arabia/jobs/talent-development-senior-specialist-saudi-nationals-74877642/" target="_blank" title="Talent Development Senior Specialist- Saudi Nationals">Talent Development Senior Specialist- Saudi Nationals</a>
+</h2>
+<div class="job-company-location-wrapper">
+<div><a class="t-default" target="_blank" rel="nofollow">Roland Berger</a></div>
+</div>
+</div>
+<div class="p10l t-right">
+</div>
+</div>
+</div>
+<div class="jb-descr m10t t-small t-break">
+<span class="t-ai t-bold">
+<i class="icon is-18 is-bayt-ai m0 p0"></i>
+Summary: </span>
+Elevate your career as a Talent Development Senior Specialist in Saudi Arabia, where your expertise will shape the future of employee growth and organizational capability. This role demands a proactive leader with a passion for developing talent and a strong background in learning programs. You will design and manage initiatives that foster leadership development and enhance employee experiences, all while collaborating with diverse teams to drive impactful results.	</div>
+<div class="jb-tags m10t">
+<dl class="dlist is-spaced t-small m0y row">
+<dt class="p0 m20r jb-label-location job-company-location-wrapper"><i class="icon is-location m5r"></i> <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-riyadh/"><span>Riyadh</span></a>, <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/"><span>Saudi Arabia</span></a></dt>
+</dl>
+</div>
+<div class="jb-footer row is-m v-align-center m10t">
+<div class="jb-date col p0x p0t t-mute">
+<span id="jb-date-74877642" class="p0x t-small m10r t-bold t-mute" data-automation-ty="2" data-automation-id="job-active-date" data-automation-jobactivedate="1783987200">
+30+ days ago </span>
+</div>
+</div>	</li>
+<li data-js-job="" class="col is-12 p0 bb p20x p10y has-pointer-d" data-job-id="74168875">
+<div class="row is-m no-wrap v-align-center">
+<img src="https://secure.b8cdn.com/70x70/images/logo/00/0_logo_1552295933_n.png" class="jb-logo b bg-inverse u-block u-h-rounded" alt="King Fahd Univeristy logo" title="King Fahd Univeristy" width="72" height="72" data-pagespeed-url-hash="3391043985">
+<div class="u-flex t-small u-stretch p10l">
+<div class="u-stretch">
+<h2 class="t-large-d t-small m0t m5b t-break">
+<a data-automation-is_aggregated="1" data-automation-is_external="0" data-js-aid="jobID" data-js-link="" href="https://www.bayt.com/en/saudi-arabia/jobs/lecturer-in-accounting-finance-economics-saudi-nationals-only-74168875/" target="_blank" title="Lecturer in Accounting/Finance/Economics. (Saudi nationals only)">Lecturer in Accounting/Finance/Economics. (Saudi nationals only)</a>
+</h2>
+<div class="job-company-location-wrapper">
+<div><a class="t-default" target="_blank" rel="nofollow" href="https://www.bayt.com/en/company/king-fahd-univeristy-0-2114756/">King Fahd Univeristy</a></div>
+</div>
+</div>
+<div class="p10l t-right">
+</div>
+</div>
+</div>
+<div class="jb-descr m10t t-small t-break">
+<span class="t-ai t-bold">
+<i class="icon is-18 is-bayt-ai m0 p0"></i>
+Summary: </span>
+The Department of Accounting &amp; Finance is actively seeking qualified Saudi candidates with a Master's degree for teaching and research roles. Candidates will engage in approximately 35-40 hours of professional duties weekly, encompassing teaching, research, academic advising, and administrative responsibilities. Applicants must possess a Master's degree from a reputable university and demonstrate strong academic performance, with additional requirements for those with degrees obtained outside the Kingdom.	</div>
+<div class="jb-tags m10t">
+<dl class="dlist is-spaced t-small m0y row">
+<dt class="p0 m20r jb-label-location job-company-location-wrapper"><i class="icon is-location m5r"></i> <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-dhahran/"><span>Dhahran</span></a>, <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/"><span>Saudi Arabia</span></a></dt>
+<dt class="p0 m20r jb-label-citizenship"><i class="icon is-flag m5r"></i> Saudi nationals</dt>
+</dl>
+</div>
+<div class="jb-footer row is-m v-align-center m10t">
+<div class="jb-date col p0x p0t t-mute">
+<span id="jb-date-74168875" class="p0x t-small m10r t-bold t-mute" data-automation-ty="2" data-automation-id="job-active-date" data-automation-jobactivedate="1771891200">
+30+ days ago </span>
+</div>
+</div>	</li>
+<li data-js-job="" class="col is-12 p0 bb p20x p10y has-pointer-d" data-job-id="70244067">
+<div class="row is-m no-wrap v-align-center">
+<img src="https://secure.b8cdn.com/bayt/assets/jobs-boryey7t/images/no-logo.svg" class="jb-logo b bg-inverse u-block u-h-rounded" alt="1st Executive logo" title="1st Executive" width="72" height="72" data-pagespeed-url-hash="948411053">
+<div class="u-flex t-small u-stretch p10l">
+<div class="u-stretch">
+<h2 class="t-large-d t-small m0t m5b t-break">
+<a data-automation-is_aggregated="1" data-automation-is_external="0" data-js-aid="jobID" data-js-link="" href="https://www.bayt.com/en/saudi-arabia/jobs/development-manager-70244067/" target="_blank" title="Development Manager">Development Manager</a>
+</h2>
+<div class="job-company-location-wrapper">
+<div><a class="t-default" target="_blank" rel="nofollow">1st Executive</a></div>
+</div>
+</div>
+<div class="p10l t-right">
+</div>
+</div>
+</div>
+<div class="jb-descr m10t t-small t-break">
+<span class="t-ai t-bold">
+<i class="icon is-18 is-bayt-ai m0 p0"></i>
+Summary: </span>
+Elevate your career as a Development Manager in Saudi Arabia's Eastern Province, where your expertise will shape the future of residential real estate. With over 10 years of experience, including 4 years in management, you will analyze financial data, evaluate investment opportunities, and oversee a diverse portfolio. This role demands a strategic thinker ready to drive projects from conception to completion, ensuring maximum revenue and effective risk management.	</div>
+<div class="jb-tags m10t">
+<dl class="dlist is-spaced t-small m0y row">
+<dt class="p0 m20r jb-label-location job-company-location-wrapper"><i class="icon is-location m5r"></i> <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-eastern-province/"><span>Eastern Province</span></a>, <a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/"><span>Saudi Arabia</span></a></dt>
+</dl>
+</div>
+<div class="jb-footer row is-m v-align-center m10t">
+<div class="jb-date col p0x p0t t-mute">
+<span id="jb-date-70244067" class="p0x t-small m10r t-bold t-mute" data-automation-ty="2" data-automation-id="job-active-date" data-automation-jobactivedate="1701216000">
+30+ days ago </span>
+</div>
+</div>	</li>
+</ul>
+<script type="application/ld+json">
+					{"@context":"https:\/\/schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https:\/\/www.bayt.com\/en\/saudi-arabia\/jobs\/senior-development-manager-75249121\/"},{"@type":"ListItem","position":2,"url":"https:\/\/www.bayt.com\/en\/saudi-arabia\/jobs\/talent-development-senior-specialist-saudi-nationals-74877642\/"},{"@type":"ListItem","position":3,"url":"https:\/\/www.bayt.com\/en\/saudi-arabia\/jobs\/lecturer-in-accounting-finance-economics-saudi-nationals-only-74168875\/"},{"@type":"ListItem","position":4,"url":"https:\/\/www.bayt.com\/en\/saudi-arabia\/jobs\/development-manager-70244067\/"}]}				</script>
+</div>
+</div>
+<div class="u-none">
+<div id="tmplMobile">
+<div class="t-large t-center m20b">
+<b>Open this page in…</b>
+</div>
+<div class="row is-m v-align-center no-wrap">
+<img class="img-40 p5 u-rounded" style="background:#0070EB" src="https://secure.b8cdn.com/bayt/assets/b8static/favicon/js/favicon.svg" alt="Bayt icon" data-pagespeed-url-hash="2132245486">
+<div class="col">
+Bayt.com app	</div>
+<div id="app-button" class="btn">
+Open	</div>
+</div>
+<div class="row is-m v-align-center no-wrap">
+<svg class="img-40 p5 u-rounded b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 800 800" height="40" id="Layer_1" version="1.1" viewBox="0 0 800 800" width="40" xml:space="preserve"><path d="M783.566,399.995c0-97.664-36.801-190.739-103.635-262.087c-0.02-0.009-0.02-0.028-0.037-0.038  C607.602,60.691,505.574,16.434,399.996,16.434s-207.597,44.257-279.88,121.437l0,0C53.263,209.229,16.434,302.322,16.434,399.995  c0,97.683,36.829,190.776,103.682,262.124c0,0.01,0,0.01,0,0.01c72.273,77.17,174.301,121.438,279.889,121.438  c0.009,0,0.019,0,0.028,0c0,0,0,0,0.01,0c105.569-0.01,207.559-44.268,279.852-121.438c0.018-0.01,0.018-0.029,0.037-0.037  C746.766,590.742,783.566,497.668,783.566,399.995z M667.082,626.188c-0.682-0.662-1.412-1.279-2.104-1.943  c-1.662-1.588-3.383-3.121-5.082-4.682c-3.59-3.309-7.234-6.57-10.953-9.738c-1.963-1.682-3.943-3.326-5.943-4.961  c-3.682-3.02-7.41-5.943-11.195-8.822c-1.973-1.494-3.924-3.008-5.924-4.467c-4.393-3.205-8.879-6.289-13.4-9.307  c-1.422-0.945-2.805-1.943-4.225-2.869c-5.98-3.879-12.074-7.588-18.25-11.121c-1.43-0.813-2.889-1.551-4.318-2.346  c-4.803-2.662-9.652-5.252-14.568-7.719c-2.195-1.102-4.43-2.139-6.654-3.195c-4.279-2.037-8.578-4.01-12.934-5.887  c-2.383-1.02-4.766-2.029-7.166-3.01c-1.654-0.674-3.271-1.42-4.936-2.074c0.646-4.336,1.113-8.795,1.701-13.176  c0.627-4.711,1.281-9.402,1.822-14.168c0.859-7.326,1.551-14.756,2.225-22.193c0.41-4.467,0.879-8.896,1.215-13.41  c0.664-8.625,1.121-17.363,1.551-26.119c0.158-3.41,0.412-6.775,0.543-10.205c0.457-11.961,0.709-24.025,0.729-36.184h200.756  C748.018,488.781,718.881,565.139,667.082,626.188z M498.994,579.865c-0.729,3.504-1.457,6.99-2.242,10.42  c-0.709,3.195-1.467,6.336-2.225,9.457c-0.803,3.336-1.625,6.645-2.484,9.896c-0.785,3.047-1.607,6.045-2.43,9.018  c-0.889,3.168-1.785,6.299-2.711,9.373c-0.859,2.887-1.738,5.729-2.625,8.521c-0.963,3-1.936,5.953-2.916,8.85  c-0.926,2.701-1.85,5.365-2.795,7.98c-1.027,2.822-2.064,5.57-3.121,8.289c-0.971,2.514-1.943,5-2.953,7.42  c-1.084,2.627-2.186,5.168-3.289,7.682c-1.018,2.309-2.037,4.607-3.084,6.822c-1.139,2.43-2.299,4.756-3.467,7.064  c-1.055,2.094-2.121,4.195-3.195,6.195c-1.197,2.215-2.412,4.309-3.635,6.402c-1.084,1.869-2.168,3.756-3.271,5.521  c-1.252,2.01-2.523,3.869-3.793,5.738c-1.104,1.627-2.207,3.289-3.328,4.813c-1.309,1.775-2.635,3.393-3.953,5.027  c-1.111,1.375-2.232,2.814-3.354,4.084c-1.365,1.543-2.738,2.889-4.113,4.262c-1.121,1.131-2.223,2.326-3.344,3.346  c-1.421,1.279-2.859,2.355-4.299,3.467c-1.084,0.859-2.178,1.803-3.28,2.551c-1.523,1.037-3.037,1.832-4.569,2.664  c-1.028,0.57-2.057,1.252-3.084,1.729c-1.701,0.785-3.42,1.289-5.131,1.813c-0.85,0.271-1.71,0.682-2.57,0.879  c-2.578,0.598-5.158,0.926-7.718,0.926l0,0c-0.009,0-0.009,0-0.009,0c-2.57,0-5.149-0.328-7.728-0.926  c-0.851-0.197-1.701-0.607-2.561-0.869c-1.72-0.533-3.43-1.037-5.14-1.822c-1.028-0.467-2.038-1.15-3.047-1.701  c-1.551-0.85-3.083-1.645-4.616-2.691c-1.075-0.729-2.13-1.662-3.205-2.486c-1.467-1.139-2.925-2.232-4.374-3.551  c-1.093-0.99-2.177-2.148-3.261-3.242c-1.402-1.41-2.813-2.795-4.206-4.363c-1.103-1.244-2.177-2.637-3.261-3.973  c-1.355-1.672-2.719-3.326-4.046-5.148c-1.093-1.477-2.168-3.094-3.233-4.664c-1.308-1.924-2.616-3.84-3.906-5.904  c-1.065-1.711-2.112-3.533-3.168-5.336c-1.262-2.16-2.514-4.328-3.748-6.617c-1.037-1.926-2.056-3.953-3.084-5.971  c-1.196-2.383-2.401-4.785-3.579-7.299c-1-2.131-1.99-4.355-2.981-6.578c-1.14-2.6-2.28-5.234-3.401-7.953  c-0.972-2.336-1.906-4.748-2.859-7.168c-1.075-2.793-2.149-5.625-3.196-8.521c-0.916-2.543-1.832-5.141-2.729-7.766  c-1.009-2.982-2.009-6.01-2.99-9.094c-0.86-2.719-1.72-5.477-2.561-8.27c-0.935-3.158-1.86-6.363-2.766-9.615  c-0.804-2.908-1.607-5.842-2.393-8.822c-0.859-3.318-1.701-6.691-2.523-10.084c-0.738-3.064-1.477-6.148-2.187-9.279  c-0.785-3.477-1.533-7.008-2.271-10.559c-0.673-3.234-1.346-6.467-1.981-9.766c-0.234-1.197-0.439-2.43-0.664-3.635  c0.075-0.029,0.149-0.057,0.224-0.076c7.177-2.178,14.438-4.027,21.718-5.729c1.617-0.373,3.214-0.775,4.84-1.121  c6.859-1.504,13.756-2.756,20.69-3.84c1.943-0.299,3.887-0.59,5.831-0.852c6.887-0.963,13.793-1.738,20.727-2.289  c1.794-0.141,3.588-0.215,5.383-0.336c6.691-0.422,13.382-0.682,20.073-0.729c1.458-0.01,2.907-0.01,4.364,0  c6.71,0.037,13.41,0.307,20.11,0.738c1.775,0.111,3.561,0.186,5.327,0.326c6.943,0.551,13.877,1.336,20.773,2.289  c1.924,0.271,3.85,0.543,5.766,0.842c6.953,1.084,13.877,2.355,20.764,3.85c1.58,0.346,3.15,0.738,4.719,1.111  c7.328,1.701,14.598,3.561,21.803,5.738c0.064,0.029,0.141,0.047,0.205,0.076c-0.225,1.195-0.43,2.43-0.664,3.625  C500.359,573.342,499.688,576.604,498.994,579.865z M303.584,222.47c0.775-3.401,1.542-6.785,2.345-10.093  c0.729-2.934,1.477-5.793,2.224-8.653c0.832-3.205,1.673-6.401,2.542-9.522c0.785-2.794,1.588-5.522,2.401-8.242  c0.907-3.037,1.813-6.037,2.757-8.98c0.832-2.645,1.691-5.233,2.561-7.793c0.953-2.841,1.925-5.645,2.916-8.392  c0.897-2.486,1.813-4.925,2.729-7.336c1.019-2.654,2.046-5.252,3.083-7.803c0.953-2.308,1.907-4.588,2.869-6.813  c1.065-2.458,2.159-4.85,3.243-7.205c0.99-2.121,1.981-4.224,2.972-6.251c1.121-2.271,2.261-4.458,3.411-6.616  c1.019-1.925,2.037-3.832,3.075-5.663c1.159-2.065,2.355-4.028,3.542-5.972c1.038-1.71,2.084-3.429,3.149-5.055  c1.215-1.851,2.448-3.579,3.682-5.308c1.065-1.495,2.122-3.019,3.196-4.411c1.271-1.645,2.542-3.131,3.822-4.635  c1.075-1.271,2.14-2.57,3.224-3.738c1.317-1.42,2.654-2.664,3.981-3.935c1.065-1.028,2.13-2.112,3.196-3.037  c1.383-1.187,2.766-2.178,4.159-3.206c1.037-0.775,2.084-1.635,3.13-2.317c1.458-0.944,2.935-1.664,4.392-2.43  c0.991-0.523,1.981-1.149,2.972-1.58c1.645-0.71,3.28-1.168,4.916-1.654c0.841-0.243,1.664-0.617,2.504-0.804  c2.467-0.542,4.953-0.841,7.429-0.841s4.962,0.299,7.429,0.841c0.832,0.187,1.654,0.561,2.486,0.804  c1.645,0.477,3.289,0.935,4.934,1.654c0.973,0.43,1.953,1.047,2.935,1.551c1.477,0.776,2.953,1.505,4.43,2.467  c1.037,0.673,2.056,1.514,3.093,2.28c1.402,1.037,2.813,2.037,4.196,3.243c1.065,0.906,2.112,1.981,3.159,2.99  c1.344,1.28,2.689,2.542,4.018,3.981c1.074,1.149,2.131,2.439,3.186,3.682c1.299,1.523,2.59,3.037,3.859,4.701  c1.066,1.374,2.113,2.878,3.168,4.345c1.244,1.748,2.496,3.504,3.721,5.374c1.047,1.598,2.084,3.299,3.111,4.99  c1.205,1.972,2.41,3.953,3.588,6.046c1.02,1.804,2.02,3.691,3.027,5.588c1.16,2.177,2.309,4.392,3.439,6.691  c0.99,2.009,1.973,4.083,2.943,6.177c1.113,2.374,2.197,4.794,3.281,7.289c0.953,2.196,1.906,4.448,2.84,6.738  c1.047,2.579,2.094,5.205,3.121,7.887c0.898,2.374,1.795,4.785,2.691,7.242c0.99,2.775,1.982,5.607,2.953,8.476  c0.859,2.551,1.701,5.121,2.543,7.747c0.934,2.944,1.85,5.962,2.756,8.999c0.813,2.71,1.607,5.43,2.383,8.214  c0.879,3.14,1.738,6.354,2.58,9.588c0.729,2.832,1.477,5.672,2.186,8.579c0.822,3.327,1.59,6.738,2.375,10.148  c0.672,2.962,1.344,5.916,1.99,8.943c0.205,0.972,0.383,1.981,0.588,2.953c-0.148,0.038-0.299,0.075-0.449,0.122  c-6.943,2.037-13.971,3.785-21.025,5.392c-1.477,0.327-2.953,0.691-4.43,1.009c-6.729,1.43-13.494,2.626-20.277,3.663  c-1.889,0.28-3.775,0.551-5.674,0.813c-6.719,0.907-13.447,1.645-20.193,2.168c-1.775,0.131-3.551,0.215-5.326,0.318  c-6.486,0.402-12.99,0.654-19.494,0.701c-1.42,0.01-2.85,0.01-4.28,0c-6.504-0.046-13.008-0.299-19.512-0.701  c-1.766-0.103-3.532-0.187-5.289-0.318c-6.766-0.523-13.494-1.261-20.213-2.168c-1.897-0.252-3.785-0.523-5.672-0.813  c-6.785-1.028-13.55-2.224-20.269-3.663c-1.486-0.309-2.962-0.673-4.448-1.009c-7.074-1.607-14.102-3.355-21.073-5.401  c-0.131-0.047-0.262-0.075-0.393-0.112c0.196-0.972,0.374-1.981,0.58-2.953C302.229,228.404,302.902,225.442,303.584,222.47z   M484.361,527.301c-1.785-0.412-3.57-0.842-5.355-1.225c-6.615-1.383-13.279-2.541-19.951-3.57c-2.943-0.457-5.887-0.906-8.85-1.299  c-6.4-0.84-12.811-1.531-19.24-2.055c-3.289-0.262-6.598-0.43-9.887-0.617c-4.785-0.252-9.57-0.42-14.354-0.506  c-2.243-0.037-4.476-0.232-6.728-0.232c-2.243,0-4.486,0.195-6.729,0.232c-4.785,0.086-9.55,0.254-14.335,0.506  c-3.29,0.188-6.588,0.355-9.868,0.617c-6.448,0.523-12.868,1.215-19.269,2.055c-2.953,0.393-5.897,0.832-8.84,1.299  c-6.71,1.037-13.419,2.197-20.083,3.59c-1.729,0.373-3.448,0.803-5.186,1.186c-6.654,1.496-13.27,3.178-19.849,5.037  c-0.935,0.262-1.888,0.439-2.822,0.711c-0.43-3.027-0.916-6.01-1.308-9.064c-0.551-4.281-1.084-8.58-1.57-12.906  c-0.803-7.037-1.495-14.139-2.13-21.287c-0.374-4.188-0.766-8.355-1.084-12.568c-0.598-8.037-1.047-16.167-1.43-24.325  c-0.159-3.374-0.402-6.71-0.514-10.103c-0.42-11.297-0.645-22.698-0.664-34.184h231.388c-0.018,11.485-0.242,22.887-0.662,34.184  c-0.123,3.374-0.355,6.691-0.516,10.047c-0.391,8.167-0.84,16.307-1.438,24.352c-0.318,4.234-0.711,8.41-1.084,12.607  c-0.637,7.129-1.328,14.223-2.121,21.24c-0.496,4.346-1.029,8.662-1.59,12.961c-0.393,3.047-0.869,6.027-1.299,9.047  c-0.953-0.271-1.926-0.459-2.869-0.729C497.574,530.459,490.996,528.787,484.361,527.301z M320.284,273.792  c0.206,0.046,0.402,0.103,0.607,0.14c8.214,1.738,16.494,3.14,24.811,4.327c0.729,0.112,1.458,0.224,2.177,0.318  c8.354,1.149,16.755,2.018,25.185,2.616c0.318,0.019,0.636,0.038,0.944,0.056c8.644,0.589,17.297,0.953,25.988,0.953  s17.344-0.364,25.979-0.953c0.336-0.019,0.672-0.037,1.009-0.065c8.411-0.589,16.774-1.458,25.101-2.598  c0.766-0.103,1.533-0.225,2.299-0.336c8.279-1.187,16.521-2.58,24.707-4.308c0.244-0.047,0.477-0.112,0.711-0.168  c7.699-1.635,15.344-3.56,22.932-5.672c0.73-0.206,1.477-0.336,2.205-0.551c0.543,3.383,1.141,6.71,1.627,10.13  c0.467,3.149,0.934,6.298,1.346,9.476c1.242,9.261,2.346,18.624,3.289,28.119c0.131,1.28,0.299,2.542,0.412,3.832  c1.027,10.784,1.813,21.736,2.447,32.791c0.178,3,0.299,6.046,0.439,9.074c0.225,4.672,0.336,9.411,0.496,14.129H285.016  c0.149-4.738,0.262-9.503,0.486-14.204c0.149-3.018,0.262-6.065,0.439-9.064c0.636-11.027,1.43-21.96,2.439-32.716  c0.141-1.42,0.327-2.804,0.467-4.224c0.935-9.364,2.019-18.605,3.233-27.745c0.43-3.177,0.897-6.335,1.346-9.485  c0.505-3.411,1.103-6.729,1.645-10.111c0.729,0.215,1.495,0.355,2.224,0.561C304.92,270.223,312.564,272.157,320.284,273.792z   M548.682,375.1c-0.178-5.485-0.514-10.868-0.775-16.297c-0.168-3.532-0.299-7.093-0.504-10.606  c-0.684-11.429-1.514-22.764-2.598-33.931c-0.094-1.056-0.244-2.084-0.355-3.131c-1.01-10.139-2.205-20.147-3.543-30.043  c-0.477-3.542-1.037-7.018-1.561-10.532c-0.672-4.598-1.289-9.261-2.037-13.793c1.664-0.645,3.289-1.383,4.953-2.047  c2.43-0.981,4.842-1.981,7.252-3.009c4.43-1.878,8.822-3.85,13.176-5.897c2.262-1.065,4.523-2.112,6.766-3.214  c4.953-2.448,9.822-5.028,14.654-7.682c1.514-0.832,3.055-1.598,4.559-2.448c6.281-3.561,12.477-7.298,18.561-11.214  c1.363-0.878,2.691-1.832,4.055-2.729c4.672-3.102,9.309-6.27,13.85-9.569c2.018-1.458,3.98-2.972,5.961-4.476  c3.859-2.916,7.664-5.888,11.41-8.943c2.029-1.654,4.047-3.336,6.047-5.037c3.738-3.177,7.4-6.448,11.018-9.775  c1.766-1.617,3.551-3.215,5.279-4.869c0.73-0.691,1.514-1.346,2.234-2.056c48.275,56.901,76.871,127.1,82.113,201.298H548.682z   M644.141,149.215c-0.748,0.738-1.459,1.505-2.225,2.233c-1.551,1.486-3.158,2.935-4.729,4.392  c-3.326,3.056-6.691,6.046-10.111,8.971c-1.701,1.449-3.41,2.897-5.139,4.317c-3.748,3.075-7.57,6.056-11.439,8.971  c-1.363,1.028-2.709,2.103-4.092,3.112c-5.252,3.841-10.607,7.551-16.055,11.092c-1.104,0.71-2.225,1.355-3.328,2.056  c-4.42,2.794-8.896,5.513-13.418,8.111c-1.889,1.075-3.785,2.103-5.682,3.14c-3.943,2.168-7.943,4.261-11.971,6.271  c-1.953,0.981-3.916,1.962-5.898,2.906c-4.521,2.159-9.109,4.196-13.736,6.158c-1.402,0.598-2.785,1.243-4.186,1.813  c-0.393,0.159-0.785,0.29-1.178,0.439c-0.205-0.991-0.439-1.935-0.654-2.916c-0.328-1.523-0.674-3.009-1.01-4.504  c-1.41-6.289-2.879-12.457-4.41-18.466c-0.197-0.775-0.383-1.579-0.58-2.345c-1.691-6.485-3.457-12.765-5.289-18.914  c-0.43-1.449-0.859-2.878-1.299-4.308c-1.859-6.083-3.766-12.045-5.766-17.765c-0.188-0.533-0.383-1.037-0.57-1.561  c-1.879-5.345-3.832-10.495-5.822-15.513c-0.467-1.187-0.934-2.383-1.42-3.542c-2.131-5.205-4.309-10.251-6.561-15.092  c-0.43-0.935-0.879-1.832-1.316-2.756c-2.047-4.317-4.16-8.495-6.299-12.504c-0.402-0.757-0.795-1.542-1.205-2.289  c-2.402-4.383-4.859-8.551-7.365-12.541c-0.578-0.916-1.158-1.794-1.738-2.691c-2.514-3.888-5.064-7.644-7.682-11.139  c-0.092-0.112-0.168-0.243-0.26-0.355c-2.674-3.561-5.43-6.84-8.205-9.99c-0.637-0.71-1.271-1.42-1.906-2.112  c-2.57-2.804-5.178-5.486-7.832-7.925C525.506,64.896,591.389,97.707,644.141,149.215z M338.431,61.869  c-0.654,0.71-1.308,1.439-1.943,2.177c-2.775,3.131-5.514,6.392-8.187,9.943c-0.103,0.14-0.206,0.299-0.317,0.439  c-2.579,3.458-5.112,7.177-7.607,11.027c-0.598,0.916-1.196,1.822-1.775,2.766c-2.495,3.972-4.943,8.111-7.327,12.476  c-0.43,0.776-0.841,1.589-1.252,2.383c-2.131,3.981-4.224,8.121-6.261,12.41c-0.448,0.935-0.897,1.85-1.346,2.804  c-2.243,4.831-4.411,9.859-6.542,15.045c-0.486,1.187-0.953,2.402-1.439,3.607c-1.981,4.99-3.916,10.102-5.794,15.41  c-0.187,0.561-0.392,1.084-0.588,1.645c-1.991,5.71-3.897,11.663-5.757,17.728c-0.439,1.439-0.869,2.878-1.308,4.336  c-1.822,6.14-3.598,12.41-5.28,18.886c-0.206,0.794-0.393,1.617-0.598,2.411c-1.533,5.99-2.99,12.148-4.392,18.419  c-0.336,1.495-0.691,2.981-1.019,4.504c-0.215,0.981-0.439,1.925-0.654,2.916c-0.383-0.15-0.775-0.28-1.168-0.439  c-1.411-0.57-2.794-1.215-4.196-1.813c-4.626-1.962-9.205-4-13.728-6.158c-1.981-0.944-3.944-1.925-5.906-2.906  c-4.027-2.009-8.018-4.103-11.961-6.271c-1.906-1.037-3.803-2.065-5.682-3.14c-4.523-2.598-8.99-5.308-13.41-8.111  c-1.112-0.701-2.233-1.346-3.336-2.065c-5.458-3.532-10.803-7.242-16.055-11.074c-1.383-1.019-2.729-2.103-4.112-3.14  c-3.859-2.906-7.663-5.878-11.4-8.943c-1.748-1.43-3.458-2.887-5.177-4.345c-3.401-2.906-6.747-5.878-10.037-8.906  c-1.607-1.486-3.233-2.953-4.813-4.467c-0.748-0.71-1.448-1.477-2.196-2.206c52.743-51.509,118.633-84.319,190.374-95.243  C343.59,56.402,340.992,59.084,338.431,61.869z M132.937,173.802c0.71,0.701,1.477,1.336,2.187,2.028  c1.766,1.682,3.579,3.299,5.373,4.953c3.598,3.299,7.224,6.542,10.943,9.7c2,1.71,4.037,3.402,6.074,5.065  c3.738,3.056,7.532,6.009,11.373,8.915c1.991,1.514,3.972,3.037,6,4.504c4.532,3.29,9.149,6.458,13.821,9.541  c1.364,0.907,2.691,1.86,4.074,2.748c6.074,3.916,12.261,7.644,18.541,11.205c1.532,0.869,3.103,1.654,4.635,2.495  c4.803,2.635,9.644,5.196,14.56,7.625c2.261,1.121,4.56,2.177,6.859,3.252c4.317,2.028,8.663,3.99,13.055,5.859  c2.458,1.038,4.906,2.056,7.382,3.047c1.635,0.654,3.233,1.392,4.878,2.018c-0.804,4.841-1.448,9.803-2.177,14.709  c-0.486,3.271-1.009,6.514-1.458,9.812c-1.495,11.055-2.832,22.232-3.925,33.595c-0.037,0.477-0.065,0.972-0.112,1.448  c-1.028,10.887-1.832,21.933-2.477,33.081c-0.215,3.617-0.346,7.28-0.514,10.924c-0.243,4.925-0.551,9.803-0.71,14.774H50.805  C56.047,300.902,84.652,230.703,132.937,173.802z M250.795,408.592c0.019,12.187,0.28,24.279,0.729,36.268  c0.122,3.252,0.374,6.439,0.523,9.682c0.43,8.924,0.897,17.83,1.57,26.623c0.336,4.459,0.804,8.832,1.196,13.252  c0.672,7.484,1.383,14.941,2.233,22.307c0.551,4.783,1.205,9.484,1.832,14.213c0.579,4.363,1.056,8.803,1.691,13.111  c-1.664,0.654-3.271,1.4-4.916,2.074c-2.411,0.98-4.813,1.99-7.205,3.018c-4.336,1.879-8.625,3.842-12.886,5.869  c-2.243,1.066-4.486,2.111-6.71,3.215c-4.878,2.439-9.681,5.018-14.447,7.662c-1.477,0.814-2.972,1.57-4.429,2.402  c-6.168,3.533-12.242,7.232-18.204,11.102c-1.458,0.943-2.878,1.963-4.317,2.934c-4.495,2.992-8.934,6.057-13.307,9.242  c-2.019,1.469-4,3-5.99,4.514c-3.757,2.852-7.467,5.766-11.121,8.758c-2.028,1.652-4.028,3.326-6.009,5.018  c-3.663,3.131-7.251,6.346-10.803,9.605c-1.757,1.617-3.532,3.197-5.252,4.852c-0.673,0.635-1.383,1.232-2.037,1.877  c-51.808-61.049-80.964-137.406-82.908-217.596H250.795z M155.87,650.775c0.71-0.701,1.392-1.439,2.112-2.131  c1.486-1.422,3.009-2.795,4.514-4.188c3.308-3.055,6.663-6.055,10.083-8.98c1.645-1.402,3.29-2.813,4.972-4.186  c3.719-3.066,7.522-6.047,11.363-8.953c1.308-0.99,2.588-2.018,3.906-2.99c5.149-3.785,10.392-7.43,15.728-10.924  c1.205-0.785,2.439-1.514,3.645-2.281c4.214-2.691,8.476-5.299,12.793-7.803c1.888-1.084,3.775-2.131,5.672-3.186  c3.869-2.15,7.784-4.215,11.728-6.215c1.906-0.963,3.803-1.934,5.719-2.869c4.691-2.262,9.438-4.41,14.223-6.467  c1.112-0.477,2.205-1.01,3.327-1.467c0.224-0.104,0.467-0.178,0.691-0.271c0.168,0.879,0.374,1.682,0.551,2.561  c1.094,5.514,2.28,10.832,3.467,16.158c0.691,3.102,1.336,6.299,2.056,9.336c1.57,6.578,3.243,12.914,4.953,19.176  c0.439,1.605,0.832,3.307,1.271,4.896c2.196,7.746,4.504,15.23,6.906,22.475c0.701,2.129,1.486,4.102,2.205,6.195  c1.748,5.008,3.486,9.98,5.336,14.717c1.009,2.6,2.075,5.02,3.121,7.533c1.645,3.99,3.29,7.971,5.009,11.746  c1.177,2.58,2.392,5.01,3.598,7.486c1.673,3.447,3.354,6.867,5.093,10.119c1.29,2.42,2.617,4.719,3.944,7.027  c1.738,3.027,3.485,5.99,5.271,8.832c1.401,2.195,2.803,4.307,4.224,6.391c1.813,2.654,3.645,5.205,5.495,7.664  c0.785,1.027,1.514,2.215,2.309,3.215C265.261,730.383,204.893,698.658,155.87,650.775z M471.109,740.242  c1.889-2.494,3.738-5.084,5.58-7.783c1.4-2.057,2.793-4.141,4.158-6.309c1.813-2.85,3.57-5.84,5.316-8.887  c1.318-2.299,2.637-4.588,3.926-7c1.738-3.252,3.41-6.672,5.092-10.119c1.215-2.477,2.43-4.906,3.607-7.486  c1.701-3.756,3.346-7.719,4.98-11.682c1.057-2.541,2.131-4.99,3.15-7.625c1.813-4.662,3.531-9.568,5.252-14.494  c0.756-2.158,1.551-4.205,2.289-6.42c2.402-7.223,4.701-14.689,6.887-22.428c0.467-1.672,0.889-3.477,1.346-5.168  c1.682-6.176,3.328-12.41,4.879-18.885c0.729-3.104,1.393-6.355,2.094-9.514c1.176-5.279,2.354-10.551,3.438-16.008  c0.168-0.879,0.375-1.691,0.543-2.57c0.232,0.094,0.467,0.168,0.701,0.262c1.131,0.477,2.232,1.01,3.354,1.486  c4.766,2.047,9.504,4.195,14.186,6.457c1.926,0.936,3.832,1.906,5.758,2.879c3.924,1.99,7.83,4.055,11.68,6.195  c1.906,1.057,3.813,2.111,5.701,3.205c4.299,2.486,8.541,5.084,12.746,7.766c1.215,0.775,2.477,1.514,3.701,2.309  c5.326,3.494,10.559,7.129,15.699,10.904c1.346,1,2.654,2.057,4,3.076c3.803,2.877,7.559,5.82,11.25,8.85  c1.701,1.41,3.383,2.85,5.074,4.289c3.355,2.869,6.664,5.813,9.906,8.813c1.57,1.447,3.148,2.877,4.701,4.354  c0.691,0.674,1.346,1.383,2.045,2.066c-49.031,47.883-109.418,79.607-175.301,92.617  C469.615,742.41,470.344,741.252,471.109,740.242z" fill="#4D4D4D"></path></svg>
+<div class="col">
+Bayt.com website	</div>
+<div id="browser-button" class="btn is-outline is-secondary">
+Continue	</div>
+</div>
+</div>
+</div>
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-857ABA7745CF2237F9639AC541BAF6FA@mhtml.blink"></object></div></div>
+</div>
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-130CDD1C544E7577CD8373EBEE8F7EC1@mhtml.blink"></object></div><div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-41468D23762905B9D2B4B28CEDF5562C@mhtml.blink"></object></div></div>
+<aside id="jsMainClusterContainer" class="col is-3-d sticky-sense" data-nosnippet="true">
+<div class="sticky-sidebar" data-sticky-sidebar="" data-bayt-sticky-sidebar="12">
+<div class="sticky-content" style="position: relative;">
+<div class="card p0 is-primary-d u-shadow u-rounded">
+<form id="clusterFormId" action="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/" method="post">
+	<div class="card-content can-toggle is-m" data-toggle-sheet="#filter" data-bayt-toggle-sheet="1">
+<div class="toggle-head bb p10b-d">
+<a class="b-close m" data-close-sheet=""></a>
+<b class="t-large">Filters</b>
+<span class="m"> </span>
+</div>
+<div id="clusterSideBar" class="toggle-content u-scrolly">
+<div class="accordion t-small">
+<ul data-automation-id="switchesFilters" class="list is-basic is-spaced is-compact t-small p20x">
+<li>
+<span class="u-right">
+<input id="remote_working_type" class="jsAjaxLoad switch is-small" type="checkbox">
+<label for="remote_working_type"></label>
+</span>
+<label for="remote_working_type" class="t-primary has-pointer">
+Work from home jobs	</label>
+</li>
+<li>
+<span class="u-right">
+<input id="jb_is_external_job" class="jsAjaxLoad switch is-small" type="checkbox">
+<label for="jb_is_external_job"></label>
+</span>
+<label for="jb_is_external_job" class="t-primary has-pointer">
+Easy Apply only	</label>
+</li>
+<li>
+<span class="u-right">
+<input id="jb_citizenship" class="jsAjaxLoad switch is-small" type="checkbox">
+<label for="jb_citizenship"></label>
+</span>
+<label for="jb_citizenship" class="t-primary has-pointer">
+Saudi Nationals Only	</label>
+</li>
+<li>
+<span class="u-right">
+<input id="jb_submits_count" class="jsAjaxLoad switch is-small" type="checkbox">
+<label for="jb_submits_count"></label>
+</span>
+<label for="jb_submits_count" class="t-primary has-pointer">
+Jobs with fewer applicants	</label>
+</li>
+<li>
+<a href="https://www.bayt.com/en/login/?returnUrl=%2Fen%2Finternational%2Fjobs%2F%3Foptions%255Bis_recommended_jobs%255D%255B%255D%3D1" data-close-sheet="" rel="nofollow">
+Recommended jobs	</a>
+</li>
+<li>
+<a href="https://www.bayt.com/en/login/?returnUrl=%2Fen%2Finternational%2Fjobs%2F%3Foptions%255Bis_saved_jobs%255D%255B%255D%3D1" data-close-sheet="" rel="nofollow">
+Saved jobs	</a>
+</li>
+<li>
+<a href="https://www.bayt.com/en/login/?returnUrl=%2Fen%2Finternational%2Fjobs%2F%3Foptions%255Bis_similar_jobs%255D%255B%255D%3D1" data-close-sheet="" rel="nofollow">
+Similar jobs	</a>
+</li>
+<li>
+<a href="https://www.bayt.com/en/login/?returnUrl=%2Fen%2Fsaudi-arabia%2Fjobs%2Feconomist-jobs%2F%3Foptions%255Bjb_activation_date%255D%255B%255D%3D1" data-close-sheet="" rel="nofollow">
+</a>
+</li>
+</ul>
+<input id="baytgpt_cluster" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="baytgpt_cluster" class="accordion-title bg-ai"><i class="icon is-bayt-ai m5r t-ai"></i> BaytGPT</label>
+<div class="accordion-animate p10b m5b">
+<div class="accordion-content bg-ai">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li><a href="https://baytgpt.bayt.com/en/chat?action=hide_ineligible&amp;q=economist&amp;filters%5Bjb_location_country_iso%5D%5B%5D=Saudi+Arabia" target="_blank" data-trk="PtmMW+my6OdtmhlucKjGL5Q7cdNP0WNtHxysAA46Ur/61gJeFJAlSf8PGQgv+JTEqJ9PkrngN0YnqCQOK61jH52io6J+B5LXlCTMDsipHLMujX3tQyXv7E9ZyzZPRXNDh86jd2N4AD8m1t5ZZ60Js3po/3Y1rXytAhsTgZf117KipTE2jKuq3eBNtSw6pIHQdZ20zEWJO1JOQvUcKLiEQa0MP8UBOzSWkaI2auOzQmv64+kTiaUQUFAIWOwO0hiJs+nNKx6Ud/4F2GMObd2joznEbEFXi85f5tON/xluxnHcIM6W43CuXJXnO8jzUJ3evdNoRv3tOJq6+UHrKTnwBuzG3tDuxhgIZbr5vAzCrD+88How+K31gNjeXAvq9yHhP7wc0O7yveDBKU0GJER0zqUM6KpOLeYLD7zVoUTKL1UJF0hL8ep6vQ04mnZhnOuWnCBfmExeqycW1Nz1UY+gFVEiUD/BQde0w/BwKQsZozErm78kP4mc79tovAB9Ig93iuMxK59GgFJkwUl8mNwHGUpHmTN2zc7oZ9MUGakePn7U29Ye5GwPhI+vZscUUnheDF0iyLQK9ECAUmGvDG3o8Hq2LNuaWLCBUAR9ukXTg/KGmlBxeJ/vpGwYhKukKh5vM2oR8tFgcQyKRehjalC6rOc/8MfmLdDYzVPt1MC240K3H8BLjc1EqbQ6d8VHX1HszBPdS3dOkb4l5lxocHCnqYistB5CmAOxFXVVHCe8dy4mXl+W+i8UEwqvYZD8dk85IgKzsJfpWSqwpZBKDpbhRSFQ6EhR4C3jCu5L09e7aWId/eWCxAQgdS2Q+ujovoI3RGbfWERJx290bZOt2PhAqMTjD+gbcC2wr9ngx9aSGhyOilVd8L6F4JftMBuAeGKYUN+G4+WozGaQh4uxJIX39Q==@@@3f88db2508783ab8">Hide ineligible jobs</a></li>
+<li><a href="https://baytgpt.bayt.com/en/chat?action=top_matches" target="_blank" data-trk="hJDmXGT1Iv5PlNMYyVvFjVgU7qld+9W797MYK8ufR5pCVRAkCkzfWNS0kosuflqt4p5cVN+xoRCL7WCv4IpW2VDh2udTRpnm2EdktFyxdQuoCwCVc6cEjNipgqRBxrRm/cFFQXGP1BUQRWbWeWiNZr7apCJWANvmZQ04jvQn3ClmHZz9qkPClGmKV5/+VrDE3FFr+5uGH/sV1diNM3Gth2rmTnI30SErEtdzlsyd5ggR4RMB3yjgL6VNMgHxLl/2GotAg0eJ/5uvMgzsOAPKXbQ86qUIdIVynqtpltfbzCz8j2BCePdbkaVaDoQxo5SpJIJSuOAGjN/0WlBC9mR+suDxCmSq5UkiwLqJqDQEerItaC/Az9F7a9OaDG8bTCBnqu8Iyn5jnOPVUeUc0Akt75kgbMTG1Aq1nYtqTSTPJ81I14RkDOHPVu97hTLCLwlmgBgy7BlFmTunDP9RCD/t0jVThJGsUENl9NhiWkOfm1ZUEU2ZezJ7DIG7mBp5hcbARWHeipqSqYWPQCNXedWHlC520+QOVTcyh4xYspzonPO8yYT6m8WRhklVHmIHD5p8IeZV63ulvT5uqxDNBJu05R2TlBo4Rm1WXsoaO+DOGGJIEg7jJpQnQ/fjuepze35rpnUfaaNkdn7nIaa3YyqLb/cqIy7zeios5hlBfE2zACv5lWyfaIvWsl3sDtzWALEFI0kK45e+mZbvokx3wV23fCfUutDqeAzYjOZPcwTsamcHa3a8oUASG8LFqKzVlUBm9k9yH7YVJaRq/m8Te21kIqRoyuHq4rpuy+CmCQEa8L+bP1FOOY7OsJ6sV2tqKyKbhDwWn8uL/PMPPejEX6cMj9JDUOfYlOo7BaNDhQuPFcRhDsddjm4iTsUbJwo+ax5Se+PIPT1uCrDWlXOv/lgBQQ==@@@77c33eb192b854b9">Top matches for me</a></li>
+<li class="p0"><a href="https://baytgpt.bayt.com/en/chat?action=exclude_applied&amp;q=economist&amp;filters%5Bjb_location_country_iso%5D%5B%5D=Saudi+Arabia" target="_blank" data-trk="T79saPWPJTP0YggIFWd2emgI52zTgSht+1U12mAm7xOMmaEAv7qcZ9Nu6f5Z29/SiW6Nghc9xpH4o9I/9L+Y4+bdc/lIhbLKvUukT4flWlMEDg9iXvkEcCkB6SDchEGXSNNcKyEnE4rKRT0jzgJ+VTUmI8jE+R8us4pMwkAn0GAChfkKr1giWkEUpga//dB1/L590XJkGSyPZkJAuynp2donwlVsKXmZIXv0pO7t3kbqUs2Fsouw7u3M2ZfsbyU29V9m70WFd7jp0TzWy0EsUFitLGSvvvs3UBd6wGllOL7ekYqgOvuodjyniDK5HTPuIjh+d1t+nIc7tBJKDqHdCjNpm+3KaokJ8Hd7eNMasffH32qcAD1O99wUG/d9WbkbkR/wkGo3kWTnCFUZulOyj2lgzonRoaQ94Ytckaj/V4gzNUf45nbpGDzqZwYA9NnJZr4dMFirerxV0WkY4XJ+7TgIHlKA/MqiM0nK5KRRCrVarWgfUXPG/k9GOGacCcjAzrtCLYJr1+jopk6iuzyG0I5uSrULSHUXphKEzKDfvseEGggMJ1NKrIp2Ypy0BAm8u4vh5M54CF2mnrhgPIeuagHl3ljCVtxcpDCcInuC0qpBiSWyEV3/P1QJ/6g7ypteIxwEWpnbFbHA4fLsr9Vhq15cCIIpkQJzGaZ1NlPnwRDwW1bzTMWkTWFr+o7zwEEXcRs0eTuzwAKRfqQLp7fX+m840ICuwMNpXJA1xMe2gJ2hTMpb2z5u3Y0zVzzWkHpTP67ZFbA4PXSxvJXIgV8RiFl8O2lYto+cWMfwQhcSapzxsB0iQKe135+ttuqB3FIjIUk5CdC5rQ28Na0lUvvxf6XHc3UiCsbJnm4hIMH3W/yzmKLN5N6Ba9YqJVIy0cN/WErK0+R6L2siI/fVwGyNdA==@@@74c2f84601a714e8">Exclude applied jobs</a></li>
+</ul>
+</div>
+</div>
+<input id="jb_last_modification_date_interval" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="jb_last_modification_date_interval" class="accordion-title">Date posted</label>
+<div class="accordion-animate">
+<div class="accordion-content">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li>
+<a data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/" data-close-sheet="" class="jsAjaxLoad">
+All	</a>
+</li>
+<li class="t-small">
+<a data-automation-id="Past-30-days" data-automation-facet-id="1" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bjb_last_modification_date_interval%5d%5b%5d=1" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_last_modification_date_interval&quot;}" rel="nofollow">
+Past 30 days	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+</ul>
+</div>
+</div>
+<input id="jb_location_country_iso" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="jb_location_country_iso" class="accordion-title">Country</label>
+<div class="accordion-animate">
+<div class="accordion-content">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li>
+<a data-js-filter="" href="https://www.bayt.com/en/international/jobs/economist-jobs/" data-close-sheet="" class="jsAjaxLoad">
+All	</a>
+</li>
+<li>
+Saudi Arabia	<a data-automation-id="Saudi-Arabia" data-automation-facet-id="sa" data-js-filter="" href="https://www.bayt.com/en/international/jobs/economist-jobs/" class=" jsAjaxLoad b-close is-tiny u-right" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}">
+</a>
+</li>
+<li class="t-small">
+<a data-automation-id="UAE" data-automation-facet-id="ae" data-automation-count="22" data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=ae" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+UAE	</a>
+&nbsp;<span class="t-mute">(22)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Egypt" data-automation-facet-id="eg" data-automation-count="2" data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=eg" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Egypt	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Qatar" data-automation-facet-id="qa" data-automation-count="2" data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=qa" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Qatar	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Morocco" data-automation-facet-id="ma" data-automation-count="2" data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=ma" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Morocco	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+</ul>
+<div class="t-right">
+<a data-automation-showmore-id="showMore-jb_location_country_iso" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/#hiddenGroupsjb_location_country_iso" class="is-gray t-xsmall toggler-active" data-toggler="" data-bayt-toggler="13">
+<span>Show More</span>
+<span></span>
+</a>
+</div>
+<div id="hiddenGroupsjb_location_country_iso" style="display: none;">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=lb" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Lebanon	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=kw" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Kuwait	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=jo" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Jordan	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=in" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+India	</a>
+&nbsp;<span class="t-mute">(62)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=pk" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Pakistan	</a>
+&nbsp;<span class="t-mute">(7)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=sy" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Syria	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=it" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Italy	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=us" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+USA	</a>
+&nbsp;<span class="t-mute">(2)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=pg" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Papua New Guinea	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=es" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Spain	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=sl" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Sierra Leone	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=cn" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+China	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=ar" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Argentina	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=gr" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Greece	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=jp" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Japan	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-js-filter="" href="https://www.bayt.com/en/jobs/economist-jobs/?filters%5bjb_location_country_iso%5d%5b%5d=sa&amp;filters%5bjb_location_country_iso%5d%5b%5d=se" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_country_iso&quot;}" rel="nofollow">
+Sweden	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+</ul>
+</div>
+</div>
+</div>
+<input id="jb_location_pr_id" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="jb_location_pr_id" class="accordion-title">City</label>
+<div class="accordion-animate">
+<div class="accordion-content">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li>
+<a data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/" data-close-sheet="" class="jsAjaxLoad">
+All	</a>
+</li>
+<li class="t-small">
+<a data-automation-id="Dhahran" data-automation-facet-id="sa,587,0" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-dhahran/" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_pr_id&quot;}">
+Dhahran	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Khobar" data-automation-facet-id="sa,17,0" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-khobar/" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_pr_id&quot;}">
+Khobar	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Eastern-Province" data-automation-facet-id="sa,1,0" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-eastern-province/" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_pr_id&quot;}">
+Eastern Province	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Riyadh" data-automation-facet-id="sa,5,0" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs-in-riyadh/" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_location_pr_id&quot;}">
+Riyadh	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+</ul>
+</div>
+</div>
+<input id="employer_company_name" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="employer_company_name" class="accordion-title">Company</label>
+<div class="accordion-animate">
+<div class="accordion-content">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li>
+<a data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/" data-close-sheet="" class="jsAjaxLoad">
+All	</a>
+</li>
+<li class="t-small">
+<a data-automation-id="King-Fahd-Univeristy" data-automation-facet-id="king fahd univeristy" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bemployer_company_name%5d%5b%5d=king+fahd+univeristy" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;employer_company_name&quot;}" rel="nofollow">
+King Fahd Univeristy	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Ethra-For-Human-Resources-Consulting" data-automation-facet-id="ethra for human resources consulting" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bemployer_company_name%5d%5b%5d=ethra+for+human+resources+consulting" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;employer_company_name&quot;}" rel="nofollow">
+Ethra For Human Resources Consulting	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="1st-Executive" data-automation-facet-id="1st executive" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bemployer_company_name%5d%5b%5d=1st+executive" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;employer_company_name&quot;}" rel="nofollow">
+1st Executive	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+<li class="t-small">
+<a data-automation-id="Roland-Berger" data-automation-facet-id="roland berger" data-automation-count="1" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bemployer_company_name%5d%5b%5d=roland+berger" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;employer_company_name&quot;}" rel="nofollow">
+Roland Berger	</a>
+&nbsp;<span class="t-mute">(1)</span>	</li>
+</ul>
+</div>
+</div>
+<input id="jb_industry_id_original" class="accordion-toggle" type="checkbox" checked="checked">
+<label for="jb_industry_id_original" class="accordion-title">Industry</label>
+<div class="accordion-animate">
+<div class="accordion-content">
+<ul class="list is-basic is-spaced is-compact t-small m0">
+<li>
+<a data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/" data-close-sheet="" class="jsAjaxLoad">
+All	</a>
+</li>
+<li class="t-small">
+<a data-automation-id="Other-Business-Support-Services" data-automation-facet-id="33" data-automation-count="4" data-js-filter="" href="https://www.bayt.com/en/saudi-arabia/jobs/economist-jobs/?filters%5bjb_industry_id_original%5d%5b%5d=33" class="jsAjaxLoad" data-close-sheet="" data-js-params="{&quot;clickedFacet&quot;:&quot;jb_industry_id_original&quot;}" rel="nofollow">
+Other Business Support Services	</a>
+&nbsp;<span class="t-mute">(4)</span>	</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form></div>
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-68505F521B4BBD55AA865913BDEFB4C9@mhtml.blink"></object></div></div>
+</div>
+<div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-F1A4FAE6576300BDB408E71985F1B771@mhtml.blink"></object></div><div style="height:0!important"><object style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;overflow:hidden;z-index:-1;pointer-events:none;opacity:0;" aria-hidden="true" title="Element Resize Detector" tabindex="-1" type="text/html" data="cid:frame-F6A68BBCBEB498347B731A53E96DE5CE@mhtml.blink"></object></div></aside>
+</section>
+<div class="can-toggle is-m m" id="jobAlertSheet" data-toggle-sheet="{&quot;on&quot;:{&quot;afterclose&quot;:&quot;B8.resolve(B8.ToggleSheet, '#jobAlertSheet').dispose()&quot;}}" data-bayt-toggle-sheet="2">
+<div class="toggle-head">
+<a class="m" data-close-sheet="" data-sheet-focus-m=""><b class="t-mute">Cancel</b></a>
+</div>
+<div class="toggle-content">
+<div class="box">
+<div class="row h-align-center">
+<div class="col is-8-d">
+<div id="modalSheetContent"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="p40y-d p20y-m bg-inverse" id="clusterRelatedSearches">
+<div class="box">
+<h2 class="m40b t-center">People also search for...</h2>
+<ul class="media-list is-spaced is-divided" data-empty="Nothing available">
+<li>
+<ul class="list is-tabular of-3-d of-1-m">
+<li class="t-nowrap"><a href="https://www.bayt.com/en/saudi-arabia/jobs/statistician-jobs/" title="Statistician Jobs in Saudi Arabia">Statistician Jobs in Saudi Arabia</a></li>
+<li class="t-nowrap"><a href="https://www.bayt.com/en/saudi-arabia/jobs/mathematician-jobs/" title="Mathematician Jobs in Saudi Arabia">Mathematician Jobs in Saudi Arabia</a></li>
+<li class="t-nowrap"><a href="https://www.bayt.com/en/saudi-arabia/jobs/sociologist-jobs/" title="Sociologist Jobs in Saudi Arabia">Sociologist Jobs in Saudi Arabia</a></li>
+<li class="t-nowrap"><a href="https://www.bayt.com/en/saudi-arabia/jobs/quantity-surveyor-jobs/" title="Quantity Surveyor Jobs in Saudi Arabia">Quantity Surveyor Jobs in Saudi Arabia</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<div class="u-none" id="tmplMsg">
+<div class="msg is-success">
+<span class="js-replace"></span>
+<div class="msg-actions">
+<a target="_blank" href="https://www.bayt.com/en/jobseeker/my-account/subscriptions-update/" class="btn is-small is-inverse"> MANAGE</a>
+</div>
+<button data-attach-close="" class="msg-close" data-msg-close-b8="true"></button>
+</div>
+</div>
+<div class="u-none " id="successMsg">
+<div class="msg is-default m20b-d">
+Job saved successfully	<div class="msg-actions">
+<a class=" is-inverse" href="https://www.bayt.com/en/international/jobs/?options%5Bis_saved_jobs%5D=1">Manage</a>
+</div>
+<button data-attach-close="" class="msg-close t-inverse" data-msg-close-b8="true"></button>
+</div>
+</div>
+<div class="u-none " id="alertMsg">
+<div class="msg is-success snackbar m20b-d" data-automation-id="similarJobEnableClassicView">
+Job alert created for this search. You’ll receive updates when new jobs match.	<div class="msg-actions">
+<a class=" is-inverse" href="https://www.bayt.com/en/jobseeker/my-account/subscriptions-update/">Manage alerts</a>
+</div>
+<button data-attach-close="" class="msg-close t-inverse" data-msg-close-b8="true"></button>
+</div>
+</div>
+<div class="u-none" id="warnMsg">
+<div class="msg is-warning">
+You’ve reached the maximum limit of 15 job alerts. To create a new alert, please delete an existing one first.	<div class="msg-actions">
+<a target="_blank" href="https://www.bayt.com/en/jobseeker/my-account/subscriptions-update/" class="btn is-small is-inverse"> MANAGE</a>
+</div>
+<button data-attach-close="" class="msg-close" data-msg-close-b8="true"></button>
+</div>
+</div>
+<div class="u-none " id="bellDisableMsg">
+<div class="msg is-success snackbar m20b-d is-stretched">
+Job alert turned off. You won’t receive updates for this search anymore.	<div class="msg-actions">
+<a class=" is-inverse">Undo</a>
+</div>
+<button data-attach-close="" class="msg-close t-inverse" data-msg-close-b8="true"></button>
+</div>
+</div>
+<footer id="footer" class="u-rel bt m0">
+<div class="box is-large">
+<div id="pageBreadcrumbs">
+<div class="row">
+<div class="col">
+<ol itemscope="" class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://www.bayt.com/" title="Home" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1"></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://www.bayt.com/en/saudi-arabia/jobs/search/" title="Jobs" itemprop="item"><span itemprop="name">Jobs</span></a><meta itemprop="position" content="2"></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://www.bayt.com/en/saudi-arabia/jobs/" title="Saudi Arabia Jobs" itemprop="item"><span itemprop="name">Saudi Arabia Jobs</span></a><meta itemprop="position" content="3"></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><span itemprop="name">Economist Jobs in Saudi Arabia</span><meta itemprop="position" content="4"></li>	</ol>	</div>
+</div>
+<hr>
+</div>	<div class="row">
+<div class="col m20b-d">
+<div class="t-large t-bold m10b">Find Jobs</div>
+<ul class="list is-basic is-cols of-6-d of-2-m t-small" id="yw1">
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/uae/jobs/jobs-in-abu-dhabi/"> Jobs in Abu Dhabi</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/uae/jobs/jobs-in-dubai/"> Jobs in Dubai</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/algeria/jobs/"> Jobs in Algeria</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/bahrain/jobs/"> Jobs in Bahrain</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/egypt/jobs/"> Jobs in Egypt</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/india/jobs/"> Jobs in India</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/iraq/jobs/"> Jobs in Iraq</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/jordan/jobs/"> Jobs in Jordan</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/kuwait/jobs/"> Jobs in Kuwait</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/lebanon/jobs/"> Jobs in Lebanon</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/libya/jobs/"> Jobs in Libya</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/morocco/jobs/"> Jobs in Morocco</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/oman/jobs/"> Jobs in Oman</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/pakistan/jobs/"> Jobs in Pakistan</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/qatar/jobs/"> Jobs in Qatar</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/saudi-arabia/jobs/"> Jobs in Saudi Arabia</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/tunisia/jobs/"> Jobs in Tunisia</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/uae/jobs/"> Jobs in UAE</a></li>
+</ul>	</div>
+</div>
+<div class="row is-reversed-m">
+<div class="col is-4-d">
+<div class="t-large t-bold m10b">About Bayt.com</div>
+<div class="t-small p20r">Bayt.com is the leading job site in the Middle East and North Africa, connecting job seekers with employers looking to hire. Every day, thousands of new job vacancies are listed on the award-winning platform from the region's top employers.</div>
+<ul class="list is-basic is-spaced is-tabular of-6 p40t p20t-m" id="yw2">
+<li><a class="m0 icon is-18 is-facebook t-default" aria-label="Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Baytcom"></a></li>
+<li><a class="m0 icon is-18 is-twitter t-default" aria-label="Twitter" target="_blank" rel="noopener noreferrer" href="https://x.com/Baytcom"></a></li>
+<li><a class="m0 icon is-18 is-linkedin t-default" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/bayt.com"></a></li>
+<li><a class="m0 icon is-18 is-youtube t-default" aria-label="YouTube" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/Baytcom"></a></li>
+<li><a class="m0 icon is-18 is-instagram t-default" aria-label="Instagram" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/baytcom/"></a></li>
+<li><a class="m0 icon is-18 is-tiktok t-default" aria-label="TikTok" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@bayt.com"></a></li>
+<li><a class="m0 icon is-18 is-spotify t-default" aria-label="Spotify" target="_blank" rel="noopener noreferrer" href="https://open.spotify.com/show/7sTLIVz8cTQBgCqSdxrZLb"></a></li>
+<li><a class="m0 icon is-18 is-apple-podcasts t-default" aria-label="Apple Podcasts" target="_blank" rel="noopener noreferrer" href="https://podcasts.apple.com/ae/podcast/bayt-cast-big-ideas-bigger-opportunities/id1812642116"></a></li>
+<li><a class="m0 icon is-18 is-anghami t-default" aria-label="Anghami" target="_blank" rel="noopener noreferrer" href="https://open.anghami.com/6gJH51K3vWb"></a></li>
+</ul>	</div>
+<div class="col is-2-d is-6-m">
+<div class="t-large t-bold m10b">Company</div>
+<ul class="list is-basic t-small m0" id="yw3">
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/about/">About Us</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/pages/contact-us/">Contact Us</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/international/jobs/bayt.com-jobs/?filters%5Bgid_pid%5D%5B0%5D=1480348-0">Careers</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/about/press/">Press Corner</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/advertise/">Advertise With Us</a></li>
+</ul>	</div>
+<div class="col is-2-d is-6-m">
+<div class="t-large t-bold m10b">Quick Links</div>
+<ul class="list is-basic t-small m0" id="yw4">
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/blog/">Blog</a></li>
+<li class="m5b-m"><a class="t-default" href="https://www.bayt.com/en/podcasts/">Podcasts</a></li>
+</ul>	</div>
+<div class="col is-4-d">
+<div class="t-large t-bold m10b">Get the Bayt App</div>
+<div class="u-flex">
+<a href="https://play.google.com/store/apps/details?id=com.bayt" target="_blank" rel="noopener noreferrer" class="m10r">
+<img src="https://secure.b8cdn.com/bayt/assets/pages-bzgd040u/images/google-play-outline.svg" alt="Get it on Google Play" width="125" height="37" loading="lazy" data-pagespeed-url-hash="1492633032">
+</a>
+<a href="https://apps.apple.com/us/app/bayt-com-job-search/id510893233" target="_blank" rel="noopener noreferrer">
+<img src="https://secure.b8cdn.com/bayt/assets/pages-bzgd040u/images/app-store-outline.svg" alt="Download on the App Store" width="125" height="37" loading="lazy" data-pagespeed-url-hash="2885870209">
+</a>
+</div>
+<div class="row no-wrap m20t d">
+<img src="https://secure.b8cdn.com/bayt/assets/b8static/svg/qr-footer.svg" alt="Bayt App QR Code" loading="lazy" width="75" height="75" data-pagespeed-url-hash="4083336903">
+<div class="m10l">
+<div class="t-small">Scan the QR code to get the app</div>
+<img src="https://secure.b8cdn.com/bayt/assets/b8static/png/footer/arrowRight.png" alt="arrow pointer" loading="lazy" width="30" height="30" data-pagespeed-url-hash="3014449561">
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col">
+<ul class="list is-basic is-inline is-compact t-small m0" id="yw5">
+<li class="m5b"><a class="t-default" href="https://www.bayt.com/en/pages/privacy-statement/">Privacy Policy</a></li>
+<li class="m5b"><a class="t-default" href="https://www.bayt.com/en/pages/cookie-policy/">Cookie Policy</a></li>
+<li class="m5b"><a class="t-default has-pointer cky-banner-element">Cookie Settings</a></li>
+<li class="m5b"><a class="t-default" href="https://www.bayt.com/en/pages/terms/">Terms of Use</a></li>
+<li class="m5b"><a class="t-default" target="_blank" rel="nofollow noopener noreferrer" href="https://trust.bayt.com/">Trust Center <i class="icon is-new-tab t-xsmall m0"></i></a></li>
+<li class="m5b"><a class="t-default" href="https://www.bayt.com/en/pages/security-message/">Stay Safe</a></li>
+</ul>	<div class="t-small m20t-m">
+Copyright © 2000-2026 Bayt.com.	<br class="m">
+All rights reserved.	</div>
+</div>
+<div class="col" dir="rtl">
+<a href="https://www.bayt.com/ar/saudi-arabia/jobs/economist-jobs/" class="btn is-clear t-nowrap t-medium b">
+<i class="icon is-internet m0 m5l"></i>
+العربية	</a>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<a href="https://www.bayt.com/bayt/assets/misc-55zct9hx/images/KSA-VAT-Certificate-2021.pdf" target="_blank" id="vat-ksa" style="fill:#a6afb9" rel="nofollow">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125.215" width="30" height="38">
+<path d="M11.221 0C5.034 0 0 5.034 0 11.219v87.606l.001-.001v15.169c0 6.188 5.033 11.222 11.219 11.222h77.559c6.188 0 11.222-5.034 11.222-11.222V11.219A11.24 11.24 0 0088.779 0zm.008 7.051H88.77c2.447 0 4.431 1.975 4.431 4.411v72.783a6.45 6.45 0 00-4.128-1.487H10.927a6.45 6.45 0 00-4.129 1.487V11.462c0-2.437 1.985-4.411 4.431-4.411zm-.01 78.03h77.562a4.42 4.42 0 014.42 4.42v24.242a4.42 4.42 0 01-4.42 4.421H11.219a4.42 4.42 0 01-4.42-4.421V89.501a4.42 4.42 0 014.42-4.42zm8.593-56.028c-4.59 0-6.22-2.92-6.22-5.422 0-3.202 2.704-5.44 6.575-5.44h.619v-.951h2.054v9.769h13.902v-8.818h2.053v8.818h12.959v-8.818h2.012v10.862zm-.276-8.818c-1.871 0-3.89 1.298-3.89 3.396 0 2.334 1.954 3.378 3.89 3.378h1.25v-6.773zm3.571-5.669c0-.702-.585-1.251-1.333-1.251-.736 0-1.313.549-1.313 1.251 0 .723.565 1.27 1.313 1.27.76 0 1.333-.546 1.333-1.27m-3.711 0c0-.702-.577-1.251-1.313-1.251s-1.314.549-1.314 1.251c0 .723.564 1.27 1.314 1.27s1.313-.546 1.313-1.27M39.12 31.745c0-.711-.593-1.27-1.352-1.27s-1.353.559-1.353 1.27c0 .735.582 1.289 1.353 1.289s1.352-.554 1.352-1.289m11.55.038c0-.712-.577-1.27-1.313-1.27s-1.315.557-1.315 1.27.565 1.251 1.315 1.251 1.313-.538 1.313-1.251m3.711 0c0-.712-.586-1.27-1.333-1.27-.736 0-1.313.557-1.313 1.27s.564 1.251 1.313 1.251c.772 0 1.333-.526 1.333-1.251m3.361 1.46a4.94 4.94 0 01-1.312-.181l-.252-.068.538-1.966.25.065c.35.091.48.105.719.105.894 0 1.192-.3 1.192-2.081V18.191h2.054v8.818h12.301v-8.818h2.054v1.2h6.711c1.569 0 2.6.414 3.449 1.384.647.727 1.003 1.863 1.003 3.2v5.079H60.706l.006.109c.075 1.55-.212 2.675-.852 3.344-.705.737-1.659.737-2.116.737zm17.545-6.234h9.109v-3.035c0-.82-.159-1.38-.515-1.816-.393-.48-1.026-.723-1.883-.723h-6.711zM81.074 16.3c0-.722-.593-1.289-1.352-1.289s-1.352.567-1.352 1.289c0 .735.581 1.289 1.352 1.289s1.352-.554 1.352-1.289M21.732 38.689c-.75 0-1.314-.545-1.314-1.269 0-.701.577-1.251 1.314-1.251.748 0 1.333.55 1.333 1.251 0 .723-.573 1.269-1.333 1.269m-2.378-1.269c0-.701-.577-1.251-1.314-1.251s-1.313.55-1.313 1.251c0 .723.564 1.269 1.313 1.269s1.314-.545 1.314-1.269m31.954 17.216c0-.712-.576-1.27-1.312-1.27s-1.314.557-1.314 1.27.564 1.25 1.314 1.25 1.312-.537 1.312-1.25m3.712 0c0-.712-.586-1.27-1.333-1.27-.737 0-1.314.557-1.314 1.27s.565 1.25 1.314 1.25c.772 0 1.333-.525 1.333-1.25m11.46-16.474c0-.701-.578-1.25-1.315-1.25s-1.313.549-1.313 1.25c0 .723.564 1.27 1.313 1.27s1.315-.546 1.315-1.27m3.711 0c0-.701-.586-1.25-1.333-1.25-.736 0-1.313.549-1.313 1.25 0 .723.564 1.27 1.313 1.27.76 0 1.333-.546 1.333-1.27M40.696 51.938l.032-.031H80.54V35.94h-2.054v13.922h-7.76v-8.818h-2.844c-3.901 0-6.422 2.128-6.422 5.421 0 1.24.395 2.326 1.172 3.225l.148.172h-9.768v-8.818h-2.053v8.818h-8.955l.046-.138c.199-.582.299-1.203.299-1.848 0-3.319-2.514-5.822-5.848-5.822-3.203 0-5.714 2.557-5.714 5.822a5.99 5.99 0 00.296 1.85l.044.136h-8.33v-9.771h-2.054v.953h-.619c-3.871 0-6.575 2.238-6.575 5.44 0 2.622 1.728 5.422 6.575 5.422H32.39l.03.031c1.081 1.098 2.529 1.701 4.081 1.701 1.595 0 3.123-.62 4.194-1.701m-.399-4.082c0 2.122-1.632 3.721-3.795 3.721-2.052 0-3.66-1.634-3.66-3.721 0-2.107 1.608-3.759 3.66-3.759 2.199 0 3.795 1.581 3.795 3.759m28.375-4.767v6.773h-3.017l-.024-.015c-1.345-.786-2.116-2.018-2.116-3.382 0-2.193 1.925-3.377 3.736-3.377zm-47.928 0v6.773h-1.25c-1.936 0-3.889-1.045-3.889-3.378 0-2.097 2.019-3.396 3.889-3.396zM86.45 35.94h-2.054v15.967h2.054zM21.775 61.542c-.75 0-1.315-.546-1.315-1.27 0-.701.578-1.25 1.315-1.25.748 0 1.333.55 1.333 1.25 0 .724-.574 1.27-1.333 1.27m-2.379-1.27c0-.701-.577-1.25-1.313-1.25s-1.314.55-1.314 1.25c0 .724.564 1.27 1.314 1.27s1.313-.546 1.313-1.27M35.402 74.76V63.897h-2.844c-3.901 0-6.422 2.128-6.422 5.421 0 1.24.393 2.325 1.171 3.225l.149.172h-4.615v-9.77h-2.054v.952h-.618c-3.871 0-6.575 2.237-6.575 5.441 0 2.621 1.727 5.421 6.575 5.421zm-2.054-8.818v6.773H30.33l-.025-.015c-1.346-.787-2.117-2.018-2.117-3.382 0-1.636 1.309-3.377 3.737-3.377zm-12.562 0v6.773h-1.25c-1.937 0-3.889-1.044-3.889-3.377 0-2.097 2.019-3.397 3.889-3.397zm12.223-4.947c0-.722-.594-1.288-1.352-1.288s-1.352.565-1.352 1.288c0 .735.582 1.289 1.352 1.289s1.352-.554 1.352-1.289m20.12 1.01c0-.722-.594-1.289-1.353-1.289s-1.351.566-1.351 1.289c0 .735.582 1.289 1.351 1.289s1.353-.554 1.353-1.289m19.044 12.786l.031-.032h8.335V58.792h-2.054v13.922h-5.006l.047-.137a5.7 5.7 0 00.3-1.85c0-3.319-2.515-5.821-5.849-5.821-3.202 0-5.713 2.558-5.713 5.821 0 .625.1 1.249.295 1.852l.044.135h-4.099V69.68c0-1.337-.355-2.473-1.002-3.199-.849-.971-1.882-1.385-3.448-1.385h-6.492v-1.2h-2.054v8.818h-4.943V58.792h-2.054v15.967h25.357l.03.032c1.082 1.097 2.53 1.701 4.08 1.701 1.595 0 3.124-.62 4.195-1.701m-.401-4.083c0 2.121-1.631 3.721-3.794 3.721-2.052 0-3.659-1.634-3.659-3.721 0-2.107 1.607-3.757 3.659-3.757 2.2 0 3.794 1.58 3.794 3.757m-24.21-3.567h6.492c.856 0 1.489.244 1.882.723.356.436.515.995.515 1.816v3.035h-8.889zm38.887-8.349h-2.054V74.76h2.054zm-60.678 48.979l5.228-17.63h7.329l-7.707 22.964h-9.698c-.059 0-5.276-15.657-7.707-22.964h7.329m66.228.002h-24.29l1.832 5.266h7.763v17.692h6.966V95.409h7.741m-24.639 3.145l-.742-1.617c-3.812 2.496-10.133 10.017-10.133 10.017l-2.319-2.615-.841 2.838-.108.415c.883 1.267 3.303 5.513 3.303 5.513 5.578-10.157 10.84-14.55 10.84-14.55m-11.721-3.081l2.387 8.049 5.21-5.291-2.747-8.092h-9.698c-.059 0-5.277 15.657-7.707 22.964h7.329m9.429-3.455l1.025 3.456h7.329l-3.415-10.249c-1.386 1.64-3.103 3.89-4.938 6.793"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</footer>	<script src="https://secure.b8cdn.com/bayt/assets/baytgpt-ffgojnxg/js/gptMatchReport.js" defer="defer" id="254484639"></script>
+<script src="https://secure.b8cdn.com/bayt/assets/job-b7vs2wvm/js/JobSearchClassic.js" defer="defer" id="3355116236"></script>
+<script src="https://www.googletagmanager.com/gtm.js?id=GTM-NW36N4" async="async" id="3804486059"></script>
+<script>function i(url,attrs){var script=document.createElement("script");script.src=url;for(var key in attrs){script.setAttribute(key,attrs[key]||"");}document.head.appendChild(script);}try{eval("var foo=(x)=>x+1");i("https:\/\/secure.b8cdn.com\/bayt\/assets\/baytui-6whtjkql\/js\/B8com.es6.js",{"type":null,"defer":true,"id":2663836941});}catch(e){i("\/bayt\/assets\/baytui-6whtjkql\/js\/B8com.js",{"type":null,"defer":true,"id":2663836941});}</script>
+<script>B8.ready(function(){BaytNavigation.ajax.defaultAjaxSetup()});(function(){var needsPolyfill=typeof window.CustomEvent!=="function"||(window.Element&&!Element.prototype.closest)||!Element.prototype.matches||typeof Object.assign!=="function"||!Array.prototype.find||!Array.prototype.findIndex;if(!needsPolyfill)return;var s=document.createElement("script");s.src=(function(){"use strict";try{eval("var foo=(x)=>x+1");}catch(e){return'\x2F\x2Fsecure.b8cdn.com\x2Fbayt\x2Fassets\x2Fbaytui\x2D6whtjkql\x2Fjs\x2FPolyfills.js';}return'\x2F\x2Fsecure.b8cdn.com\x2Fbayt\x2Fassets\x2Fbaytui\x2D6whtjkql\x2Fjs\x2FPolyfills.es6.js';})();s.defer=true;(document.head||document.getElementsByTagName("head")[0]).appendChild(s);})();B8.ready(function(){try{(ConfirmationEmailForJs.init)()}catch(err){console.error(err)};try{(JobSearch.init)()}catch(err){console.error(err)};});</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a49d88577a54e670',t:'MTc5MTg4NTk5Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><div height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; visibility: hidden;" data-original-tag="iframe"></div>
+<i class="d"></i><div><link rel="stylesheet" type="text/css" href="https://secure.b8cdn.com/bayt/assets/baytui-6whtjkql/css/B8J.css" media="all"></div></body></html>
