@@ -53,6 +53,84 @@ registry:
     note: "Posted 'Social, Economic & Financial Impact Consultant' (Riyadh) on Naukrigulf, Oct 2026."
     source: https://www.naukrigulf.com/economist-jobs-in-saudi-arabia
 
+  # ---- Executive search firms with a Gulf practice, added 2026-10-15 (one-time outreach; see data/executive_search_outreach.md)
+  - name: Amrop Saudi Arabia
+    country: SA
+    kind: executive-search
+    url: https://www.amrop.com/global-reach/global-offices/riyadh
+    email: info@amrop.sa
+    note: "Riyadh (Al Faisaliah Center) and Jeddah offices, est. 2013; C-suite/senior leadership; covers Government & Public Sector, Professional Services."
+    source: https://www.amrop.com/global-reach/global-offices/riyadh
+  - name: Pedersen & Partners - Riyadh
+    country: SA
+    kind: executive-search
+    url: https://pedersenandpartners.com/offices/riyadh/saudi-arabia
+    email: Riyadh@pedersenandpartners.com
+    note: "Riyadh office since 2011; public-sector specialisation plus financial services, healthcare, telecoms, real estate."
+    source: https://pedersenandpartners.com/offices/riyadh/saudi-arabia
+  - name: Egon Zehnder - Kingdom of Saudi Arabia
+    country: SA
+    kind: executive-search
+    url: https://www.egonzehnder.com/office/middle-east/kingdom-of-saudi-arabia
+    email: ezsaudi@egonzehnder.com
+    note: "Riyadh (Diriyah) office; Dubai office middleeast@egonzehnder.com; Public & Social Sector practice incl. Public Finance."
+    source: https://www.egonzehnder.com/office/middle-east/kingdom-of-saudi-arabia
+  - name: Boyden Saudi Arabia
+    country: SA
+    kind: executive-search
+    url: https://www.boyden.com/saudi-arabia/
+    email: m.elzein@boydenme.com
+    note: "Saudi entity est. 2024; MENA managing partners El Zein, Kilani, Robinson, Salah. Contact form at boyden.com/contact/."
+    source: https://www.boyden.com/saudi-arabia/
+  - name: Stanton Chase - Dubai (MENA)
+    country: "SA, QA (covered from Dubai)"
+    kind: executive-search
+    url: https://www.stantonchase.com/office/executive-search-firm-in-dubai-united-arab-emirates
+    email: dubai@stantonchase.com
+    note: "Dubai office since 2006 covering MENA; office form has a 'Submit my CV for consideration' option."
+    source: https://www.stantonchase.com/office/executive-search-firm-in-dubai-united-arab-emirates
+  - name: Odgers (Odgers Berndtson) - Middle East
+    country: "SA, QA (covered from Dubai)"
+    kind: executive-search
+    url: https://www.odgers.com/en-ae/about-us/locations/africa-middle-east/uae/
+    email: middleeast@odgers.com
+    note: "Dubai office, +971 4 362 1830; Public Not-For-Profit practice incl. government & public organisations."
+    source: https://www.odgers.com/en-ae/about-us/locations/africa-middle-east/uae/
+  - name: Korn Ferry - Riyadh and Doha
+    country: "SA, QA"
+    kind: executive-search
+    url: https://www.kornferry.com/sa/about-us/global-offices
+    submit_cv: https://account.candidate.kornferry.com/register
+    note: "Riyadh office in KAFD; Doha office (Abraj Quartier). No candidate email: register on the candidate portal."
+    source: https://www.kornferry.com/ae/careers/candidates
+  - name: Heidrick & Struggles
+    country: "GCC (global portal)"
+    kind: executive-search
+    url: https://www.heidrick.com/en/contact-us
+    submit_cv: https://leaders.heidrick.com/register
+    note: "Contact page: 'Create a profile and submit your resume to be considered for an executive placement'."
+    source: https://www.heidrick.com/en/contact-us
+  - name: Russell Reynolds Associates
+    country: "GCC (global portal)"
+    kind: executive-search
+    url: https://www.russellreynolds.com/en/contact-us/share-your-resume
+    submit_cv: https://engage.russellreynolds.com/
+    note: "Resumes only via RRA Engage (create account, profile, upload resume + cover letter)."
+    source: https://www.russellreynolds.com/en/contact-us/share-your-resume
+  - name: Spencer Stuart
+    country: "GCC (global)"
+    kind: executive-search
+    url: https://www.spencerstuart.com/connect
+    submit_cv: https://www.bluesteps.com/partner/spencerstuart
+    note: "No CV mailbox: register with BlueSteps (AESC) or approach a consultant directly via spencerstuart.com/our-consultants."
+    source: https://www.spencerstuart.com/connect
+  - name: Cooper Fitch
+    country: "SA, QA (covered from Dubai)"
+    kind: agency/executive-search
+    url: https://cooperfitch.ae/contact-us/
+    note: "Dubai JLT office, +971 4 352 2506; web form only (no email published)."
+    source: https://cooperfitch.ae/contact-us/
+
 # Words that usually mean the poster is an intermediary rather than the hiring employer.
 agency_markers: [recruit, recruitment, staffing, manpower, talent, "hr consult", "human resources consult",
                  headhunt, "executive search", "client of", "confidential", consultancy, outsourcing]
