@@ -1,0 +1,46 @@
+{
+  "headline": "Chartered Economist | Performance Measurement, KPI Scorecards & Executive Reporting | MSc Imperial College London",
+  "summary": "Chartered Economist with 10+ years turning strategic objectives into measurable indicators, scorecards, and executive-ready reporting across Saudi public institutions and the private sector, including Elm itself. Designed KPI scorecards and consolidated enterprise-wide budget, financial performance, and delivery data for senior leadership at Elm; led national-scale analytical workstreams at the Ministry of Economy and Planning, coordinating data collection with 10+ government bodies and delivering decision-ready reports to ministerial leadership. Builds dashboards and performance analyses in Power BI, Tableau, R, and Stata, and identifies variances, gaps, and improvement opportunities from the evidence. MSc Economics & Strategy for Business (Imperial College London); native bilingual Arabic and English.",
+  "competency_order": ["Research & Methodology", "Tools & Visualization", "Quantitative Methods", "Domain"],
+  "highlighted_skills": ["KPI scorecards", "Executive dashboards", "Benchmarking", "Trend Forecasting", "Impact Evaluation", "Scenario and sensitivity analysis", "Surveys & Data Collection Design", "Regression Analysis", "Power BI", "Tableau", "Excel (Advanced)", "Public Sector Research", "Digital & Technology", "Vision 2030"],
+  "roles": [
+    {"role_id": "basar", "bullets": [
+      {"source_id": "basar.2", "text": "Advising private-sector clients on sector research, demand modeling, and expansion strategy aligned with Vision 2030."},
+      {"source_id": "basar.1", "text": "Designed and delivered an end-to-end market research engagement (GCC/Jordan): consumer segmentation, willingness-to-pay modeling, and competitive analysis translated into a quantitative pricing and market-entry strategy."},
+      {"source_id": "basar.3", "text": "Completing CFI Business Intelligence & Data Analyst (BIDA) and Financial Modeling & Valuation Analyst (FMVA) certifications while maintaining active modeling output in R and Stata."}
+    ]},
+    {"role_id": "mep", "bullets": [
+      {"source_id": "mep.2", "text": "Owned three flagship analytical workstreams (unemployment forecasting, foreign-worker remittance forecasting, and shadow-economy estimation), integrating multi-source administrative data collected in coordination with 10+ government bodies."},
+      {"source_id": "mep.4", "text": "Communicated findings through decision-ready, executive-level reports and presentations for ministerial leadership and inter-ministerial committees, supporting cross-government knowledge-sharing across functional areas."},
+      {"source_id": "mep.1", "text": "Lead researcher for the labor market team: designed and continuously refined national-scale methodologies on multi-year datasets, with end-to-end ownership from research design through data collection, modeling, and reporting."},
+      {"source_id": "mep.3", "text": "Analyzed the impact of labor-market policies and regulatory developments; produced reports, technical notes, and policy briefs whose findings fed into published national strategy documents and reached the highest levels of government."}
+    ]},
+    {"role_id": "sta", "bullets": [
+      {"source_id": "sta.3", "text": "Designed and maintained executive dashboards and analytical reports communicating performance and research findings to internal and external stakeholders."},
+      {"source_id": "sta.2", "text": "Produced economic impact analyses, predictive revenue forecasts, and competitive intelligence reports supporting multi-million SAR investment and commercial decisions."},
+      {"source_id": "sta.1", "text": "Led sector research on the inbound tourism portfolio: demand pattern analysis, competitive benchmarking of source markets, and segmentation modeling using consumer, economic, and behavioral data."}
+    ]},
+    {"role_id": "elm", "bullets": [
+      {"source_id": "elm.2", "text": "Designed KPI scorecards and consolidated enterprise-wide budget forecasts, financial performance data, and program delivery timelines into integrated performance reporting outputs for senior leadership."},
+      {"source_id": "elm.1", "text": "Led research and analytical workstreams across the Programs & Planning contract portfolio of national-scale digital projects, applying scenario and sensitivity analysis within multi-year planning frameworks."}
+    ]},
+    {"role_id": "sg", "bullets": [
+      {"source_id": "sg.1", "text": "Delivered organizational performance reviews, market assessments, and competitive intelligence for Saudi public and private-sector clients across government, financial services, and consumer sectors."}
+    ]},
+    {"role_id": "takamol", "bullets": [
+      {"source_id": "takamol.3", "text": "Designed dashboards and simulations measuring program effectiveness and supporting Vision 2030-aligned business cases."},
+      {"source_id": "takamol.2", "text": "Built the BI infrastructure for Takamol's e-learning platform; concurrently served as analytical advisor to three VPs within the Saudi Employment Department."},
+      {"source_id": "takamol.1", "text": "Developed econometric models in R and Stata supporting national labor-market research, including topical reports on telework and adjacent workforce dynamics."}
+    ]},
+    {"role_id": "hawaz", "bullets": [
+      {"source_id": "hawaz.1", "text": "Developed and presented a behavioral economics RFP submission to the Ministry of Health; the bid was successful."}
+    ]}
+  ],
+  "cover_note": "Dear Hiring Team,\n\nI am applying for the Consultant role in Corporate Performance Management (Job Code 591284). I know Elm from the inside: as Senior Analyst, Programs & Planning (2019-2020) I designed KPI scorecards and consolidated enterprise-wide budget forecasts, financial performance data, and delivery timelines into reporting for senior leadership. Since then, as Economic Expert at the Ministry of Economy and Planning, I led national-scale analytical workstreams, coordinating data collection with 10+ government bodies and delivering decision-ready reports to ministerial leadership, and at the Saudi Tourism Authority I built executive dashboards and impact analyses behind multi-million SAR decisions. I bring evidence-based variance analysis, Power BI/Tableau/Excel reporting, and the stakeholder follow-through that performance review cycles depend on. I am not yet BSC-certified and would welcome formalizing my hands-on scorecard experience within Elm's framework. I am based in Riyadh and available for interview at your convenience.\n\nKind regards,\nIbrahim H. Alsalem, ChE",
+  "linkedin_note": "Hello - I saw the Consultant, Corporate Performance Management opening at Elm (591284). Former Elm Senior Analyst (Programs & Planning) who designed KPI scorecards for senior leadership; since then MEP and STA performance analytics. Happy to share a tailored CV.",
+  "email_subject": "Application - Consultant, Corporate Performance Management (Job Code 591284) - Ibrahim Alsalem",
+  "keywords_matched": ["KPI", "scorecards", "performance", "reporting", "senior leadership", "stakeholders", "dashboards", "benchmarking", "forecasting", "data collection", "strategic", "Vision 2030", "Riyadh", "Elm", "analysis", "evidence", "Power BI", "Excel"],
+  "keywords_missing": ["Balanced Scorecard (BSC) certification or named BSC framework ownership", "KPI / Performance Management / Strategic Planning certification (preferred)", "Explicit ownership of a corporate quarterly and annual performance review cycle", "Explicit Board of Directors reporting", "4-6 years band: candidate has 10+ years (overqualification risk for grade I3)"],
+  "fit_score": 68,
+  "fit_rationale": "Strong overlap on KPI scorecards, executive reporting, data coordination and analysis, plus prior Elm tenure; gaps are the absence of a formal BSC credential and that the posting's 4-6 year band sits below the candidate's 10+ years."
+}
