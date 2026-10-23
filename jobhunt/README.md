@@ -42,10 +42,19 @@ python -m jobhunt render-master           # master CV as DOCX/PDF from profile/c
 | `JOOBLE_API_KEY_SA`, `JOOBLE_API_KEY_QA` | Jooble REST API (one key **per country domain**; free plan is 500 requests *lifetime* per key) | https://help.jooble.org/en/support/solutions/articles/60001448238-rest-api-documentation |
 | `JSEARCH_API_KEY` | Google-for-Jobs aggregator with a `country` parameter | https://www.openwebninja.com/api/jsearch |
 | `SERPAPI_API_KEY` | Google Jobs engine, `gl=sa` / `gl=qa` are supported countries | https://serpapi.com/google-jobs-api , https://serpapi.com/google-jobs-countries |
-| `BRIGHTDATA_API_KEY` | LinkedIn Jobs dataset (OFF by default, see below) | https://docs.brightdata.com/products/scrapers/linkedin/introduction |
+| `FIRECRAWL_API_KEY` | **Recommended.** Fetch backend for Bayt / GulfTalent / Naukrigulf / Aramco, which block GitHub's IPs (1 credit per page; default config uses 24 pages/day) | https://www.firecrawl.dev (API keys in the dashboard; endpoint docs https://docs.firecrawl.dev/api-reference/endpoint/scrape) |
+| `BRIGHTDATA_API_KEY` + `BRIGHTDATA_UNLOCKER_ZONE` | Alternative fetch backend (Web Unlocker); the API key alone also enables the LinkedIn Jobs dataset source (OFF by default, see below) | https://docs.brightdata.com (Web Unlocker `POST https://api.brightdata.com/request`) |
 | `HUNTER_API_KEY` | optional recruiter mailbox lookup per company domain | hunter.io |
 
-The three HTML boards (Bayt, Naukrigulf, GulfTalent) and the employer career pages need no keys.
+The three HTML boards parse fine, but **from GitHub Actions they are blocked**: on the first live run
+(2026-10-14) Bayt and GulfTalent answered 403 to every request and Naukrigulf and Aramco's careers site never
+answered at all. Two ways around it, in order of preference:
+
+1. **Their own email alerts** (free, no scraping): create alerts on Bayt, GulfTalent and Naukrigulf for your
+   titles in both countries; the `email_alerts` source reads them from Gmail.
+2. **A fetch backend**: add `FIRECRAWL_API_KEY` (or Bright Data Web Unlocker keys). Hosts in `fetch.proxied_hosts`
+   are then fetched through it; `max_queries` per board caps the credits (default 4 queries x 2 countries x 3 boards
+   = 24 pages per day, about 720 per month).
 
 ## Sources, and what was verified (Oct 2026)
 

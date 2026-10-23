@@ -62,8 +62,10 @@ def parse_listing(html: str, country_code: str, source="gulftalent") -> list[Job
 
 def fetch(cfg, http) -> list[Job]:
     out: list[Job] = []
+    max_q = int(cfg["sources"].get("gulftalent", {}).get("max_queries", 0) or 0)
+    queries = cfg["targets"]["queries"][:max_q] if max_q else cfg["targets"]["queries"]
     for c in cfg["targets"]["countries"]:
-        for q in cfg["targets"]["queries"]:
+        for q in queries:
             url = f"{BASE}/{c['gulftalent_slug']}/jobs/title/{slug(q)}"
             r = http.get(url, fixture=f"gulftalent_{c['code'].lower()}_{slug(q)}.html")
             if r is None:

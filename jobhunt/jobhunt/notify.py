@@ -82,11 +82,11 @@ def create_gmail_draft(to: str, subject: str, body: str, attachments: list[Path]
         sub = "pdf" if p.suffix == ".pdf" else "vnd.openxmlformats-officedocument.wordprocessingml.document"
         msg.add_attachment(data, maintype="application", subtype=sub, filename=p.name)
     try:
-        M = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+        M = imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=60)
         M.login(user, pw)
         M.append("[Gmail]/Drafts", "\\Draft", imaplib.Time2Internaldate(time.time()), msg.as_bytes())
         M.logout()
         return True
-    except imaplib.IMAP4.error as e:
+    except (imaplib.IMAP4.error, OSError) as e:
         log.warning("draft creation failed: %s", e)
         return False

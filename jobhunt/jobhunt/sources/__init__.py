@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import importlib
 import logging
+import time
 from typing import Callable
 
 from ..models import Job
@@ -49,12 +50,13 @@ def run_sources(cfg: dict, http, only: list[str] | None = None) -> tuple[list[Jo
         if not ok:
             log.info("skip %-20s %s", name, why)
             continue
+        t0 = time.time()
         try:
             got = _fn(name, "fetch")(cfg, http)
         except Exception as e:  # one broken source must not kill the run
             log.exception("source %s failed: %s", name, e)
             got = []
         counts[name] = len(got)
-        log.info("%-20s %d jobs", name, len(got))
+        log.info("%-20s %d jobs in %.0fs", name, len(got), time.time() - t0)
         jobs.extend(got)
     return jobs, counts
