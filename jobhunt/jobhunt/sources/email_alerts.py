@@ -19,6 +19,7 @@ from urllib.parse import parse_qs, urlparse
 from bs4 import BeautifulSoup
 
 from ..config import env
+from .. import health
 from ..models import Job
 
 log = logging.getLogger(__name__)
@@ -99,8 +100,15 @@ def fetch(cfg, http) -> list[Job]:
         except (imaplib.IMAP4.error, OSError) as e:
             log.warning("IMAP login attempt %d failed: %s", attempt + 1, e)
             M = None
+            if "AUTHENTICATIONFAILED" in str(e).upper() or "INVALID CREDENTIALS" in str(e).upper():
+                health.warn("Gmail rejected the app password (IMAP: invalid credentials). Create a new app password at "
+                            "https://myaccount.google.com/apppasswords and update the GMAIL_APP_PASSWORD secret. "
+                            "Google revokes app passwords when the account password changes.")
+                break
             time.sleep(20 * (attempt + 1))
     if M is None:
+        if not health.warnings():
+            health.warn("Could not connect to Gmail IMAP to read job-alert emails")
         return out
     try:
         M.select("INBOX", readonly=True)

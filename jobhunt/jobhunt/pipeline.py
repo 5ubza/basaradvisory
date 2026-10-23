@@ -10,7 +10,8 @@ from pathlib import Path
 
 import yaml
 
-from .config import load_config
+from . import health
+from .config import env, load_config
 from .enrich import enrich
 from .http import PoliteSession
 from .models import Job
@@ -42,6 +43,7 @@ def dedupe(jobs: list[Job]) -> list[Job]:
 def run(config_path: str | None = None, offline_dir: str | None = None, use_llm: bool = True,
         send_email: bool = True, only_sources: list[str] | None = None, max_tailor: int | None = None) -> dict:
     cfg = load_config(config_path)
+    health.reset()
     pc = cfg["pipeline"]
     out_dir = Path(cfg["paths"]["out"]) / date.today().isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -103,12 +105,16 @@ def run(config_path: str | None = None, offline_dir: str | None = None, use_llm:
         w.writerow(["score", "llm_fit", "title", "company", "location", "country", "source", "posted", "url", "red_flags"])
         for j in shortlist:
             w.writerow([j.score, j.llm_fit, j.title, j.company, j.location, j.country, j.source, j.posted, j.url, "; ".join(j.red_flags)])
+    if not env("FIRECRAWL_API_KEY") and not (env("BRIGHTDATA_API_KEY") and env("BRIGHTDATA_UNLOCKER_ZONE")):
+        health.warn("No fetch backend configured: Bayt, GulfTalent and Naukrigulf cannot be read from GitHub's servers. "
+                    "Add FIRECRAWL_API_KEY, or create email job alerts on those boards so the Gmail feed picks them up.")
+    warnings = health.warnings()
     html = build_digest_html(date=date.today().isoformat(), new_count=len(new_jobs), total_seen=len(jobs),
                              counts=", ".join(f"{k}={v}" for k, v in counts.items()) or "none", jobs=shortlist,
-                             tailored=tailored, recruiters=recruiters)
+                             tailored=tailored, recruiters=recruiters, warnings=warnings)
     (out_dir / "digest.html").write_text(html, "utf-8")
     sent = False
-    if send_email and (shortlist or tailored):
+    if send_email and (shortlist or tailored or warnings):
         subject = f"{cfg['notify'].get('subject_prefix', '[JobHunt]')} {len(shortlist)} new matches, {len(tailored)} tailored CVs - {date.today().isoformat()}"
         sent = send_digest(subject, html, attachments, cfg["notify"]["email_to"])
 
@@ -116,7 +122,8 @@ def run(config_path: str | None = None, offline_dir: str | None = None, use_llm:
         state.mark(j.id)
     state.save()
     summary = {"raw": len(raw), "unique": len(jobs), "new": len(new_jobs), "shortlist": len(shortlist),
-               "tailored": len(tailored), "digest_sent": sent, "out_dir": str(out_dir), "sources": counts}
+               "tailored": len(tailored), "digest_sent": sent, "out_dir": str(out_dir), "sources": counts,
+               "warnings": warnings}
     log.info("summary %s", summary)
     return summary
 

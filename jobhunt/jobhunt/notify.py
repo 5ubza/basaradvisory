@@ -19,6 +19,7 @@ log = logging.getLogger(__name__)
 DIGEST_TMPL = Template("""<!doctype html><html><body style="font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#222">
 <h2 style="margin:0 0 4px">JobHunt digest — {{ date }}</h2>
 <p style="margin:0 0 12px;color:#555">{{ new_count }} new postings ({{ total_seen }} checked) · sources: {{ counts }}</p>
+{% if warnings %}<div style="border:1px solid #e0b000;background:#fff8e1;padding:8px 12px;margin:0 0 12px"><b>Needs attention</b><ul style="margin:6px 0 0 18px;padding:0">{% for w in warnings %}<li>{{ w }}</li>{% endfor %}</ul></div>{% endif %}
 {% if tailored %}<h3>Tailored applications ready ({{ tailored|length }})</h3>
 <ol>{% for t in tailored %}<li><b><a href="{{ t.job.url }}">{{ t.job.title }}</a></b> — {{ t.job.company }} · {{ t.job.location }}
  · score {{ t.job.score }}{% if t.job.llm_fit is not none %} · fit {{ t.job.llm_fit }}{% endif %} · engine {{ t.engine }}<br>
@@ -61,9 +62,13 @@ def send_digest(subject: str, html: str, attachments: list[Path], to: str) -> bo
                                subtype="vnd.openxmlformats-officedocument.wordprocessingml.document", filename=p.name)
         else:
             msg.add_attachment(data, maintype="text", subtype="plain", filename=p.name)
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=60) as s:
-        s.login(user, pw)
-        s.send_message(msg)
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=60) as s:
+            s.login(user, pw)
+            s.send_message(msg)
+    except (smtplib.SMTPException, OSError) as e:
+        log.error("digest email failed: %s (if this says authentication failed, regenerate the Gmail app password)", e)
+        return False
     return True
 
 

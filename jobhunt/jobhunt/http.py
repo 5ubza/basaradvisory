@@ -11,6 +11,7 @@ from urllib.parse import urlparse
 import requests
 
 from .config import env
+from . import health
 
 log = logging.getLogger(__name__)
 
@@ -140,6 +141,13 @@ class PoliteSession:
         if self._failures[host] >= self.host_failure_budget:
             self._dead_hosts.add(host)
             log.warning("host %s failed %d times - giving up on it for this run", host, self._failures[host])
+            if any(host == h or host.endswith("." + h) for h in self.proxied_hosts) and not self.backend:
+                health.warn(f"{host} blocks GitHub's servers and no fetch backend is configured - add FIRECRAWL_API_KEY "
+                            f"(or set up this board's email alerts)")
+            elif self.backend and any(host == h or host.endswith("." + h) for h in self.proxied_hosts):
+                health.warn(f"{host} could not be fetched through {self.backend} (check credits / key)")
+            else:
+                health.warn(f"{host} unreachable this run")
 
     def _throttle(self, url: str) -> None:
         host = urlparse(url).netloc
